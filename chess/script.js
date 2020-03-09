@@ -79,5 +79,6 @@ var config = {
   onSnapEnd: onSnapEnd
 }
 board = Chessboard('myBoard', config)
+$(window).resize(board.resize)
 
 updateStatus()
