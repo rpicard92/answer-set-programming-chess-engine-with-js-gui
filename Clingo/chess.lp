@@ -11,8 +11,6 @@ Notes:
 % Time
 time(0..10).
 
-% Turn
-turn(b;w).
 
 % Board
 row(1..8).
@@ -44,8 +42,8 @@ position(wp3, 2, 3, 0).
 position(wp4, 2, 4, 0).
 position(wp5, 2, 5, 0).
 position(wp6, 2, 6, 0).
-position(wp6, 2, 7, 0).
-position(wp6, 2, 8, 0).
+position(wp7, 2, 7, 0).
+position(wp8, 2, 8, 0).
 
 % Rooks
 position(wr1, 1, 1, 0).
@@ -74,8 +72,8 @@ position(bp3, 2, 3, 0).
 position(bp4, 2, 4, 0).
 position(bp5, 2, 5, 0).
 position(bp6, 2, 6, 0).
-position(bp6, 2, 7, 0).
-position(bp6, 2, 8, 0).
+position(bp7, 2, 7, 0).
+position(bp8, 2, 8, 0).
 
 % Rooks
 position(br1, 1, 1, 0).
@@ -103,14 +101,32 @@ position(bq1, 1, 4, 0).
 % Generate Moves
 
 % Valid Moves at time T
-validMove(Pawn, R+1, C, T) :- whitePawn(Pawn), row(R), column(C), row(R+1), position(Pawn, R, C, T), not position(Pawn, R+2, C+1, T).
-validMove(Knight, R+2, C+1, T) :- whiteKnight(Knight), row(R), column(C), row(R+2), column(C+1), position(Pawn, R, C, T).
 
+% White Pawns
+validMove(Pawn, R+1, C, T) :- whitePawn(Pawn), row(R), column(C), position(Pawn, R, C, T), row(R+1), time(T).
+
+
+% remove old position
+{chooseMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C) }==1 :- time(T).
+
+:- 
 
 % Then make a valid move at time T
-position(Pawn, R, C, T+1) :- chooseMove(Pawn, R, C, T).
+position(Piece, R, C, T+1) :- chooseMove(Piece, R, C, T).
 
+%:- position(wp8, 8, 8, 6).
 
+#show position/4.
 
-
-%counts(N) :- N = #count{Pawn : position(Pawn, R, C, T)}.
+%* 
+whiteScore(N) :- N = #sum {
+    1:position(wp1, _, _, _);
+    1:position(wp2, _, _, _);
+    1:position(wp3, _, _, _);
+    1:position(wp4, _, _, _);
+    1:position(wp5, _, _, _);
+    1:position(wp6, _, _, _);
+    1:position(wp7, _, _, _);
+    1:position(wp8, _, _, _)
+    }.
+*%
