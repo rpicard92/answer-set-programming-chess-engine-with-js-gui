@@ -38,7 +38,7 @@ blackKing(bk1).
 
 % Pawns
 position(wp1, 2, 1, 0).
-position(wp2, 2, 2, 0).
+position(wp2, 3, 2, 0).
 position(wp3, 2, 3, 0).
 position(wp4, 2, 4, 0).
 position(wp5, 2, 5, 0).
@@ -104,20 +104,26 @@ position(bq1, 8, 5, 0).
 % Valid Moves at time T
 
 % White Pawns
-1 {validMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C)} 1 :- time(T).
 
-:- validMove(Piece, R+1, C, T), position(Piece, R, C, T), whitePawn(Piece).
+% gather all spaces
+1 {whitePawn1_canAttack(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
+% remove all none attackable spaces
+:- not whitePawn1_canAttack(wp1, R+1, C+1, T), not whitePawn1_canAttack(wp1, R+1, C-1, T), position(wp1, R, C, T).
+% keep attackable spaces with pieces in them
+:- whitePawn1_canAttack(wp1, R, C, T), not position(_, R, C, T).
 
-% remove where move is equal or behind pawn
-%:- validMove(R, C, T), position(Pawn, R_P, C, T), whitePawn(Pawn), R_P >= R.
+% gather all spaces
+1 {whitePawn1_validMoves(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
+% remove all non valid moves
+:- not whitePawn1_validMoves(wp1, R+1, C, T), not whitePawn1_validMoves(wp1, R+2, C, T), position(wp1, R, C, T), not whitePawn1_validMoves(wp1, RV, CV, T), whitePawn1_canAttack(wp1, RV, CV, T).
 
-% remove where move is occupied by a piece
-%:- validMove(R, C, T), position(Piece, R, C, T).
-
-%1 { position(Piece, R, C, T+1): whitePawn(Piece), validMove(R, C, T) } 1 :- time(T).
+%whitePawn1(wp1, R, C, T) :- whitePawn1_canAttack(wp1, R, C, T).
+%whitePawn1(wp1, R, C, T) :- whitePawn1_validMoves(wp1, R, C, T).
 
 %test(N) :- N = #count{validMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C), time(T)}.
 
 %#show position/4.
-#show validMove/4.
+%#show whitePawn1_canAttack/4.
+#show whitePawn1_validMoves/4.
+%#show whitePawn1/4.
 %#show test/1.
