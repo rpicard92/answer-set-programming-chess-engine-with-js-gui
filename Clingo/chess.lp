@@ -67,7 +67,7 @@ position(wq1, 1, 5, 0).
 % Black Pieces
 
 % Pawns
-position(bp1, 7, 1, 0).
+position(bp1, 3, 1, 0).
 position(bp2, 7, 2, 0).
 position(bp3, 7, 3, 0).
 position(bp4, 7, 4, 0).
@@ -111,27 +111,36 @@ position(bq1, 8, 5, 0).
 1 {whitePawn1_attackMoves(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
 % remove all non-attackable spaces
 :- not whitePawn1_attackMoves(wp1, R+1, C+1, T), not whitePawn1_attackMoves(wp1, R+1, C-1, T), position(wp1, R, C, T).
-% gather spaces with pieces in them. NOTE: cardinality is 0 to 30 here. I believe the max number of attackable space is by a queen in the center which no other picee blocking it's path, and that is 27.
+
+% find piece that are in teh attackable spaces
 0 {whitePawn1_validAttackMoves(wp1, R, C, T): position(_, R, C, T)} 2:- whitePawn1_attackMoves(wp1, R, C, T).
 
-% gather all spaces
+% gather all spaces on board
 1 {whitePawn1_validGeneralMoves(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
-% remove all non valid moves
-:- not whitePawn1_validGeneralMoves(wp1, R+1, C, T), not whitePawn1_validGeneralMoves(wp1, R+2, C, T), position(wp1, R, C, T).
 
+% gather facts about whether moves are blocked
+whitePawn1_OneMoveBlocked(wp1, R, C, T) :- position(_, R+1, C, T), position(wp1, R, C, T).
+whitePawn1_TwoMoveBlocked(wp1, R, C, T) :- whitePawn1_OneMoveBlocked(wp1, R, C, T).
+whitePawn1_TwoMoveBlocked(wp1, R, C, T) :- position(_, R+2, C, T), position(wp1, R, C, T).
+
+% remove all non valid general moves
+:- not whitePawn1_validGeneralMoves(wp1, R+1, C, T), not whitePawn1_validGeneralMoves(wp1, R+2, C, T), position(wp1, R, C, T).
+:- whitePawn1_validGeneralMoves(wp1, R-2, C, T), whitePawn1_validGeneralMoves(wp1, R-2, C, T), whitePawn1_OneMoveBlocked(wp1, R, C, T), whitePawn1_TwoMoveBlocked(wp1, R, C, T).
+
+% concatenate all valid moves
 whitePawn1_validMoves(wp1, R, C, T) :- whitePawn1_validGeneralMoves(wp1, R, C, T).
 whitePawn1_validMoves(wp1, R, C, T) :- whitePawn1_validAttackMoves(wp1, R, C, T).
 
+% choose a valid move
 1{whitePawn1_chooseMove(wp1, R, C, T): whitePawn1_validMoves(wp1, R, C, T) }1 :- time(T).
-
-% :- not whitePawn1_validGeneralMoves(wp1, R+1, C, T), not whitePawn1_validGeneralMoves(wp1, R+2, C, T), position(wp1, R, C, T), 
-%whitePawn1_validAttackMoves(wp1, RV, CV, T), not whitePawn1_validGeneralMoves(wp1, RV, CV, T), R+2 != RV, R+1 != RV, R != RV, C != CV.
 
 %test(N) :- N = #count{validMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C), time(T)}.
 
 %#show position/4.
 %#show whitePawn1_attackMoves/4.
 %#show whitePawn1_validAttackMoves/4.
-%#show whitePawn1_validGeneralMoves/4.
+%#show whitePawn1_OneMoveBlocked/4.
+%#show whitePawn1_TwoMoveBlocked/4.
+#show whitePawn1_validGeneralMoves/4.
 %#show whitePawn1_validMoves/4.
 #show whitePawn1_chooseMove/4.
