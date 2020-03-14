@@ -104,18 +104,20 @@ position(bq1, 8, 5, 0).
 % Valid Moves at time T
 
 % White Pawns
-1 {validMove(R, C, T): row(R), column(C)} 1 :- time(T).
+1 {validMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C)} 1 :- time(T).
+
+:- validMove(Piece, R+1, C, T), position(Piece, R, C, T), whitePawn(Piece).
 
 % remove where move is equal or behind pawn
-:- validMove(R, C, T), position(Pawn, R_P, C, T), whitePawn(Pawn), R_P >= R.
+%:- validMove(R, C, T), position(Pawn, R_P, C, T), whitePawn(Pawn), R_P >= R.
 
 % remove where move is occupied by a piece
-:- validMove(R, C, T), position(Piece, R, C, T).
+%:- validMove(R, C, T), position(Piece, R, C, T).
 
-1 { position(Piece, R, C, T+1): whitePawn(Piece) } 1 :- validMove(R, C, T).
+%1 { position(Piece, R, C, T+1): whitePawn(Piece), validMove(R, C, T) } 1 :- time(T).
 
-test(N) :- N = #count{position(Piece, R, C, T): whitePawn(Piece), row(R), column(C), time(T)}.
+%test(N) :- N = #count{validMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C), time(T)}.
 
-#show position/4.
-#show validMove/3.
-#show test/1.
+%#show position/4.
+#show validMove/4.
+%#show test/1.
