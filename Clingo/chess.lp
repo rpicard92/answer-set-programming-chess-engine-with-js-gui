@@ -1,4 +1,5 @@
-% ATOMS
+% ATOMS ---------------------------------------------------------------------------------
+
 %*
 Notes:
 1. atoms must have a lowercase first letter
@@ -10,7 +11,7 @@ Notes:
 
 
 % Time
-time(0..0).
+time(0..finalTime).
 
 
 % Board
@@ -37,95 +38,96 @@ blackKing(bk1).
 % White Pieces
 
 % Pawns
-position(wp1, 2, 1, 0).
-position(wp2, test, 2, 0).
-position(wp3, 2, 3, 0).
-position(wp4, 2, 4, 0).
-position(wp5, 2, 5, 0).
-position(wp6, 2, 6, 0).
-position(wp7, 2, 7, 0).
-position(wp8, 2, 8, 0).
+position(w,wp1, 2, 1, 0).
+position(w,wp2, 2, 2, 0).
+position(w,wp3, 2, 3, 0).
+position(w,wp4, 2, 4, 0).
+position(w,wp5, 2, 5, 0).
+position(w,wp6, 2, 6, 0).
+position(w,wp7, 2, 7, 0).
+position(w,wp8, 2, 8, 0).
 
 % Rooks
-position(wr1, 1, 1, 0).
-position(wr2, 1, 8, 0).
+position(w,wr1, 1, 1, 0).
+position(w,wr2, 1, 8, 0).
 
 % Bishops
-position(wb1, 1, 2, 0).
-position(wb2, 1, 7, 0).
+position(w,wb1, 1, 2, 0).
+position(w,wb2, 1, 7, 0).
 
 % Knights
-position(wk1, 1, 3, 0).
-position(wk2, 1, 6, 0).
+position(w,wk1, 1, 3, 0).
+position(w,wk2, 1, 6, 0).
 
 % Queen
-position(wq1, 1, 4, 0).
+position(w,wq1, 1, 4, 0).
 
 % King
-position(wq1, 1, 5, 0).
+position(w,wq1, 1, 5, 0).
 
 % Black Pieces
 
 % Pawns
-position(bp1, 3, 1, 0).
-position(bp2, 7, 2, 0).
-position(bp3, 7, 3, 0).
-position(bp4, 7, 4, 0).
-position(bp5, 7, 5, 0).
-position(bp6, 7, 6, 0).
-position(bp7, 7, 7, 0).
-position(bp8, 7, 8, 0).
+position(b,bp1, 7, 1, 0).
+position(b,bp2, 7, 2, 0).
+position(b,bp3, 7, 3, 0).
+position(b,bp4, 7, 4, 0).
+position(b,bp5, 7, 5, 0).
+position(b,bp6, 7, 6, 0).
+position(b,bp7, 7, 7, 0).
+position(b,bp8, 7, 8, 0).
 
 % Rooks
-position(br1, 8, 1, 0).
-position(br2, 8, 8, 0).
+position(b,br1, 8, 1, 0).
+position(b,br2, 8, 8, 0).
 
 % Bishops
-position(bb1, 8, 2, 0).
-position(bb2, 8, 7, 0).
+position(b,bb1, 8, 2, 0).
+position(b,bb2, 8, 7, 0).
 
 % Knights
-position(bk1, 8, 3, 0).
-position(bk2, 8, 6, 0).
+position(b,bk1, 8, 3, 0).
+position(b,bk2, 8, 6, 0).
 
 % Queen
-position(bq1, 8, 4, 0).
+position(b,bq1, 8, 4, 0).
 
 % King
-position(bq1, 8, 5, 0).
+position(b,bq1, 8, 5, 0).
 
 % RULES
 
 
-% Rules for Moves
+% Rules for Moves --------------------------------------------------------
 
-% Generate Moves
+% White Pawns ------------------------------------
 
-% Valid Moves at time T
+% White Pawn 1 ----
 
-% White Pawns
-
-#const test = 2.
+#const finalTime = 0.
 
 % gather all spaces on board
 1 {whitePawn1_attackMoves(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
 % remove all non-attackable spaces
-:- not whitePawn1_attackMoves(wp1, R+1, C+1, T), not whitePawn1_attackMoves(wp1, R+1, C-1, T), position(wp1, R, C, T).
+:- not whitePawn1_attackMoves(wp1, R+1, C+1, T), not whitePawn1_attackMoves(wp1, R+1, C-1, T), position(w,wp1, R, C, T).
 
-% find piece that are in teh attackable spaces
-0 {whitePawn1_validAttackMoves(wp1, R, C, T): position(_, R, C, T)} 2:- whitePawn1_attackMoves(wp1, R, C, T).
+% find pieces that are in the attackable spaces
+0 {whitePawn1_validAttackMoves(wp1, R, C, T): position(b,_, R, C, T)} 2:- whitePawn1_attackMoves(wp1, R, C, T).
 
 % gather all spaces on board
 1 {whitePawn1_validGeneralMoves(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
 
 % gather facts about whether moves are blocked
-whitePawn1_OneMoveBlocked(wp1, R, C, T) :- position(_, R+1, C, T), position(wp1, R, C, T).
-whitePawn1_TwoMoveBlocked(wp1, R, C, T) :- whitePawn1_OneMoveBlocked(wp1, R, C, T).
-whitePawn1_TwoMoveBlocked(wp1, R, C, T) :- position(_, R+2, C, T), position(wp1, R, C, T).
+whitePawn1_OneMoveBlocked(wp1, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp1, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
+whitePawn1_TwoMoveBlocked(wp1, R+1, C, T) :- whitePawn1_OneMoveBlocked(wp1, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
+whitePawn1_TwoMoveBlocked(wp1, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp1, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
+whitePawn1_TwoMoveBlocked(wp1, R+2, C, T) :- position(w,wp1, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
+whitePawn1_BlockedMoves(wp1, R, C, T) :- whitePawn1_OneMoveBlocked(wp1, R, C, T). % consolodate blocked moves
+whitePawn1_BlockedMoves(wp1, R, C, T) :- whitePawn1_TwoMoveBlocked(wp1, R, C, T). % consolodate blocked moves
 
 % remove all non valid general moves
-:- not whitePawn1_validGeneralMoves(wp1, R+1, C, T), not whitePawn1_validGeneralMoves(wp1, R+2, C, T), position(wp1, R, C, T).
-:- whitePawn1_validGeneralMoves(wp1, R-2, C, T), whitePawn1_validGeneralMoves(wp1, R-2, C, T), whitePawn1_OneMoveBlocked(wp1, R, C, T), whitePawn1_TwoMoveBlocked(wp1, R, C, T).
+:- not whitePawn1_validGeneralMoves(wp1, R+1, C, T), not whitePawn1_validGeneralMoves(wp1, R+2, C, T), position(w,wp1, R, C, T). % remove all but the value move forward 1-2
+:- whitePawn1_validGeneralMoves(wp1, R, C, T), whitePawn1_validGeneralMoves(wp1, R, C, T), whitePawn1_BlockedMoves(wp1, R, C, T). % remove all blocked moves
 
 % concatenate all valid moves
 whitePawn1_validMoves(wp1, R, C, T) :- whitePawn1_validGeneralMoves(wp1, R, C, T).
@@ -134,13 +136,14 @@ whitePawn1_validMoves(wp1, R, C, T) :- whitePawn1_validAttackMoves(wp1, R, C, T)
 % choose a valid move
 1{whitePawn1_chooseMove(wp1, R, C, T): whitePawn1_validMoves(wp1, R, C, T) }1 :- time(T).
 
+
 %test(N) :- N = #count{validMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C), time(T)}.
 
-%#show position/4.
+%#show position/5.
 %#show whitePawn1_attackMoves/4.
 %#show whitePawn1_validAttackMoves/4.
 %#show whitePawn1_OneMoveBlocked/4.
 %#show whitePawn1_TwoMoveBlocked/4.
-#show whitePawn1_validGeneralMoves/4.
+%#show whitePawn1_validGeneralMoves/4.
 %#show whitePawn1_validMoves/4.
 #show whitePawn1_chooseMove/4.
