@@ -100,11 +100,11 @@ position(b,bq1, 8, 5, 0).
 
 % Rules for Moves --------------------------------------------------------
 
+#const finalTime = 0.
+
 % White Pawns ------------------------------------
 
 % White Pawn 1 ----
-
-#const finalTime = 0.
 
 % gather all spaces on board
 1 {whitePawn1_attackMoves(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
@@ -133,17 +133,150 @@ whitePawn1_BlockedMoves(wp1, R, C, T) :- whitePawn1_TwoMoveBlocked(wp1, R, C, T)
 whitePawn1_validMoves(wp1, R, C, T) :- whitePawn1_validGeneralMoves(wp1, R, C, T).
 whitePawn1_validMoves(wp1, R, C, T) :- whitePawn1_validAttackMoves(wp1, R, C, T).
 
-% choose a valid move
-1{whitePawn1_chooseMove(wp1, R, C, T): whitePawn1_validMoves(wp1, R, C, T) }1 :- time(T).
 
+% White Pawn 2 ----
+
+% gather all spaces on board
+1 {whitePawn2_attackMoves(wp2, R, C, T): whitePawn(wp2), row(R), column(C)} 1 :- time(T).
+% remove all non-attackable spaces
+:- not whitePawn2_attackMoves(wp2, R+1, C+1, T), not whitePawn2_attackMoves(wp2, R+1, C-1, T), position(w,wp2, R, C, T).
+
+% find pieces that are in the attackable spaces
+0 {whitePawn2_validAttackMoves(wp2, R, C, T): position(b,_, R, C, T)} 2:- whitePawn2_attackMoves(wp2, R, C, T).
+
+% gather all spaces on board
+1 {whitePawn2_validGeneralMoves(wp2, R, C, T): whitePawn(wp2), row(R), column(C)} 1 :- time(T).
+
+% gather facts about whether moves are blocked
+whitePawn2_OneMoveBlocked(wp2, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp2, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
+whitePawn2_TwoMoveBlocked(wp2, R+1, C, T) :- whitePawn2_OneMoveBlocked(wp2, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
+whitePawn2_TwoMoveBlocked(wp2, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp2, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
+whitePawn2_TwoMoveBlocked(wp2, R+2, C, T) :- position(w,wp2, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
+whitePawn2_BlockedMoves(wp2, R, C, T) :- whitePawn2_OneMoveBlocked(wp2, R, C, T). % consolodate blocked moves
+whitePawn2_BlockedMoves(wp2, R, C, T) :- whitePawn2_TwoMoveBlocked(wp2, R, C, T). % consolodate blocked moves
+
+% remove all non valid general moves
+:- not whitePawn2_validGeneralMoves(wp2, R+1, C, T), not whitePawn2_validGeneralMoves(wp2, R+2, C, T), position(w,wp2, R, C, T). % remove all but the value move forward 1-2
+:- whitePawn2_validGeneralMoves(wp2, R, C, T), whitePawn2_validGeneralMoves(wp2, R, C, T), whitePawn2_BlockedMoves(wp2, R, C, T). % remove all blocked moves
+
+% concatenate all valid moves
+whitePawn2_validMoves(wp2, R, C, T) :- whitePawn2_validGeneralMoves(wp2, R, C, T).
+whitePawn2_validMoves(wp2, R, C, T) :- whitePawn2_validAttackMoves(wp2, R, C, T).
+
+
+% White Pawn 3 ----
+
+% gather all spaces on board
+1 {whitePawn3_attackMoves(wp3, R, C, T): whitePawn(wp3), row(R), column(C)} 1 :- time(T).
+% remove all non-attackable spaces
+:- not whitePawn3_attackMoves(wp3, R+1, C+1, T), not whitePawn3_attackMoves(wp3, R+1, C-1, T), position(w,wp3, R, C, T).
+
+% find pieces that are in the attackable spaces
+0 {whitePawn3_validAttackMoves(wp3, R, C, T): position(b,_, R, C, T)} 2:- whitePawn3_attackMoves(wp3, R, C, T).
+
+% gather all spaces on board
+1 {whitePawn3_validGeneralMoves(wp3, R, C, T): whitePawn(wp3), row(R), column(C)} 1 :- time(T).
+
+% gather facts about whether moves are blocked
+whitePawn3_OneMoveBlocked(wp3, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp3, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
+whitePawn3_TwoMoveBlocked(wp3, R+1, C, T) :- whitePawn3_OneMoveBlocked(wp3, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
+whitePawn3_TwoMoveBlocked(wp3, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp3, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
+whitePawn3_TwoMoveBlocked(wp3, R+2, C, T) :- position(w,wp3, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
+whitePawn3_BlockedMoves(wp3, R, C, T) :- whitePawn3_OneMoveBlocked(wp3, R, C, T). % consolodate blocked moves
+whitePawn3_BlockedMoves(wp3, R, C, T) :- whitePawn3_TwoMoveBlocked(wp3, R, C, T). % consolodate blocked moves
+
+% remove all non valid general moves
+:- not whitePawn3_validGeneralMoves(wp3, R+1, C, T), not whitePawn3_validGeneralMoves(wp3, R+2, C, T), position(w,wp3, R, C, T). % remove all but the value move forward 1-2
+:- whitePawn3_validGeneralMoves(wp3, R, C, T), whitePawn3_validGeneralMoves(wp3, R, C, T), whitePawn3_BlockedMoves(wp3, R, C, T). % remove all blocked moves
+
+% concatenate all valid moves
+whitePawn3_validMoves(wp3, R, C, T) :- whitePawn3_validGeneralMoves(wp3, R, C, T).
+whitePawn3_validMoves(wp3, R, C, T) :- whitePawn3_validAttackMoves(wp3, R, C, T).
+
+
+% White Pawn 4 ----
+
+% gather all spaces on board
+1 {whitePawn3_attackMoves(wp3, R, C, T): whitePawn(wp3), row(R), column(C)} 1 :- time(T).
+% remove all non-attackable spaces
+:- not whitePawn3_attackMoves(wp3, R+1, C+1, T), not whitePawn3_attackMoves(wp3, R+1, C-1, T), position(w,wp3, R, C, T).
+
+% find pieces that are in the attackable spaces
+0 {whitePawn3_validAttackMoves(wp3, R, C, T): position(b,_, R, C, T)} 2:- whitePawn3_attackMoves(wp3, R, C, T).
+
+% gather all spaces on board
+1 {whitePawn3_validGeneralMoves(wp3, R, C, T): whitePawn(wp3), row(R), column(C)} 1 :- time(T).
+
+% gather facts about whether moves are blocked
+whitePawn3_OneMoveBlocked(wp3, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp3, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
+whitePawn3_TwoMoveBlocked(wp3, R+1, C, T) :- whitePawn3_OneMoveBlocked(wp3, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
+whitePawn3_TwoMoveBlocked(wp3, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp3, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
+whitePawn3_TwoMoveBlocked(wp3, R+2, C, T) :- position(w,wp3, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
+whitePawn3_BlockedMoves(wp3, R, C, T) :- whitePawn3_OneMoveBlocked(wp3, R, C, T). % consolodate blocked moves
+whitePawn3_BlockedMoves(wp3, R, C, T) :- whitePawn3_TwoMoveBlocked(wp3, R, C, T). % consolodate blocked moves
+
+% remove all non valid general moves
+:- not whitePawn3_validGeneralMoves(wp3, R+1, C, T), not whitePawn3_validGeneralMoves(wp3, R+2, C, T), position(w,wp3, R, C, T). % remove all but the value move forward 1-2
+:- whitePawn3_validGeneralMoves(wp3, R, C, T), whitePawn3_validGeneralMoves(wp3, R, C, T), whitePawn3_BlockedMoves(wp3, R, C, T). % remove all blocked moves
+
+% concatenate all valid moves
+whitePawn3_validMoves(wp3, R, C, T) :- whitePawn3_validGeneralMoves(wp3, R, C, T).
+whitePawn3_validMoves(wp3, R, C, T) :- whitePawn3_validAttackMoves(wp3, R, C, T).
+
+
+% White Pawn 4 ----
+
+% gather all spaces on board
+1 {whitePawn4_attackMoves(wp4, R, C, T): whitePawn(wp4), row(R), column(C)} 1 :- time(T).
+% remove all non-attackable spaces
+:- not whitePawn4_attackMoves(wp4, R+1, C+1, T), not whitePawn4_attackMoves(wp4, R+1, C-1, T), position(w,wp4, R, C, T).
+
+% find pieces that are in the attackable spaces
+0 {whitePawn4_validAttackMoves(wp4, R, C, T): position(b,_, R, C, T)} 2:- whitePawn4_attackMoves(wp4, R, C, T).
+
+% gather all spaces on board
+1 {whitePawn4_validGeneralMoves(wp4, R, C, T): whitePawn(wp4), row(R), column(C)} 1 :- time(T).
+
+% gather facts about whether moves are blocked
+whitePawn4_OneMoveBlocked(wp4, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp4, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
+whitePawn4_TwoMoveBlocked(wp4, R+1, C, T) :- whitePawn4_OneMoveBlocked(wp4, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
+whitePawn4_TwoMoveBlocked(wp4, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp4, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
+whitePawn4_TwoMoveBlocked(wp4, R+2, C, T) :- position(w,wp4, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
+whitePawn4_BlockedMoves(wp4, R, C, T) :- whitePawn4_OneMoveBlocked(wp4, R, C, T). % consolodate blocked moves
+whitePawn4_BlockedMoves(wp4, R, C, T) :- whitePawn4_TwoMoveBlocked(wp4, R, C, T). % consolodate blocked moves
+
+% remove all non valid general moves
+:- not whitePawn4_validGeneralMoves(wp4, R+1, C, T), not whitePawn4_validGeneralMoves(wp4, R+2, C, T), position(w,wp4, R, C, T). % remove all but the value move forward 1-2
+:- whitePawn4_validGeneralMoves(wp4, R, C, T), whitePawn4_validGeneralMoves(wp4, R, C, T), whitePawn4_BlockedMoves(wp4, R, C, T). % remove all blocked moves
+
+% concatenate all valid moves
+whitePawn4_validMoves(wp4, R, C, T) :- whitePawn4_validGeneralMoves(wp4, R, C, T).
+whitePawn4_validMoves(wp4, R, C, T) :- whitePawn4_validAttackMoves(wp4, R, C, T).
+
+% choose a valid move
+1{whitePawn4_chooseMove(wp4, R, C, T): whitePawn4_validMoves(wp4, R, C, T) }1 :- time(T).
+
+
+
+
+
+
+% Assemble Moves ---------------------------------
+
+validMoves(wp1, R, C, T) :- whitePawn1_validMoves(wp1, R, C, T).
+validMoves(wp2, R, C, T) :- whitePawn2_validMoves(wp2, R, C, T).
+validMoves(wp3, R, C, T) :- whitePawn3_validMoves(wp3, R, C, T).
+validMoves(wp4, R, C, T) :- whitePawn4_validMoves(wp3, R, C, T).
+
+
+
+% choose a valid move
+1{chooseMove(P, R, C, T): validMoves(P, R, C, T) }1 :- time(T).
+
+%position(M,P, R, C, T+1) :- position(M, P, R, C, T), not chooseMove(wp1, R, C, T).
+%position(w,wp1, R, C, T+1) :- chooseMove(wp1, R, C, T).
 
 %test(N) :- N = #count{validMove(Piece, R, C, T): whitePawn(Piece), row(R), column(C), time(T)}.
 
 %#show position/5.
-%#show whitePawn1_attackMoves/4.
-%#show whitePawn1_validAttackMoves/4.
-%#show whitePawn1_OneMoveBlocked/4.
-%#show whitePawn1_TwoMoveBlocked/4.
-%#show whitePawn1_validGeneralMoves/4.
-%#show whitePawn1_validMoves/4.
-#show whitePawn1_chooseMove/4.
+#show chooseMove/4.
