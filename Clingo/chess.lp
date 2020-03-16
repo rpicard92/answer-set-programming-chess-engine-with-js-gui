@@ -10,10 +10,6 @@ Notes:
 *%
 
 
-% Time
-time(0..finalTime).
-
-
 % Board
 row(1..8).
 column(1..8).
@@ -38,62 +34,62 @@ blackKing(bk1).
 % White Pieces
 
 % Pawns
-position(w,wp1, 2, 1, 0).
-position(w,wp2, 2, 2, 0).
-position(w,wp3, 2, 3, 0).
-position(w,wp4, 2, 4, 0).
-position(w,wp5, 2, 5, 0).
-position(w,wp6, 2, 6, 0).
-position(w,wp7, 2, 7, 0).
-position(w,wp8, 2, 8, 0).
+position0(w,wp1, 2, 1).
+position0(w,wp2, 2, 2).
+position0(w,wp3, 2, 3).
+position0(w,wp4, 2, 4).
+position0(w,wp5, 2, 5).
+position0(w,wp6, 2, 6).
+position0(w,wp7, 2, 7).
+position0(w,wp8, 2, 8).
 
 % Rooks
-position(w,wr1, 1, 1, 0).
-position(w,wr2, 1, 8, 0).
+position0(w,wr1, 1, 1).
+position0(w,wr2, 1, 8).
 
 % Bishops
-position(w,wb1, 1, 2, 0).
-position(w,wb2, 1, 7, 0).
+position0(w,wb1, 1, 2).
+position0(w,wb2, 1, 7).
 
 % Knights
-position(w,wk1, 1, 3, 0).
-position(w,wk2, 1, 6, 0).
+position0(w,wk1, 1, 3).
+position0(w,wk2, 1, 6).
 
 % Queen
-position(w,wq1, 1, 4, 0).
+position0(w,wq1, 1, 4).
 
 % King
-position(w,wq1, 1, 5, 0).
+position0(w,wq1, 1, 5).
 
 % Black Pieces
 
 % Pawns
-position(b,bp1, 7, 1, 0).
-position(b,bp2, 7, 2, 0).
-position(b,bp3, 7, 3, 0).
-position(b,bp4, 7, 4, 0).
-position(b,bp5, 7, 5, 0).
-position(b,bp6, 7, 6, 0).
-position(b,bp7, 7, 7, 0).
-position(b,bp8, 7, 8, 0).
+position0(b,bp1, 7, 1).
+position0(b,bp2, 7, 2).
+position0(b,bp3, 7, 3).
+position0(b,bp4, 7, 4).
+position0(b,bp5, 7, 5).
+position0(b,bp6, 7, 6).
+position0(b,bp7, 7, 7).
+position0(b,bp8, 7, 8).
 
 % Rooks
-position(b,br1, 8, 1, 0).
-position(b,br2, 8, 8, 0).
+position0(b,br1, 8, 1).
+position0(b,br2, 8, 8).
 
 % Bishops
-position(b,bb1, 8, 2, 0).
-position(b,bb2, 8, 7, 0).
+position0(b,bb1, 8, 2).
+position0(b,bb2, 8, 7).
 
 % Knights
-position(b,bk1, 8, 3, 0).
-position(b,bk2, 8, 6, 0).
+position0(b,bk1, 8, 3).
+position0(b,bk2, 8, 6).
 
 % Queen
-position(b,bq1, 8, 4, 0).
+position0(b,bq1, 8, 4).
 
 % King
-position(b,bq1, 8, 5, 0).
+position0(b,bq1, 8, 5).
 
 % RULES
 
@@ -110,195 +106,158 @@ column(20).
 
 % White Pawns ------------------------------------
 
-% White Pawn 1 ---------------------
 
 % gather facts about whether moves forward are blocked
-whitePawn1_OneMoveBlocked(wp1, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp1, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn1_TwoMoveBlocked(wp1, R+1, C, T) :- whitePawn1_OneMoveBlocked(wp1, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn1_TwoMoveBlocked(wp1, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp1, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn1_TwoMoveBlocked(wp1, R+2, C, T) :- position(w,wp1, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
+whitePawn_OneMoveBlockedPosition0(wp1, R+1, C) :- position0(_,_, R+1, C), position0(w,wp1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp1, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp1, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp1, R+2, C) :- position0(_,_, R+2, C), position0(w,wp1, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp1, R+2, C) :- position0(w,wp1, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
+
+
+% White Pawn 1 ---------------------
 
 % generate all spaces on the board
-1 {whitePawn1_GeneralMoves(wp1, R, C, T): whitePawn(wp1), row(R), column(C)} 1 :- time(T).
+1 {whitePawn1_GeneralMoves(wp1, R, C): whitePawn(wp1), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn1_GeneralMoves(wp1, R+1, C, T), not whitePawn1_GeneralMoves(wp1, R+2, C, T), not whitePawn1_GeneralMoves(wp1, R+1, C+1, T), not whitePawn1_GeneralMoves(wp1, R+1, C-1, T), position(w,wp1, R, C, T), not whitePawn1_GeneralMoves(wp1, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn1_GeneralMoves(wp1, R, C, T), whitePawn1_TwoMoveBlocked(wp1, R, C, T). % remove blocked double forward move
-:- whitePawn1_GeneralMoves(wp1, R, C, T), whitePawn1_OneMoveBlocked(wp1, R, C, T). % remove blocked single forward move
-:- position(w,wp1, R, C, T), not position(b, _, RR, CR, T), whitePawn1_GeneralMoves(wp1, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp1, R, C, T), not position(b, _, RR, CR, T), whitePawn1_GeneralMoves(wp1, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn1_GeneralMoves(wp1, R+1, C), not whitePawn1_GeneralMoves(wp1, R+2, C), not whitePawn1_GeneralMoves(wp1, R+1, C+1), not whitePawn1_GeneralMoves(wp1, R+1, C-1), position0(w,wp1, R, C), not whitePawn1_GeneralMoves(wp1, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn1_GeneralMoves(wp1, R, C), whitePawn_TwoMoveBlockedPosition0(wp1, R, C). % remove blocked double forward move
+:- whitePawn1_GeneralMoves(wp1, R, C), whitePawn_OneMoveBlockedPosition0(wp1, R, C). % remove blocked single forward move
+:- position0(w,wp1, R, C), not position0(b, _, RR, CR), whitePawn1_GeneralMoves(wp1, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp1, R, C), not position0(b, _, RR, CR), whitePawn1_GeneralMoves(wp1, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn1_GeneralMoves1(wp1, R, C, T) :- whitePawn1_GeneralMoves(wp1, R, C, T), R != 1, C != 20.
+whitePawn1_GeneralMoves1(wp1, R, C) :- whitePawn1_GeneralMoves(wp1, R, C), R != 1, C != 20.
 
 
 % White Pawn 2 ---------------------
 
-% gather facts about whether moves forward are blocked
-whitePawn2_OneMoveBlocked(wp2, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp2, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn2_TwoMoveBlocked(wp2, R+1, C, T) :- whitePawn2_OneMoveBlocked(wp2, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn2_TwoMoveBlocked(wp2, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp2, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn2_TwoMoveBlocked(wp2, R+2, C, T) :- position(w,wp2, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
-
 % generate all spaces on the board
-1 {whitePawn2_GeneralMoves(wp2, R, C, T): whitePawn(wp2), row(R), column(C)} 1 :- time(T).
+1 {whitePawn2_GeneralMoves(wp2, R, C): whitePawn(wp2), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn2_GeneralMoves(wp2, R+1, C, T), not whitePawn2_GeneralMoves(wp2, R+2, C, T), not whitePawn2_GeneralMoves(wp2, R+1, C+1, T), not whitePawn2_GeneralMoves(wp2, R+1, C-1, T), position(w,wp2, R, C, T), not whitePawn2_GeneralMoves(wp2, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn2_GeneralMoves(wp2, R, C, T), whitePawn2_TwoMoveBlocked(wp2, R, C, T). % remove blocked double forward move
-:- whitePawn2_GeneralMoves(wp2, R, C, T), whitePawn2_OneMoveBlocked(wp2, R, C, T). % remove blocked single forward move
-:- position(w,wp2, R, C, T), not position(b, _, RR, CR, T), whitePawn2_GeneralMoves(wp2, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp2, R, C, T), not position(b, _, RR, CR, T), whitePawn2_GeneralMoves(wp2, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn2_GeneralMoves(wp2, R+1, C), not whitePawn2_GeneralMoves(wp2, R+2, C), not whitePawn2_GeneralMoves(wp2, R+1, C+1), not whitePawn2_GeneralMoves(wp2, R+1, C-1), position0(w,wp2, R, C), not whitePawn2_GeneralMoves(wp2, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn2_GeneralMoves(wp2, R, C), whitePawn_TwoMoveBlockedPosition0(wp2, R, C). % remove blocked double forward move
+:- whitePawn2_GeneralMoves(wp2, R, C), whitePawn_OneMoveBlockedPosition0(wp2, R, C). % remove blocked single forward move
+:- position0(w,wp2, R, C), not position0(b, _, RR, CR), whitePawn2_GeneralMoves(wp2, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp2, R, C), not position0(b, _, RR, CR), whitePawn2_GeneralMoves(wp2, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn2_GeneralMoves1(wp2, R, C, T) :- whitePawn2_GeneralMoves(wp2, R, C, T), R != 1, C != 20.
+whitePawn2_GeneralMoves1(wp2, R, C) :- whitePawn2_GeneralMoves(wp2, R, C), R != 1, C != 20.
 
 
 % White Pawn 3 ---------------------
 
-% gather facts about whether moves forward are blocked
-whitePawn3_OneMoveBlocked(wp3, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp3, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn3_TwoMoveBlocked(wp3, R+1, C, T) :- whitePawn3_OneMoveBlocked(wp3, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn3_TwoMoveBlocked(wp3, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp3, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn3_TwoMoveBlocked(wp3, R+2, C, T) :- position(w,wp3, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
-
 % generate all spaces on the board
-1 {whitePawn3_GeneralMoves(wp3, R, C, T): whitePawn(wp3), row(R), column(C)} 1 :- time(T).
+1 {whitePawn3_GeneralMoves(wp3, R, C): whitePawn(wp3), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn3_GeneralMoves(wp3, R+1, C, T), not whitePawn3_GeneralMoves(wp3, R+2, C, T), not whitePawn3_GeneralMoves(wp3, R+1, C+1, T), not whitePawn3_GeneralMoves(wp3, R+1, C-1, T), position(w,wp3, R, C, T), not whitePawn3_GeneralMoves(wp3, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn3_GeneralMoves(wp3, R, C, T), whitePawn3_TwoMoveBlocked(wp3, R, C, T). % remove blocked double forward move
-:- whitePawn3_GeneralMoves(wp3, R, C, T), whitePawn3_OneMoveBlocked(wp3, R, C, T). % remove blocked single forward move
-:- position(w,wp3, R, C, T), not position(b, _, RR, CR, T), whitePawn3_GeneralMoves(wp3, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp3, R, C, T), not position(b, _, RR, CR, T), whitePawn3_GeneralMoves(wp3, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn3_GeneralMoves(wp3, R+1, C), not whitePawn3_GeneralMoves(wp3, R+2, C), not whitePawn3_GeneralMoves(wp3, R+1, C+1), not whitePawn3_GeneralMoves(wp3, R+1, C-1), position0(w,wp3, R, C), not whitePawn3_GeneralMoves(wp3, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn3_GeneralMoves(wp3, R, C), whitePawn_TwoMoveBlockedPosition0(wp3, R, C). % remove blocked double forward move
+:- whitePawn3_GeneralMoves(wp3, R, C), whitePawn_OneMoveBlockedPosition0(wp3, R, C). % remove blocked single forward move
+:- position0(w,wp3, R, C), not position0(b, _, RR, CR), whitePawn3_GeneralMoves(wp3, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp3, R, C), not position0(b, _, RR, CR), whitePawn3_GeneralMoves(wp3, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn3_GeneralMoves1(wp3, R, C, T) :- whitePawn3_GeneralMoves(wp3, R, C, T), R != 1, C != 20.
+whitePawn3_GeneralMoves1(wp3, R, C) :- whitePawn3_GeneralMoves(wp3, R, C), R != 1, C != 20.
 
 
 % White Pawn 4 ---------------------
 
-% gather facts about whether moves forward are blocked
-whitePawn4_OneMoveBlocked(wp4, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp4, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn4_TwoMoveBlocked(wp4, R+1, C, T) :- whitePawn4_OneMoveBlocked(wp4, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn4_TwoMoveBlocked(wp4, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp4, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn4_TwoMoveBlocked(wp4, R+2, C, T) :- position(w,wp4, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
-
 % generate all spaces on the board
-1 {whitePawn4_GeneralMoves(wp4, R, C, T): whitePawn(wp4), row(R), column(C)} 1 :- time(T).
+1 {whitePawn4_GeneralMoves(wp4, R, C): whitePawn(wp4), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn4_GeneralMoves(wp4, R+1, C, T), not whitePawn4_GeneralMoves(wp4, R+2, C, T), not whitePawn4_GeneralMoves(wp4, R+1, C+1, T), not whitePawn4_GeneralMoves(wp4, R+1, C-1, T), position(w,wp4, R, C, T), not whitePawn4_GeneralMoves(wp4, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn4_GeneralMoves(wp4, R, C, T), whitePawn4_TwoMoveBlocked(wp4, R, C, T). % remove blocked double forward move
-:- whitePawn4_GeneralMoves(wp4, R, C, T), whitePawn4_OneMoveBlocked(wp4, R, C, T). % remove blocked single forward move
-:- position(w,wp4, R, C, T), not position(b, _, RR, CR, T), whitePawn4_GeneralMoves(wp4, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp4, R, C, T), not position(b, _, RR, CR, T), whitePawn4_GeneralMoves(wp4, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn4_GeneralMoves(wp4, R+1, C), not whitePawn4_GeneralMoves(wp4, R+2, C), not whitePawn4_GeneralMoves(wp4, R+1, C+1), not whitePawn4_GeneralMoves(wp4, R+1, C-1), position0(w,wp4, R, C), not whitePawn4_GeneralMoves(wp4, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn4_GeneralMoves(wp4, R, C), whitePawn_TwoMoveBlockedPosition0(wp4, R, C). % remove blocked double forward move
+:- whitePawn4_GeneralMoves(wp4, R, C), whitePawn_OneMoveBlockedPosition0(wp4, R, C). % remove blocked single forward move
+:- position0(w,wp4, R, C), not position0(b, _, RR, CR), whitePawn4_GeneralMoves(wp4, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp4, R, C), not position0(b, _, RR, CR), whitePawn4_GeneralMoves(wp4, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn4_GeneralMoves1(wp4, R, C, T) :- whitePawn4_GeneralMoves(wp4, R, C, T), R != 1, C != 20.
+whitePawn4_GeneralMoves1(wp4, R, C) :- whitePawn4_GeneralMoves(wp4, R, C), R != 1, C != 20.
 
 
 % White Pawn 5 ---------------------
 
-% gather facts about whether moves forward are blocked
-whitePawn5_OneMoveBlocked(wp5, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp5, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn5_TwoMoveBlocked(wp5, R+1, C, T) :- whitePawn5_OneMoveBlocked(wp5, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn5_TwoMoveBlocked(wp5, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp5, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn5_TwoMoveBlocked(wp5, R+2, C, T) :- position(w,wp5, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
-
 % generate all spaces on the board
-1 {whitePawn5_GeneralMoves(wp5, R, C, T): whitePawn(wp5), row(R), column(C)} 1 :- time(T).
+1 {whitePawn5_GeneralMoves(wp5, R, C): whitePawn(wp5), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn5_GeneralMoves(wp5, R+1, C, T), not whitePawn5_GeneralMoves(wp5, R+2, C, T), not whitePawn5_GeneralMoves(wp5, R+1, C+1, T), not whitePawn5_GeneralMoves(wp5, R+1, C-1, T), position(w,wp5, R, C, T), not whitePawn5_GeneralMoves(wp5, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn5_GeneralMoves(wp5, R, C, T), whitePawn5_TwoMoveBlocked(wp5, R, C, T). % remove blocked double forward move
-:- whitePawn5_GeneralMoves(wp5, R, C, T), whitePawn5_OneMoveBlocked(wp5, R, C, T). % remove blocked single forward move
-:- position(w,wp5, R, C, T), not position(b, _, RR, CR, T), whitePawn5_GeneralMoves(wp5, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp5, R, C, T), not position(b, _, RR, CR, T), whitePawn5_GeneralMoves(wp5, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn5_GeneralMoves(wp5, R+1, C), not whitePawn5_GeneralMoves(wp5, R+2, C), not whitePawn5_GeneralMoves(wp5, R+1, C+1), not whitePawn5_GeneralMoves(wp5, R+1, C-1), position0(w,wp5, R, C), not whitePawn5_GeneralMoves(wp5, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn5_GeneralMoves(wp5, R, C), whitePawn_TwoMoveBlockedPosition0(wp5, R, C). % remove blocked double forward move
+:- whitePawn5_GeneralMoves(wp5, R, C), whitePawn_OneMoveBlockedPosition0(wp5, R, C). % remove blocked single forward move
+:- position0(w,wp5, R, C), not position0(b, _, RR, CR), whitePawn5_GeneralMoves(wp5, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp5, R, C), not position0(b, _, RR, CR), whitePawn5_GeneralMoves(wp5, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn5_GeneralMoves1(wp5, R, C, T) :- whitePawn5_GeneralMoves(wp5, R, C, T), R != 1, C != 20.
+whitePawn5_GeneralMoves1(wp5, R, C) :- whitePawn5_GeneralMoves(wp5, R, C), R != 1, C != 20.
 
 
 % White Pawn 6 ---------------------
 
-% gather facts about whether moves forward are blocked
-whitePawn6_OneMoveBlocked(wp6, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp6, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn6_TwoMoveBlocked(wp6, R+1, C, T) :- whitePawn6_OneMoveBlocked(wp6, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn6_TwoMoveBlocked(wp6, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp6, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn6_TwoMoveBlocked(wp6, R+2, C, T) :- position(w,wp6, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
-
 % generate all spaces on the board
-1 {whitePawn6_GeneralMoves(wp6, R, C, T): whitePawn(wp6), row(R), column(C)} 1 :- time(T).
+1 {whitePawn6_GeneralMoves(wp6, R, C): whitePawn(wp6), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn6_GeneralMoves(wp6, R+1, C, T), not whitePawn6_GeneralMoves(wp6, R+2, C, T), not whitePawn6_GeneralMoves(wp6, R+1, C+1, T), not whitePawn6_GeneralMoves(wp6, R+1, C-1, T), position(w,wp6, R, C, T), not whitePawn6_GeneralMoves(wp6, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn6_GeneralMoves(wp6, R, C, T), whitePawn6_TwoMoveBlocked(wp6, R, C, T). % remove blocked double forward move
-:- whitePawn6_GeneralMoves(wp6, R, C, T), whitePawn6_OneMoveBlocked(wp6, R, C, T). % remove blocked single forward move
-:- position(w,wp6, R, C, T), not position(b, _, RR, CR, T), whitePawn6_GeneralMoves(wp6, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp6, R, C, T), not position(b, _, RR, CR, T), whitePawn6_GeneralMoves(wp6, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn6_GeneralMoves(wp6, R+1, C), not whitePawn6_GeneralMoves(wp6, R+2, C), not whitePawn6_GeneralMoves(wp6, R+1, C+1), not whitePawn6_GeneralMoves(wp6, R+1, C-1), position0(w,wp6, R, C), not whitePawn6_GeneralMoves(wp6, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn6_GeneralMoves(wp6, R, C), whitePawn_TwoMoveBlockedPosition0(wp6, R, C). % remove blocked double forward move
+:- whitePawn6_GeneralMoves(wp6, R, C), whitePawn_OneMoveBlockedPosition0(wp6, R, C). % remove blocked single forward move
+:- position0(w,wp6, R, C), not position0(b, _, RR, CR), whitePawn6_GeneralMoves(wp6, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp6, R, C), not position0(b, _, RR, CR), whitePawn6_GeneralMoves(wp6, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn6_GeneralMoves1(wp6, R, C, T) :- whitePawn6_GeneralMoves(wp6, R, C, T), R != 1, C != 20.
+whitePawn6_GeneralMoves1(wp6, R, C) :- whitePawn6_GeneralMoves(wp6, R, C), R != 1, C != 20.
 
 
 % White Pawn 7 ---------------------
 
-% gather facts about whether moves forward are blocked
-whitePawn7_OneMoveBlocked(wp7, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp7, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn7_TwoMoveBlocked(wp7, R+1, C, T) :- whitePawn7_OneMoveBlocked(wp7, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn7_TwoMoveBlocked(wp7, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp7, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn7_TwoMoveBlocked(wp7, R+2, C, T) :- position(w,wp7, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
-
 % generate all spaces on the board
-1 {whitePawn7_GeneralMoves(wp7, R, C, T): whitePawn(wp7), row(R), column(C)} 1 :- time(T).
+1 {whitePawn7_GeneralMoves(wp7, R, C): whitePawn(wp7), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn7_GeneralMoves(wp7, R+1, C, T), not whitePawn7_GeneralMoves(wp7, R+2, C, T), not whitePawn7_GeneralMoves(wp7, R+1, C+1, T), not whitePawn7_GeneralMoves(wp7, R+1, C-1, T), position(w,wp7, R, C, T), not whitePawn7_GeneralMoves(wp7, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn7_GeneralMoves(wp7, R, C, T), whitePawn7_TwoMoveBlocked(wp7, R, C, T). % remove blocked double forward move
-:- whitePawn7_GeneralMoves(wp7, R, C, T), whitePawn7_OneMoveBlocked(wp7, R, C, T). % remove blocked single forward move
-:- position(w,wp7, R, C, T), not position(b, _, RR, CR, T), whitePawn7_GeneralMoves(wp7, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp7, R, C, T), not position(b, _, RR, CR, T), whitePawn7_GeneralMoves(wp7, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn7_GeneralMoves(wp7, R+1, C), not whitePawn7_GeneralMoves(wp7, R+2, C), not whitePawn7_GeneralMoves(wp7, R+1, C+1), not whitePawn7_GeneralMoves(wp7, R+1, C-1), position0(w,wp7, R, C), not whitePawn7_GeneralMoves(wp7, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn7_GeneralMoves(wp7, R, C), whitePawn_TwoMoveBlockedPosition0(wp7, R, C). % remove blocked double forward move
+:- whitePawn7_GeneralMoves(wp7, R, C), whitePawn_OneMoveBlockedPosition0(wp7, R, C). % remove blocked single forward move
+:- position0(w,wp7, R, C), not position0(b, _, RR, CR), whitePawn7_GeneralMoves(wp7, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp7, R, C), not position0(b, _, RR, CR), whitePawn7_GeneralMoves(wp7, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn7_GeneralMoves1(wp7, R, C, T) :- whitePawn7_GeneralMoves(wp7, R, C, T), R != 1, C != 20.
+whitePawn7_GeneralMoves1(wp7, R, C) :- whitePawn7_GeneralMoves(wp7, R, C), R != 1, C != 20.
 
 
 % White Pawn 8 ---------------------
 
-% gather facts about whether moves forward are blocked
-whitePawn8_OneMoveBlocked(wp8, R+1, C, T) :- position(_,_, R+1, C, T), position(w,wp8, R, C, T). % move forward 1 is block if the position in front of the pawn is blocked
-whitePawn8_TwoMoveBlocked(wp8, R+1, C, T) :- whitePawn8_OneMoveBlocked(wp8, R, C, T). % move forward 2 is blocked if the position one in front of the pawn is blocked
-whitePawn8_TwoMoveBlocked(wp8, R+2, C, T) :- position(_,_, R+2, C, T), position(w,wp8, R, C, T), R==2.  % move forward 2 is block if the position two in front of the pawn is blocked
-whitePawn8_TwoMoveBlocked(wp8, R+2, C, T) :- position(w,wp8, R, C, T), R!=2. % move for 2 is blocked if the position is not the start position
-
 % generate all spaces on the board
-1 {whitePawn8_GeneralMoves(wp8, R, C, T): whitePawn(wp8), row(R), column(C)} 1 :- time(T).
+1 {whitePawn8_GeneralMoves(wp8, R, C): whitePawn(wp8), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whitePawn8_GeneralMoves(wp8, R+1, C, T), not whitePawn8_GeneralMoves(wp8, R+2, C, T), not whitePawn8_GeneralMoves(wp8, R+1, C+1, T), not whitePawn8_GeneralMoves(wp8, R+1, C-1, T), position(w,wp8, R, C, T), not whitePawn8_GeneralMoves(wp8, 1, 20, T). % remove all but the value move forward 1-2, and attack in corners
-:- whitePawn8_GeneralMoves(wp8, R, C, T), whitePawn8_TwoMoveBlocked(wp8, R, C, T). % remove blocked double forward move
-:- whitePawn8_GeneralMoves(wp8, R, C, T), whitePawn8_OneMoveBlocked(wp8, R, C, T). % remove blocked single forward move
-:- position(w,wp8, R, C, T), not position(b, _, RR, CR, T), whitePawn8_GeneralMoves(wp8, R+1, C+1, T), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
-:- position(w,wp8, R, C, T), not position(b, _, RR, CR, T), whitePawn8_GeneralMoves(wp8, R+1, C-1, T), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
+:- not whitePawn8_GeneralMoves(wp8, R+1, C), not whitePawn8_GeneralMoves(wp8, R+2, C), not whitePawn8_GeneralMoves(wp8, R+1, C+1), not whitePawn8_GeneralMoves(wp8, R+1, C-1), position0(w,wp8, R, C), not whitePawn8_GeneralMoves(wp8, 1, 20). % remove all but the value move forward 1-2, and attack in corners
+:- whitePawn8_GeneralMoves(wp8, R, C), whitePawn_TwoMoveBlockedPosition0(wp8, R, C). % remove blocked double forward move
+:- whitePawn8_GeneralMoves(wp8, R, C), whitePawn_OneMoveBlockedPosition0(wp8, R, C). % remove blocked single forward move
+:- position0(w,wp8, R, C), not position0(b, _, RR, CR), whitePawn8_GeneralMoves(wp8, R+1, C+1), RR == R+1, CR == C+1. % remove attackable right diagnol without black piece there
+:- position0(w,wp8, R, C), not position0(b, _, RR, CR), whitePawn8_GeneralMoves(wp8, R+1, C-1), RR == R+1, CR == C-1. % remove attackable left diagnol without black piece there
 
 % remove saftey column preventing usat answers
-whitePawn8_GeneralMoves1(wp8, R, C, T) :- whitePawn8_GeneralMoves(wp8, R, C, T), R != 1, C != 20.
+whitePawn8_GeneralMoves1(wp8, R, C) :- whitePawn8_GeneralMoves(wp8, R, C), R != 1, C != 20.
 
 
 % Gather all moves
-allmoves(wp1, R, C, T) :- whitePawn1_GeneralMoves1(wp1, R, C, T).
-allmoves(wp2, R, C, T) :- whitePawn2_GeneralMoves1(wp2, R, C, T). 
-allmoves(wp3, R, C, T) :- whitePawn3_GeneralMoves1(wp3, R, C, T). 
-allmoves(wp4, R, C, T) :- whitePawn4_GeneralMoves1(wp4, R, C, T). 
-allmoves(wp5, R, C, T) :- whitePawn5_GeneralMoves1(wp5, R, C, T). 
-allmoves(wp6, R, C, T) :- whitePawn6_GeneralMoves1(wp6, R, C, T). 
-allmoves(wp7, R, C, T) :- whitePawn7_GeneralMoves1(wp7, R, C, T). 
-allmoves(wp8, R, C, T) :- whitePawn8_GeneralMoves1(wp8, R, C, T). 
-:- {allmoves(_, R, C, T)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
-:- not allmoves(_, _, _, _). % some other blank answer is generated. This removes that.
+allMovesPosition0(wp1, R, C) :- whitePawn1_GeneralMoves1(wp1, R, C).
+allMovesPosition0(wp2, R, C) :- whitePawn2_GeneralMoves1(wp2, R, C). 
+allMovesPosition0(wp3, R, C) :- whitePawn3_GeneralMoves1(wp3, R, C). 
+allMovesPosition0(wp4, R, C) :- whitePawn4_GeneralMoves1(wp4, R, C). 
+allMovesPosition0(wp5, R, C) :- whitePawn5_GeneralMoves1(wp5, R, C). 
+allMovesPosition0(wp6, R, C) :- whitePawn6_GeneralMoves1(wp6, R, C). 
+allMovesPosition0(wp7, R, C) :- whitePawn7_GeneralMoves1(wp7, R, C). 
+allMovesPosition0(wp8, R, C) :- whitePawn8_GeneralMoves1(wp8, R, C). 
+:- {allMovesPosition0(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
+:- not allMovesPosition0(_, _, _). % some other blank answer is generated. This removes that.
 
-#const finalTime = 0.
+position1(w, P, R, C) :- position0(w, P, R, C), allMovesPosition0(PP, RR, CC), PP != P, RR != R, CC != C.
+position1(w, P, R, C) :- allMovesPosition0(P, R, C).
+
+
 
 % Optimize ---------------------------------------
 
@@ -313,5 +272,5 @@ allmoves(wp8, R, C, T) :- whitePawn8_GeneralMoves1(wp8, R, C, T).
 %#show whitePawn1_GeneralMoves1/4.
 %#show whitePawn2_AttackMoves1/4.
 %#show whitePawn2_GeneralMoves/4.
-#show allmoves/4.
+#show position1/4.
 
