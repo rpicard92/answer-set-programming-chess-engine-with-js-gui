@@ -48,18 +48,18 @@ position0(w,wr1, 1, 1).
 position0(w,wr2, 1, 8).
 
 % Bishops
-position0(w,wb1, 1, 2).
-position0(w,wb2, 1, 7).
+position0(w,wb1, 1, 3).
+position0(w,wb2, 1, 6).
 
 % Knights
-position0(w,wk1, 1, 3).
-position0(w,wk2, 1, 6).
+position0(w,wk1, 1, 2).
+position0(w,wk2, 1, 7).
 
 % Queen
 position0(w,wq1, 1, 4).
 
 % King
-position0(w,wq1, 1, 5).
+position0(w,wkk1, 1, 5).
 
 % Black Pieces
 
@@ -78,15 +78,15 @@ position0(b,br1, 8, 1).
 position0(b,br2, 8, 8).
 
 % Bishops
-position0(b,bb1, 8, 2).
-position0(b,bb2, 8, 7).
+position0(b,bb1, 8, 3).
+position0(b,bb2, 8, 6).
 
 % Knights
-position0(b,bk1, 8, 3).
-position0(b,bk2, 8, 6).
+position0(b,bk1, 8, 2).
+position0(b,bk2, 8, 7).
 
 % Queen
 position0(b,bq1, 8, 4).
 
 % King
-position0(b,bq1, 8, 5).
+position0(b,bkk1, 8, 5).
