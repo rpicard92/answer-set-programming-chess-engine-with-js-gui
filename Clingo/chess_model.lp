@@ -1,96 +1,3 @@
-% ATOMS ---------------------------------------------------------------------------------
-
-%*
-Notes:
-1. atoms must have a lowercase first letter
-2. all expresssion end in '.'
-3. short hand expressiona are:
-    a. atom(1..20) means atom(1), atom(2) ...
-    b. atom(1;2;3) means atom (1), atom(2) ...
-*%
-
-
-% Board
-row(1..8).
-column(1..8).
-
-% Pieces
-whitePawn(wp1;wp2;wp3;wp4;wp5;wp6;wp7;wp8).
-whiteRook(wr1;wr2).
-whiteBishop(wb1;wb2).
-whiteKnight(wk1;wk2).
-whiteQueen(wq1).
-whiteKing(qk1).
-
-blackPawn(bp1;bp2;bp3;bp4;bp5;bp6;bp7;bp8).
-blackRook(br1;br2).
-blackBishop(bb1;bb2).
-blackKnight(bk1;bk2).
-blackQueen(bq1).
-blackKing(bk1).
-
-% Initial configuration
-
-% White Pieces
-
-% Pawns
-position0(w,wp1, 2, 1).
-position0(w,wp2, 2, 2).
-position0(w,wp3, 2, 3).
-position0(w,wp4, 2, 4).
-position0(w,wp5, 2, 5).
-position0(w,wp6, 2, 6).
-position0(w,wp7, 2, 7).
-position0(w,wp8, 2, 8).
-
-% Rooks
-position0(w,wr1, 1, 1).
-position0(w,wr2, 1, 8).
-
-% Bishops
-position0(w,wb1, 1, 2).
-position0(w,wb2, 1, 7).
-
-% Knights
-position0(w,wk1, 1, 3).
-position0(w,wk2, 1, 6).
-
-% Queen
-position0(w,wq1, 1, 4).
-
-% King
-position0(w,wq1, 1, 5).
-
-% Black Pieces
-
-% Pawns
-position0(b,bp1, 7, 1).
-position0(b,bp2, 7, 2).
-position0(b,bp3, 7, 3).
-position0(b,bp4, 7, 4).
-position0(b,bp5, 7, 5).
-position0(b,bp6, 7, 6).
-position0(b,bp7, 7, 7).
-position0(b,bp8, 7, 8).
-
-% Rooks
-position0(b,br1, 8, 1).
-position0(b,br2, 8, 8).
-
-% Bishops
-position0(b,bb1, 8, 2).
-position0(b,bb2, 8, 7).
-
-% Knights
-position0(b,bk1, 8, 3).
-position0(b,bk2, 8, 6).
-
-% Queen
-position0(b,bq1, 8, 4).
-
-% King
-position0(b,bq1, 8, 5).
-
 % RULES
 
 
@@ -107,14 +14,14 @@ column(20).
 % White Pawns ------------------------------------
 
 
+% White Pawn 1 ---------------------
+
+
 % gather facts about whether moves forward are blocked
 whitePawn_OneMoveBlockedPosition0(wp1, R+1, C) :- position0(_,_, R+1, C), position0(w,wp1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp1, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp1, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp1, R+2, C) :- position0(_,_, R+2, C), position0(w,wp1, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp1, R+2, C) :- position0(w,wp1, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
-
-
-% White Pawn 1 ---------------------
 
 % generate all spaces on the board
 1 {whitePawn1_MovesPosition0(wp1, R, C): whitePawn(wp1), row(R), column(C)} 1.
@@ -132,6 +39,11 @@ whitePawn1_ValidMovesPosition0(wp1, R, C) :- whitePawn1_MovesPosition0(wp1, R, C
 
 % White Pawn 2 ---------------------
 
+whitePawn_OneMoveBlockedPosition0(wp2, R+1, C) :- position0(_,_, R+1, C), position0(w,wp2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp2, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp2, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp2, R+2, C) :- position0(_,_, R+2, C), position0(w,wp2, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp2, R+2, C) :- position0(w,wp2, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
+
 % generate all spaces on the board
 1 {whitePawn2_MovesPosition0(wp2, R, C): whitePawn(wp2), row(R), column(C)} 1.
 
@@ -147,6 +59,11 @@ whitePawn2_ValidMovesPosition0(wp2, R, C) :- whitePawn2_MovesPosition0(wp2, R, C
 
 
 % White Pawn 3 ---------------------
+
+whitePawn_OneMoveBlockedPosition0(wp3, R+1, C) :- position0(_,_, R+1, C), position0(w,wp3, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp3, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp3, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp3, R+2, C) :- position0(_,_, R+2, C), position0(w,wp3, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp3, R+2, C) :- position0(w,wp3, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
 
 % generate all spaces on the board
 1 {whitePawn3_MovesPosition0(wp3, R, C): whitePawn(wp3), row(R), column(C)} 1.
@@ -164,6 +81,11 @@ whitePawn3_ValidMovesPosition0(wp3, R, C) :- whitePawn3_MovesPosition0(wp3, R, C
 
 % White Pawn 4 ---------------------
 
+whitePawn_OneMoveBlockedPosition0(wp4, R+1, C) :- position0(_,_, R+1, C), position0(w,wp4, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp4, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp4, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp4, R+2, C) :- position0(_,_, R+2, C), position0(w,wp4, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp4, R+2, C) :- position0(w,wp4, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
+
 % generate all spaces on the board
 1 {whitePawn4_MovesPosition0(wp4, R, C): whitePawn(wp4), row(R), column(C)} 1.
 
@@ -179,6 +101,11 @@ whitePawn4_ValidMovesPosition0(wp4, R, C) :- whitePawn4_MovesPosition0(wp4, R, C
 
 
 % White Pawn 5 ---------------------
+
+whitePawn_OneMoveBlockedPosition0(wp5, R+1, C) :- position0(_,_, R+1, C), position0(w,wp5, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp5, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp5, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp5, R+2, C) :- position0(_,_, R+2, C), position0(w,wp5, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp5, R+2, C) :- position0(w,wp5, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
 
 % generate all spaces on the board
 1 {whitePawn5_MovesPosition0(wp5, R, C): whitePawn(wp5), row(R), column(C)} 1.
@@ -196,6 +123,11 @@ whitePawn5_ValidMovesPosition0(wp5, R, C) :- whitePawn5_MovesPosition0(wp5, R, C
 
 % White Pawn 6 ---------------------
 
+whitePawn_OneMoveBlockedPosition0(wp6, R+1, C) :- position0(_,_, R+1, C), position0(w,wp6, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp6, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp6, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp6, R+2, C) :- position0(_,_, R+2, C), position0(w,wp6, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp6, R+2, C) :- position0(w,wp6, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
+
 % generate all spaces on the board
 1 {whitePawn6_MovesPosition0(wp6, R, C): whitePawn(wp6), row(R), column(C)} 1.
 
@@ -211,6 +143,11 @@ whitePawn6_ValidMovesPosition0(wp6, R, C) :- whitePawn6_MovesPosition0(wp6, R, C
 
 
 % White Pawn 7 ---------------------
+
+whitePawn_OneMoveBlockedPosition0(wp7, R+1, C) :- position0(_,_, R+1, C), position0(w,wp7, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp7, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp7, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp7, R+2, C) :- position0(_,_, R+2, C), position0(w,wp7, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp7, R+2, C) :- position0(w,wp7, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
 
 % generate all spaces on the board
 1 {whitePawn7_MovesPosition0(wp7, R, C): whitePawn(wp7), row(R), column(C)} 1.
@@ -228,6 +165,11 @@ whitePawn7_ValidMovesPosition0(wp7, R, C) :- whitePawn7_MovesPosition0(wp7, R, C
 
 % White Pawn 8 ---------------------
 
+whitePawn_OneMoveBlockedPosition0(wp8, R+1, C) :- position0(_,_, R+1, C), position0(w,wp8, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp8, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp8, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp8, R+2, C) :- position0(_,_, R+2, C), position0(w,wp8, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
+whitePawn_TwoMoveBlockedPosition0(wp8, R+2, C) :- position0(w,wp8, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
+
 % generate all spaces on the board
 1 {whitePawn8_MovesPosition0(wp8, R, C): whitePawn(wp8), row(R), column(C)} 1.
 
@@ -240,6 +182,8 @@ whitePawn7_ValidMovesPosition0(wp7, R, C) :- whitePawn7_MovesPosition0(wp7, R, C
 
 % remove saftey column preventing usat answers
 whitePawn8_ValidMovesPosition0(wp8, R, C) :- whitePawn8_MovesPosition0(wp8, R, C), R != 1, C != 20.
+
+
 
 
 % Gather all moves
@@ -267,14 +211,13 @@ position1(w, P, R, C) :- allMovesPosition0(P, R, C).
 % White Pawns ------------------------------------
 
 
+% White Pawn 1 ---------------------
+
 % gather facts about whether moves forward are blocked
 blackPawn_OneMoveBlockedPosition1(bp1, R-1, C) :- position1(_,_, R-1, C), position1(b,bp1, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
 blackPawn_TwoMoveBlockedPosition1(bp1, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp1, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
 blackPawn_TwoMoveBlockedPosition1(bp1, R-2, C) :- position1(_,_, R-2, C), position1(b,bp1, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
 blackPawn_TwoMoveBlockedPosition1(bp1, R-2, C) :- position1(b,bp1, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
-
-
-% White Pawn 1 ---------------------
 
 % generate all spaces on the board
 1 {blackPawn1_MovesPosition1(bp1, R, C): blackPawn(bp1), row(R), column(C)} 1.
@@ -292,6 +235,12 @@ blackPawn1_ValidMovesPosition1(bp1, R, C) :- blackPawn1_MovesPosition1(bp1, R, C
 
 % White Pawn 2 ---------------------
 
+% gather facts about whether moves forward are blocked
+blackPawn_OneMoveBlockedPosition1(bp2, R-1, C) :- position1(_,_, R-1, C), position1(b,bp2, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp2, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp2, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp2, R-2, C) :- position1(_,_, R-2, C), position1(b,bp2, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp2, R-2, C) :- position1(b,bp2, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
+
 % generate all spaces on the board
 1 {blackPawn2_MovesPosition1(bp2, R, C): blackPawn(bp2), row(R), column(C)} 1.
 
@@ -307,6 +256,12 @@ blackPawn2_ValidMovesPosition1(bp2, R, C) :- blackPawn2_MovesPosition1(bp2, R, C
 
 
 % White Pawn 3 ---------------------
+
+% gather facts about whether moves forward are blocked
+blackPawn_OneMoveBlockedPosition1(bp3, R-1, C) :- position1(_,_, R-1, C), position1(b,bp3, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp3, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp3, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp3, R-2, C) :- position1(_,_, R-2, C), position1(b,bp3, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp3, R-2, C) :- position1(b,bp3, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
 
 % generate all spaces on the board
 1 {blackPawn3_MovesPosition1(bp3, R, C): blackPawn(bp3), row(R), column(C)} 1.
@@ -324,6 +279,12 @@ blackPawn3_ValidMovesPosition1(bp3, R, C) :- blackPawn3_MovesPosition1(bp3, R, C
 
 % White Pawn 4 ---------------------
 
+% gather facts about whether moves forward are blocked
+blackPawn_OneMoveBlockedPosition1(bp4, R-1, C) :- position1(_,_, R-1, C), position1(b,bp4, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp4, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp4, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp4, R-2, C) :- position1(_,_, R-2, C), position1(b,bp4, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp4, R-2, C) :- position1(b,bp4, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
+
 % generate all spaces on the board
 1 {blackPawn4_MovesPosition1(bp4, R, C): blackPawn(bp4), row(R), column(C)} 1.
 
@@ -339,6 +300,12 @@ blackPawn4_ValidMovesPosition1(bp4, R, C) :- blackPawn4_MovesPosition1(bp4, R, C
 
 
 % White Pawn 5 ---------------------
+
+% gather facts about whether moves forward are blocked
+blackPawn_OneMoveBlockedPosition1(bp5, R-1, C) :- position1(_,_, R-1, C), position1(b,bp5, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp5, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp5, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp5, R-2, C) :- position1(_,_, R-2, C), position1(b,bp5, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp5, R-2, C) :- position1(b,bp5, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
 
 % generate all spaces on the board
 1 {blackPawn5_MovesPosition1(bp5, R, C): blackPawn(bp5), row(R), column(C)} 1.
@@ -356,6 +323,12 @@ blackPawn5_ValidMovesPosition1(bp5, R, C) :- blackPawn5_MovesPosition1(bp5, R, C
 
 % White Pawn 6 ---------------------
 
+% gather facts about whether moves forward are blocked
+blackPawn_OneMoveBlockedPosition1(bp6, R-1, C) :- position1(_,_, R-1, C), position1(b,bp6, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp6, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp6, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp6, R-2, C) :- position1(_,_, R-2, C), position1(b,bp6, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp6, R-2, C) :- position1(b,bp6, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
+
 % generate all spaces on the board
 1 {blackPawn6_MovesPosition1(bp6, R, C): blackPawn(bp6), row(R), column(C)} 1.
 
@@ -372,6 +345,12 @@ blackPawn6_ValidMovesPosition1(bp6, R, C) :- blackPawn6_MovesPosition1(bp6, R, C
 
 % White Pawn 7 ---------------------
 
+% gather facts about whether moves forward are blocked
+blackPawn_OneMoveBlockedPosition1(bp7, R-1, C) :- position1(_,_, R-1, C), position1(b,bp7, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp7, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp7, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp7, R-2, C) :- position1(_,_, R-2, C), position1(b,bp7, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp7, R-2, C) :- position1(b,bp7, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
+
 % generate all spaces on the board
 1 {blackPawn7_MovesPosition1(bp7, R, C): blackPawn(bp7), row(R), column(C)} 1.
 
@@ -387,6 +366,12 @@ blackPawn7_ValidMovesPosition1(bp7, R, C) :- blackPawn7_MovesPosition1(bp7, R, C
 
 
 % White Pawn 8 ---------------------
+
+% gather facts about whether moves forward are blocked
+blackPawn_OneMoveBlockedPosition1(bp8, R-1, C) :- position1(_,_, R-1, C), position1(b,bp8, R, C). % move forward 1 is block if the position1 in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp8, R-1, C) :- blackPawn_OneMoveBlockedPosition1(bp8, R, C). % move forward 2 is blocked if the position1 one in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp8, R-2, C) :- position1(_,_, R-2, C), position1(b,bp8, R, C), R==7.  % move forward 2 is block if the position1 two in front of the pawn is blocked
+blackPawn_TwoMoveBlockedPosition1(bp8, R-2, C) :- position1(b,bp8, R, C), R!=7. % move for 2 is blocked if the position1 is not the start position1
 
 % generate all spaces on the board
 1 {blackPawn8_MovesPosition1(bp8, R, C): blackPawn(bp8), row(R), column(C)} 1.
@@ -414,9 +399,9 @@ allMovesPosition1(bp8, R, C) :- blackPawn8_ValidMovesPosition1(bp8, R, C).
 :- {allMovesPosition1(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition1(_, _, _). % some other blank answer is generated. This removes that.
 
-position2(b, P, R, C) :- position1(w, P, R, C).
-position2(w, P, R, C) :- position1(b, P, R, C), allMovesPosition1(PP, RR, CC), PP != P, RR != R, CC != C.
-position2(w, P, R, C) :- allMovesPosition1(P, R, C).
+position2(w, P, R, C) :- position1(w, P, R, C).
+position2(b, P, R, C) :- position1(b, P, R, C), allMovesPosition1(PP, RR, CC), PP != P, RR != R, CC != C.
+position2(b, P, R, C) :- allMovesPosition1(P, R, C).
 
 
 
