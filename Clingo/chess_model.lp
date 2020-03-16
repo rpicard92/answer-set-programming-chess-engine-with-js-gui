@@ -429,10 +429,10 @@ position2(w, P, R, C) :- allMovesPosition1(P, R, C).
 
 % Optimize ---------------------------------------
 
-%maximize number of pawns
-%pawn_value(1,wp1;1,wp2;1,wp3;1,wp4;1,wp5;1,wp6;1,wp7;1,wp8).
-%values(V) :- position(w,P, R, C, finalTime), pawn_value(V,P).
-%total_Value(V) :- V = #sum{ Vs : values(Vs) }.
+%#maximize number of pawns
+%#pawn_value(1,wp1;1,wp2;1,wp3;1,wp4;1,wp5;1,wp6;1,wp7;1,wp8).
+%#values(V) :- position(w,P, R, C, finalTime), pawn_value(V,P).
+%#total_Value(V) :- V = #sum{ Vs : values(Vs) }.
 %#maximize { V: total_Value(V)}.
 
 
