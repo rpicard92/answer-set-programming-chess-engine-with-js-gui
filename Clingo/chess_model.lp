@@ -18,7 +18,7 @@ column(20).
 
 
 % gather facts about whether moves forward are blocked
-whitePawn_OneMoveBlockedPosition0(wp1, R+1, C) :- position0(_,_, R+1, C), position0(w,wp1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp1, R+1, C) :- position0(_,_, R+1, C), position0(w,wp1, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp1, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp1, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp1, R+2, C) :- position0(_,_, R+2, C), position0(w,wp1, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp1, R+2, C) :- position0(w,wp1, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -39,7 +39,7 @@ whitePawn1_ValidMovesPosition0(wp1, R, C) :- whitePawn1_MovesPosition0(wp1, R, C
 
 % White Pawn 2 ---------------------
 
-whitePawn_OneMoveBlockedPosition0(wp2, R+1, C) :- position0(_,_, R+1, C), position0(w,wp2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp2, R+1, C) :- position0(_,_, R+1, C), position0(w,wp2, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp2, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp2, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp2, R+2, C) :- position0(_,_, R+2, C), position0(w,wp2, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp2, R+2, C) :- position0(w,wp2, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -60,7 +60,7 @@ whitePawn2_ValidMovesPosition0(wp2, R, C) :- whitePawn2_MovesPosition0(wp2, R, C
 
 % White Pawn 3 ---------------------
 
-whitePawn_OneMoveBlockedPosition0(wp3, R+1, C) :- position0(_,_, R+1, C), position0(w,wp3, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp3, R+1, C) :- position0(_,_, R+1, C), position0(w,wp3, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp3, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp3, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp3, R+2, C) :- position0(_,_, R+2, C), position0(w,wp3, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp3, R+2, C) :- position0(w,wp3, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -81,7 +81,7 @@ whitePawn3_ValidMovesPosition0(wp3, R, C) :- whitePawn3_MovesPosition0(wp3, R, C
 
 % White Pawn 4 ---------------------
 
-whitePawn_OneMoveBlockedPosition0(wp4, R+1, C) :- position0(_,_, R+1, C), position0(w,wp4, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp4, R+1, C) :- position0(_,_, R+1, C), position0(w,wp4, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp4, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp4, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp4, R+2, C) :- position0(_,_, R+2, C), position0(w,wp4, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp4, R+2, C) :- position0(w,wp4, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -102,7 +102,7 @@ whitePawn4_ValidMovesPosition0(wp4, R, C) :- whitePawn4_MovesPosition0(wp4, R, C
 
 % White Pawn 5 ---------------------
 
-whitePawn_OneMoveBlockedPosition0(wp5, R+1, C) :- position0(_,_, R+1, C), position0(w,wp5, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp5, R+1, C) :- position0(_,_, R+1, C), position0(w,wp5, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp5, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp5, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp5, R+2, C) :- position0(_,_, R+2, C), position0(w,wp5, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp5, R+2, C) :- position0(w,wp5, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -123,7 +123,7 @@ whitePawn5_ValidMovesPosition0(wp5, R, C) :- whitePawn5_MovesPosition0(wp5, R, C
 
 % White Pawn 6 ---------------------
 
-whitePawn_OneMoveBlockedPosition0(wp6, R+1, C) :- position0(_,_, R+1, C), position0(w,wp6, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp6, R+1, C) :- position0(_,_, R+1, C), position0(w,wp6, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp6, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp6, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp6, R+2, C) :- position0(_,_, R+2, C), position0(w,wp6, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp6, R+2, C) :- position0(w,wp6, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -144,7 +144,7 @@ whitePawn6_ValidMovesPosition0(wp6, R, C) :- whitePawn6_MovesPosition0(wp6, R, C
 
 % White Pawn 7 ---------------------
 
-whitePawn_OneMoveBlockedPosition0(wp7, R+1, C) :- position0(_,_, R+1, C), position0(w,wp7, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp7, R+1, C) :- position0(_,_, R+1, C), position0(w,wp7, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp7, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp7, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp7, R+2, C) :- position0(_,_, R+2, C), position0(w,wp7, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp7, R+2, C) :- position0(w,wp7, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -165,7 +165,7 @@ whitePawn7_ValidMovesPosition0(wp7, R, C) :- whitePawn7_MovesPosition0(wp7, R, C
 
 % White Pawn 8 ---------------------
 
-whitePawn_OneMoveBlockedPosition0(wp8, R+1, C) :- position0(_,_, R+1, C), position0(w,wp8, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whitePawn_OneMoveBlockedPosition0(wp8, R+1, C) :- position0(_,_, R+1, C), position0(w,wp8, R, C). % move forward  
 whitePawn_TwoMoveBlockedPosition0(wp8, R+1, C) :- whitePawn_OneMoveBlockedPosition0(wp8, R, C). % move forward 2 is blocked if the position0 one in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp8, R+2, C) :- position0(_,_, R+2, C), position0(w,wp8, R, C), R==2.  % move forward 2 is block if the position0 two in front of the pawn is blocked
 whitePawn_TwoMoveBlockedPosition0(wp8, R+2, C) :- position0(w,wp8, R, C), R!=2. % move for 2 is blocked if the position0 is not the start position0
@@ -184,78 +184,379 @@ whitePawn_TwoMoveBlockedPosition0(wp8, R+2, C) :- position0(w,wp8, R, C), R!=2. 
 whitePawn8_ValidMovesPosition0(wp8, R, C) :- whitePawn8_MovesPosition0(wp8, R, C), R != 1, C != 20.
 
 
+% White Rooks
+
+
+% White Rook 1 - Left ---------------------------
+
+% gather facts about whether moves are blocked
+whiteRook_UpSevenMoveBlockedPosition0(wr1, R+7, C) :- position0(w,_, R+7, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpSixMoveBlockedPosition0(wr1, R+6, C) :- position0(w,_, R+6, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpFiveMoveBlockedPosition0(wr1, R+5, C) :- position0(w,_, R+5, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpFourMoveBlockedPosition0(wr1, R+4, C) :- position0(w,_, R+4, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpThreeMoveBlockedPosition0(wr1, R+3, C) :- position0(w,_, R+3, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpTwoMoveBlockedPosition0(wr1, R+2, C) :- position0(w,_, R+2, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpOneMoveBlockedPosition0(wr1, R+1, C) :- position0(w,_, R+1, C), position0(w,wr1, R, C). % move forward  
+
+whiteRook_UpSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpSixMoveBlockedPosition0(wr1, R, C).
+whiteRook_UpSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpFiveMoveBlockedPosition0(wr1, R, C).
+whiteRook_UpFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpFourMoveBlockedPosition0(wr1, R, C).  
+whiteRook_UpFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpThreeMoveBlockedPosition0(wr1, R, C). 
+whiteRook_UpThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpTwoMoveBlockedPosition0(wr1, R, C).
+whiteRook_UpTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpOneMoveBlockedPosition0(wr1, R, C).
+
+whiteRook_DownSevenMoveBlockedPosition0(wr1, R-7, C) :- position0(w,_, R-7, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownSixMoveBlockedPosition0(wr1, R-6, C) :- position0(w,_, R-6, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownFiveMoveBlockedPosition0(wr1, R-5, C) :- position0(w,_, R-5, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownFourMoveBlockedPosition0(wr1, R-4, C) :- position0(w,_, R-4, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownThreeMoveBlockedPosition0(wr1, R-3, C) :- position0(w,_, R-3, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownTwoMoveBlockedPosition0(wr1, R-2, C) :- position0(w,_, R-2, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownOneMoveBlockedPosition0(wr1, R-1, C) :- position0(w,_, R-1, C), position0(w,wr1, R, C). % move forward  
+
+whiteRook_DownSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownSixMoveBlockedPosition0(wr1, R, C).
+whiteRook_DownSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownFiveMoveBlockedPosition0(wr1, R, C).
+whiteRook_DownFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownFourMoveBlockedPosition0(wr1, R, C).  
+whiteRook_DownFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownThreeMoveBlockedPosition0(wr1, R, C). 
+whiteRook_DownThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownTwoMoveBlockedPosition0(wr1, R, C).
+whiteRook_DownTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownOneMoveBlockedPosition0(wr1, R, C).
+
+whiteRook_LeftSevenMoveBlockedPosition0(wr1, R, C-7) :- position0(w,_, R, C-7), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C-6) :- position0(w,_, R, C-6), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftFiveMoveBlockedPosition0(wr1, R, C-5) :- position0(w,_, R, C-5), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftFourMoveBlockedPosition0(wr1, R, C-4) :- position0(w,_, R, C-4), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C-3) :- position0(w,_, R, C-3), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C-2) :- position0(w,_, R, C-2), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftOneMoveBlockedPosition0(wr1, R, C-1) :- position0(w,_, R, C-1), position0(w,wr1, R, C). % move forward  
+
+whiteRook_LeftSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C).
+whiteRook_LeftSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftFiveMoveBlockedPosition0(wr1, R, C).
+whiteRook_LeftFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftFourMoveBlockedPosition0(wr1, R, C).  
+whiteRook_LeftFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C). 
+whiteRook_LeftThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C).
+whiteRook_LeftTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftOneMoveBlockedPosition0(wr1, R, C).
+
+whiteRook_RightSevenMoveBlockedPosition0(wr1, R, C+7) :- position0(w,_, R, C+7), position0(w,wr1, R, C). % move forward  
+whiteRook_RightSixMoveBlockedPosition0(wr1, R, C+6) :- position0(w,_, R, C+6), position0(w,wr1, R, C). % move forward  
+whiteRook_RightFiveMoveBlockedPosition0(wr1, R, C+5) :- position0(w,_, R, C+5), position0(w,wr1, R, C). % move forward  
+whiteRook_RightFourMoveBlockedPosition0(wr1, R, C+4) :- position0(w,_, R, C+4), position0(w,wr1, R, C). % move forward  
+whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C+3) :- position0(w,_, R, C+3), position0(w,wr1, R, C). % move forward  
+whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C+2) :- position0(w,_, R, C+2), position0(w,wr1, R, C). % move forward  
+whiteRook_RightOneMoveBlockedPosition0(wr1, R, C+1) :- position0(w,_, R, C+1), position0(w,wr1, R, C). % move forward  
+
+whiteRook_RightSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightSixMoveBlockedPosition0(wr1, R, C).
+whiteRook_RightSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightFiveMoveBlockedPosition0(wr1, R, C).
+whiteRook_RightFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightFourMoveBlockedPosition0(wr1, R, C).  
+whiteRook_RightFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C). 
+whiteRook_RightThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C).
+whiteRook_RightTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightOneMoveBlockedPosition0(wr1, R, C).
+
+% generate all spaces on the board
+1 {whiteRook1_MovesPosition0(wr1, R, C): whiteRook(wr1), row(R), column(C)} 1.
+
+% remove all illegal moves and blocked moves
+:- 
+not whiteRook1_MovesPosition0(wr1, R+1, C), 
+not whiteRook1_MovesPosition0(wr1, R+2, C), 
+not whiteRook1_MovesPosition0(wr1, R+3, C), 
+not whiteRook1_MovesPosition0(wr1, R+4, C), 
+not whiteRook1_MovesPosition0(wr1, R+5, C), 
+not whiteRook1_MovesPosition0(wr1, R+6, C),
+not whiteRook1_MovesPosition0(wr1, R+6, C), 
+not whiteRook1_MovesPosition0(wr1, R+7, C),
+
+not whiteRook1_MovesPosition0(wr1, R-1, C), 
+not whiteRook1_MovesPosition0(wr1, R-2, C), 
+not whiteRook1_MovesPosition0(wr1, R-3, C), 
+not whiteRook1_MovesPosition0(wr1, R-4, C), 
+not whiteRook1_MovesPosition0(wr1, R-5, C), 
+not whiteRook1_MovesPosition0(wr1, R-6, C),
+not whiteRook1_MovesPosition0(wr1, R-6, C), 
+not whiteRook1_MovesPosition0(wr1, R-7, C),
+
+not whiteRook1_MovesPosition0(wr1, R, C-1), 
+not whiteRook1_MovesPosition0(wr1, R, C-2), 
+not whiteRook1_MovesPosition0(wr1, R, C-3), 
+not whiteRook1_MovesPosition0(wr1, R, C-4), 
+not whiteRook1_MovesPosition0(wr1, R, C-5), 
+not whiteRook1_MovesPosition0(wr1, R, C-6),
+not whiteRook1_MovesPosition0(wr1, R, C-7), 
+
+not whiteRook1_MovesPosition0(wr1, R, C+1), 
+not whiteRook1_MovesPosition0(wr1, R, C+2), 
+not whiteRook1_MovesPosition0(wr1, R, C+3), 
+not whiteRook1_MovesPosition0(wr1, R, C+4), 
+not whiteRook1_MovesPosition0(wr1, R, C+5), 
+not whiteRook1_MovesPosition0(wr1, R, C+6),
+not whiteRook1_MovesPosition0(wr1, R, C+7), 
+
+position0(w, wr1, R, C), 
+not whiteRook1_MovesPosition0(wr1, 1, 20).
+
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_UpSevenMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_UpSixMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_UpFiveMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_UpFourMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_UpThreeMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_UpTwoMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_UpOneMoveBlockedPosition0(wr1, R, C).   
+
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_DownSevenMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_DownSixMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_DownFiveMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_DownFourMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_DownThreeMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_DownTwoMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_DownOneMoveBlockedPosition0(wr1, R, C).   
+
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_LeftSevenMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_LeftFiveMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_LeftFourMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_LeftOneMoveBlockedPosition0(wr1, R, C).   
+
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_RightSevenMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_RightSixMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_RightFiveMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_RightFourMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C).   
+:- whiteRook1_MovesPosition0(wr1, R, C), whiteRook_RightOneMoveBlockedPosition0(wr1, R, C).   
+
+
+% remove saftey column preventing usat answers
+whiteRook1_ValidMovesPosition0(wr1, R, C) :- whiteRook1_MovesPosition0(wr1, R, C), R != 1, C != 20.
+
+% White Rook 2 - Right ---------------------------
+
+% gather facts about whether moves are blocked
+whiteRook_UpSevenMoveBlockedPosition0(wr2, R+7, C) :- position0(w,_, R+7, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpSixMoveBlockedPosition0(wr2, R+6, C) :- position0(w,_, R+6, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpFiveMoveBlockedPosition0(wr2, R+5, C) :- position0(w,_, R+5, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpFourMoveBlockedPosition0(wr2, R+4, C) :- position0(w,_, R+4, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpThreeMoveBlockedPosition0(wr2, R+3, C) :- position0(w,_, R+3, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpTwoMoveBlockedPosition0(wr2, R+2, C) :- position0(w,_, R+2, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpOneMoveBlockedPosition0(wr2, R+1, C) :- position0(w,_, R+1, C), position0(w,wr2, R, C). % move forward  
+
+whiteRook_UpSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpSixMoveBlockedPosition0(wr2, R, C).
+whiteRook_UpSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpFiveMoveBlockedPosition0(wr2, R, C).
+whiteRook_UpFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpFourMoveBlockedPosition0(wr2, R, C).  
+whiteRook_UpFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpThreeMoveBlockedPosition0(wr2, R, C). 
+whiteRook_UpThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpTwoMoveBlockedPosition0(wr2, R, C).
+whiteRook_UpTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpOneMoveBlockedPosition0(wr2, R, C).
+
+whiteRook_DownSevenMoveBlockedPosition0(wr2, R-7, C) :- position0(w,_, R-7, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownSixMoveBlockedPosition0(wr2, R-6, C) :- position0(w,_, R-6, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownFiveMoveBlockedPosition0(wr2, R-5, C) :- position0(w,_, R-5, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownFourMoveBlockedPosition0(wr2, R-4, C) :- position0(w,_, R-4, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownThreeMoveBlockedPosition0(wr2, R-3, C) :- position0(w,_, R-3, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownTwoMoveBlockedPosition0(wr2, R-2, C) :- position0(w,_, R-2, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownOneMoveBlockedPosition0(wr2, R-1, C) :- position0(w,_, R-1, C), position0(w,wr2, R, C). % move forward  
+
+whiteRook_DownSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownSixMoveBlockedPosition0(wr2, R, C).
+whiteRook_DownSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownFiveMoveBlockedPosition0(wr2, R, C).
+whiteRook_DownFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownFourMoveBlockedPosition0(wr2, R, C).  
+whiteRook_DownFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownThreeMoveBlockedPosition0(wr2, R, C). 
+whiteRook_DownThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownTwoMoveBlockedPosition0(wr2, R, C).
+whiteRook_DownTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownOneMoveBlockedPosition0(wr2, R, C).
+
+whiteRook_LeftSevenMoveBlockedPosition0(wr2, R, C-7) :- position0(w,_, R, C-7), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C-6) :- position0(w,_, R, C-6), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftFiveMoveBlockedPosition0(wr2, R, C-5) :- position0(w,_, R, C-5), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftFourMoveBlockedPosition0(wr2, R, C-4) :- position0(w,_, R, C-4), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C-3) :- position0(w,_, R, C-3), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C-2) :- position0(w,_, R, C-2), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftOneMoveBlockedPosition0(wr2, R, C-1) :- position0(w,_, R, C-1), position0(w,wr2, R, C). % move forward  
+
+whiteRook_LeftSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C).
+whiteRook_LeftSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftFiveMoveBlockedPosition0(wr2, R, C).
+whiteRook_LeftFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftFourMoveBlockedPosition0(wr2, R, C).  
+whiteRook_LeftFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C). 
+whiteRook_LeftThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C).
+whiteRook_LeftTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftOneMoveBlockedPosition0(wr2, R, C).
+
+whiteRook_RightSevenMoveBlockedPosition0(wr2, R, C+7) :- position0(w,_, R, C+7), position0(w,wr2, R, C). % move forward  
+whiteRook_RightSixMoveBlockedPosition0(wr2, R, C+6) :- position0(w,_, R, C+6), position0(w,wr2, R, C). % move forward  
+whiteRook_RightFiveMoveBlockedPosition0(wr2, R, C+5) :- position0(w,_, R, C+5), position0(w,wr2, R, C). % move forward  
+whiteRook_RightFourMoveBlockedPosition0(wr2, R, C+4) :- position0(w,_, R, C+4), position0(w,wr2, R, C). % move forward  
+whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C+3) :- position0(w,_, R, C+3), position0(w,wr2, R, C). % move forward  
+whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C+2) :- position0(w,_, R, C+2), position0(w,wr2, R, C). % move forward  
+whiteRook_RightOneMoveBlockedPosition0(wr2, R, C+1) :- position0(w,_, R, C+1), position0(w,wr2, R, C). % move forward  
+
+whiteRook_RightSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightSixMoveBlockedPosition0(wr2, R, C).
+whiteRook_RightSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightFiveMoveBlockedPosition0(wr2, R, C).
+whiteRook_RightFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightFourMoveBlockedPosition0(wr2, R, C).  
+whiteRook_RightFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C). 
+whiteRook_RightThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C).
+whiteRook_RightTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightOneMoveBlockedPosition0(wr2, R, C).
+
+% generate all spaces on the board
+1 {whiteRook2_MovesPosition0(wr2, R, C): whiteRook(wr2), row(R), column(C)} 1.
+
+% remove all illegal moves and blocked moves
+:- 
+not whiteRook2_MovesPosition0(wr2, R+1, C), 
+not whiteRook2_MovesPosition0(wr2, R+2, C), 
+not whiteRook2_MovesPosition0(wr2, R+3, C), 
+not whiteRook2_MovesPosition0(wr2, R+4, C), 
+not whiteRook2_MovesPosition0(wr2, R+5, C), 
+not whiteRook2_MovesPosition0(wr2, R+6, C),
+not whiteRook2_MovesPosition0(wr2, R+6, C), 
+not whiteRook2_MovesPosition0(wr2, R+7, C),
+
+not whiteRook2_MovesPosition0(wr2, R-1, C), 
+not whiteRook2_MovesPosition0(wr2, R-2, C), 
+not whiteRook2_MovesPosition0(wr2, R-3, C), 
+not whiteRook2_MovesPosition0(wr2, R-4, C), 
+not whiteRook2_MovesPosition0(wr2, R-5, C), 
+not whiteRook2_MovesPosition0(wr2, R-6, C),
+not whiteRook2_MovesPosition0(wr2, R-6, C), 
+not whiteRook2_MovesPosition0(wr2, R-7, C),
+
+not whiteRook2_MovesPosition0(wr2, R, C-1), 
+not whiteRook2_MovesPosition0(wr2, R, C-2), 
+not whiteRook2_MovesPosition0(wr2, R, C-3), 
+not whiteRook2_MovesPosition0(wr2, R, C-4), 
+not whiteRook2_MovesPosition0(wr2, R, C-5), 
+not whiteRook2_MovesPosition0(wr2, R, C-6),
+not whiteRook2_MovesPosition0(wr2, R, C-7), 
+
+not whiteRook2_MovesPosition0(wr2, R, C+1), 
+not whiteRook2_MovesPosition0(wr2, R, C+2), 
+not whiteRook2_MovesPosition0(wr2, R, C+3), 
+not whiteRook2_MovesPosition0(wr2, R, C+4), 
+not whiteRook2_MovesPosition0(wr2, R, C+5), 
+not whiteRook2_MovesPosition0(wr2, R, C+6),
+not whiteRook2_MovesPosition0(wr2, R, C+7), 
+
+position0(w, wr2, R, C), 
+not whiteRook2_MovesPosition0(wr2, 1, 20).
+
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_UpSevenMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_UpSixMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_UpFiveMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_UpFourMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_UpThreeMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_UpTwoMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_UpOneMoveBlockedPosition0(wr2, R, C).   
+
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_DownSevenMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_DownSixMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_DownFiveMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_DownFourMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_DownThreeMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_DownTwoMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_DownOneMoveBlockedPosition0(wr2, R, C).   
+
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_LeftSevenMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_LeftFiveMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_LeftFourMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_LeftOneMoveBlockedPosition0(wr2, R, C).   
+
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_RightSevenMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_RightSixMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_RightFiveMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_RightFourMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C).   
+:- whiteRook2_MovesPosition0(wr2, R, C), whiteRook_RightOneMoveBlockedPosition0(wr2, R, C).   
+
+
+% remove saftey column preventing usat answers
+whiteRook2_ValidMovesPosition0(wr2, R, C) :- whiteRook2_MovesPosition0(wr2, R, C), R != 1, C != 20.
+
+
+
 % White Knights
 
 
 % White Knight 1 - Left ---------------------------
 
 % gather facts about whether moves are blocked
-whiteKnight_UpRightMoveBlockedPosition0(wk1, R+2, C+1) :- position0(w,_, R+2, C+1), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_UpLeftMoveBlockedPosition0(wk1, R+2, C-1) :- position0(w,_, R+2, C-1), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_LeftUpMoveBlockedPosition0(wk1, R+1, C-2) :- position0(w,_, R+1, C-2), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_LeftDownMoveBlockedPosition0(wk1, R-1, C-2) :- position0(w,_, R-1, C-2), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_DownLeftMoveBlockedPosition0(wk1, R-2, C-1) :- position0(w,_, R-2, C-1), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_DownRightMoveBlockedPosition0(wk1, R-2, C+1) :- position0(w,_, R-2, C+1), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_RightDownMoveBlockedPosition0(wk1, R-1, C+2) :- position0(w,_, R-1, C+2), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_RightUpMoveBlockedPosition0(wk1, R+1, C+2) :- position0(w,_, R+1, C+2), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_UpRightMoveBlockedPosition0(wk1, R+2, C+1) :- position0(w,_, R+2, C+1), position0(w,wk1, R, C). % move forward  
+whiteKnight_UpLeftMoveBlockedPosition0(wk1, R+2, C-1) :- position0(w,_, R+2, C-1), position0(w,wk1, R, C). % move forward  
+whiteKnight_LeftUpMoveBlockedPosition0(wk1, R+1, C-2) :- position0(w,_, R+1, C-2), position0(w,wk1, R, C). % move forward  
+whiteKnight_LeftDownMoveBlockedPosition0(wk1, R-1, C-2) :- position0(w,_, R-1, C-2), position0(w,wk1, R, C). % move forward  
+whiteKnight_DownLeftMoveBlockedPosition0(wk1, R-2, C-1) :- position0(w,_, R-2, C-1), position0(w,wk1, R, C). % move forward  
+whiteKnight_DownRightMoveBlockedPosition0(wk1, R-2, C+1) :- position0(w,_, R-2, C+1), position0(w,wk1, R, C). % move forward  
+whiteKnight_RightDownMoveBlockedPosition0(wk1, R-1, C+2) :- position0(w,_, R-1, C+2), position0(w,wk1, R, C). % move forward  
+whiteKnight_RightUpMoveBlockedPosition0(wk1, R+1, C+2) :- position0(w,_, R+1, C+2), position0(w,wk1, R, C). % move forward  
 
 % generate all spaces on the board
 1 {whiteKnight1_MovesPosition0(wk1, R, C): whiteKnight(wk1), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whiteKnight1_MovesPosition0(wk1, R+2, C+1), not whiteKnight1_MovesPosition0(wk1, R+2, C-1), 
-not whiteKnight1_MovesPosition0(wk1, R+1, C-2), not whiteKnight1_MovesPosition0(wk1, R-1, C-2), 
-not whiteKnight1_MovesPosition0(wk1, R-2, C-1), not whiteKnight1_MovesPosition0(wk1, R-2, C+1),
-not whiteKnight1_MovesPosition0(wk1, R-1, C+2), not whiteKnight1_MovesPosition0(wk1, R+1, C+2),
-position0(w,wk1, R, C), not whiteKnight1_MovesPosition0(wk1, 1, 20). % remove all invalid moves of a knight
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_UpRightMoveBlockedPosition0(wk1, R, C). % remove blocked move
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_UpLeftMoveBlockedPosition0(wk1, R, C).  % remove blocked move
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_LeftUpMoveBlockedPosition0(wk1, R, C).  % remove blocked move
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_LeftDownMoveBlockedPosition0(wk1, R, C).  % remove blocked move
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_DownLeftMoveBlockedPosition0(wk1, R, C).  % remove blocked move
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_DownRightMoveBlockedPosition0(wk1, R, C).  % remove blocked move
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_RightDownMoveBlockedPosition0(wk1, R, C).  % remove blocked move
-:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_RightUpMoveBlockedPosition0(wk1, R, C).  % remove blocked move
+:- 
+not whiteKnight1_MovesPosition0(wk1, R+2, C+1), 
+not whiteKnight1_MovesPosition0(wk1, R+2, C-1), 
+not whiteKnight1_MovesPosition0(wk1, R+1, C-2), 
+not whiteKnight1_MovesPosition0(wk1, R-1, C-2), 
+not whiteKnight1_MovesPosition0(wk1, R-2, C-1), 
+not whiteKnight1_MovesPosition0(wk1, R-2, C+1),
+not whiteKnight1_MovesPosition0(wk1, R-1, C+2), 
+not whiteKnight1_MovesPosition0(wk1, R+1, C+2),
+
+position0(w,wk1, R, C), 
+not whiteKnight1_MovesPosition0(wk1, 1, 20).
+
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_UpRightMoveBlockedPosition0(wk1, R, C).   
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_UpLeftMoveBlockedPosition0(wk1, R, C).    
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_LeftUpMoveBlockedPosition0(wk1, R, C).    
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_LeftDownMoveBlockedPosition0(wk1, R, C).    
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_DownLeftMoveBlockedPosition0(wk1, R, C).    
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_DownRightMoveBlockedPosition0(wk1, R, C).    
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_RightDownMoveBlockedPosition0(wk1, R, C).    
+:- whiteKnight1_MovesPosition0(wk1, R, C), whiteKnight_RightUpMoveBlockedPosition0(wk1, R, C).    
 
 % remove saftey column preventing usat answers
 whiteKnight1_ValidMovesPosition0(wk1, R, C) :- whiteKnight1_MovesPosition0(wk1, R, C), R != 1, C != 20.
 
 
-% White Knight 1 - Right ---------------------------
+% White Knight 2 - Right ---------------------------
 
 % gather facts about whether moves are blocked
-whiteKnight_UpRightMoveBlockedPosition0(wk2, R+2, C+1) :- position0(w,_, R+2, C+1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_UpLeftMoveBlockedPosition0(wk2, R+2, C-1) :- position0(w,_, R+2, C-1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_LeftUpMoveBlockedPosition0(wk2, R+1, C-2) :- position0(w,_, R+1, C-2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_LeftDownMoveBlockedPosition0(wk2, R-1, C-2) :- position0(w,_, R-1, C-2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_DownLeftMoveBlockedPosition0(wk2, R-2, C-1) :- position0(w,_, R-2, C-1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_DownRightMoveBlockedPosition0(wk2, R-2, C+1) :- position0(w,_, R-2, C+1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_RightDownMoveBlockedPosition0(wk2, R-1, C+2) :- position0(w,_, R-1, C+2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-whiteKnight_RightUpMoveBlockedPosition0(wk2, R+1, C+2) :- position0(w,_, R+1, C+2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_UpRightMoveBlockedPosition0(wk2, R+2, C+1) :- position0(w,_, R+2, C+1), position0(w,wk2, R, C). % move forward  
+whiteKnight_UpLeftMoveBlockedPosition0(wk2, R+2, C-1) :- position0(w,_, R+2, C-1), position0(w,wk2, R, C). % move forward  
+whiteKnight_LeftUpMoveBlockedPosition0(wk2, R+1, C-2) :- position0(w,_, R+1, C-2), position0(w,wk2, R, C). % move forward  
+whiteKnight_LeftDownMoveBlockedPosition0(wk2, R-1, C-2) :- position0(w,_, R-1, C-2), position0(w,wk2, R, C). % move forward  
+whiteKnight_DownLeftMoveBlockedPosition0(wk2, R-2, C-1) :- position0(w,_, R-2, C-1), position0(w,wk2, R, C). % move forward  
+whiteKnight_DownRightMoveBlockedPosition0(wk2, R-2, C+1) :- position0(w,_, R-2, C+1), position0(w,wk2, R, C). % move forward  
+whiteKnight_RightDownMoveBlockedPosition0(wk2, R-1, C+2) :- position0(w,_, R-1, C+2), position0(w,wk2, R, C). % move forward  
+whiteKnight_RightUpMoveBlockedPosition0(wk2, R+1, C+2) :- position0(w,_, R+1, C+2), position0(w,wk2, R, C). % move forward  
 
 
 % generate all spaces on the board
 1 {whiteKnight2_MovesPosition0(wk2, R, C): whiteKnight(wk2), row(R), column(C)} 1.
 
 % remove all illegal moves and blocked moves
-:- not whiteKnight2_MovesPosition0(wk2, R+2, C+1), not whiteKnight2_MovesPosition0(wk2, R+2, C-1), 
-not whiteKnight2_MovesPosition0(wk2, R+1, C-2), not whiteKnight2_MovesPosition0(wk2, R-1, C-2), 
-not whiteKnight2_MovesPosition0(wk2, R-2, C-1), not whiteKnight2_MovesPosition0(wk2, R-2, C+1),
-not whiteKnight2_MovesPosition0(wk2, R-1, C+2), not whiteKnight2_MovesPosition0(wk2, R+1, C+2),
-position0(w,wk2, R, C), not whiteKnight2_MovesPosition0(wk2, 1, 20). % remove all invalid moves of a knight
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_UpRightMoveBlockedPosition0(wk2, R, C). % remove blocked move
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_UpLeftMoveBlockedPosition0(wk2, R, C).  % remove blocked move
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_LeftUpMoveBlockedPosition0(wk2, R, C).  % remove blocked move
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_LeftDownMoveBlockedPosition0(wk2, R, C).  % remove blocked move
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_DownLeftMoveBlockedPosition0(wk2, R, C).  % remove blocked move
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_DownRightMoveBlockedPosition0(wk2, R, C).  % remove blocked move
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_RightDownMoveBlockedPosition0(wk2, R, C).  % remove blocked move
-:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_RightUpMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+:- 
+not whiteKnight2_MovesPosition0(wk2, R+2, C+1), 
+not whiteKnight2_MovesPosition0(wk2, R+2, C-1), 
+not whiteKnight2_MovesPosition0(wk2, R+1, C-2), 
+not whiteKnight2_MovesPosition0(wk2, R-1, C-2), 
+not whiteKnight2_MovesPosition0(wk2, R-2, C-1), 
+not whiteKnight2_MovesPosition0(wk2, R-2, C+1),
+not whiteKnight2_MovesPosition0(wk2, R-1, C+2), 
+not whiteKnight2_MovesPosition0(wk2, R+1, C+2),
+
+position0(w,wk2, R, C), 
+not whiteKnight2_MovesPosition0(wk2, 1, 20). 
+
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_UpRightMoveBlockedPosition0(wk2, R, C).   
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_UpLeftMoveBlockedPosition0(wk2, R, C).    
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_LeftUpMoveBlockedPosition0(wk2, R, C).    
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_LeftDownMoveBlockedPosition0(wk2, R, C).    
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_DownLeftMoveBlockedPosition0(wk2, R, C).    
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_DownRightMoveBlockedPosition0(wk2, R, C).    
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_RightDownMoveBlockedPosition0(wk2, R, C).    
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_RightUpMoveBlockedPosition0(wk2, R, C).    
 
 % remove saftey column preventing usat answers
 whiteKnight2_ValidMovesPosition0(wk2, R, C) :- whiteKnight2_MovesPosition0(wk2, R, C), R != 1, C != 20.
-
-
 
 % Gather all moves
 allMovesPosition0(wp1, R, C) :- whitePawn1_ValidMovesPosition0(wp1, R, C).
@@ -268,6 +569,8 @@ allMovesPosition0(wp7, R, C) :- whitePawn7_ValidMovesPosition0(wp7, R, C).
 allMovesPosition0(wp8, R, C) :- whitePawn8_ValidMovesPosition0(wp8, R, C).
 allMovesPosition0(wk1, R, C) :- whiteKnight1_ValidMovesPosition0(wk1, R, C). 
 allMovesPosition0(wk2, R, C) :- whiteKnight2_ValidMovesPosition0(wk2, R, C). 
+allMovesPosition0(wr1, R, C) :- whiteRook1_ValidMovesPosition0(wr1, R, C). 
+allMovesPosition0(wr2, R, C) :- whiteRook2_ValidMovesPosition0(wr2, R, C). 
 :- {allMovesPosition0(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition0(_, _, _). % some other blank answer is generated. This removes that.
 
