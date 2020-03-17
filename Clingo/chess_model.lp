@@ -186,6 +186,9 @@ whitePawn8_ValidMovesPosition0(wp8, R, C) :- whitePawn8_MovesPosition0(wp8, R, C
 
 % White Knights
 
+
+% White Knight 1 - Left ---------------------------
+
 % gather facts about whether moves are blocked
 whiteKnight_UpRightMoveBlockedPosition0(wk1, R+2, C+1) :- position0(w,_, R+2, C+1), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
 whiteKnight_UpLeftMoveBlockedPosition0(wk1, R+2, C-1) :- position0(w,_, R+2, C-1), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
@@ -195,8 +198,6 @@ whiteKnight_DownLeftMoveBlockedPosition0(wk1, R-2, C-1) :- position0(w,_, R-2, C
 whiteKnight_DownRightMoveBlockedPosition0(wk1, R-2, C+1) :- position0(w,_, R-2, C+1), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
 whiteKnight_RightDownMoveBlockedPosition0(wk1, R-1, C+2) :- position0(w,_, R-1, C+2), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
 whiteKnight_RightUpMoveBlockedPosition0(wk1, R+1, C+2) :- position0(w,_, R+1, C+2), position0(w,wk1, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
-
-% White Knight 1 - Left ---------------------------
 
 % generate all spaces on the board
 1 {whiteKnight1_MovesPosition0(wk1, R, C): whiteKnight(wk1), row(R), column(C)} 1.
@@ -219,6 +220,43 @@ position0(w,wk1, R, C), not whiteKnight1_MovesPosition0(wk1, 1, 20). % remove al
 % remove saftey column preventing usat answers
 whiteKnight1_ValidMovesPosition0(wk1, R, C) :- whiteKnight1_MovesPosition0(wk1, R, C), R != 1, C != 20.
 
+
+% White Knight 1 - Right ---------------------------
+
+% gather facts about whether moves are blocked
+whiteKnight_UpRightMoveBlockedPosition0(wk2, R+2, C+1) :- position0(w,_, R+2, C+1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_UpLeftMoveBlockedPosition0(wk2, R+2, C-1) :- position0(w,_, R+2, C-1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_LeftUpMoveBlockedPosition0(wk2, R+1, C-2) :- position0(w,_, R+1, C-2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_LeftDownMoveBlockedPosition0(wk2, R-1, C-2) :- position0(w,_, R-1, C-2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_DownLeftMoveBlockedPosition0(wk2, R-2, C-1) :- position0(w,_, R-2, C-1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_DownRightMoveBlockedPosition0(wk2, R-2, C+1) :- position0(w,_, R-2, C+1), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_RightDownMoveBlockedPosition0(wk2, R-1, C+2) :- position0(w,_, R-1, C+2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+whiteKnight_RightUpMoveBlockedPosition0(wk2, R+1, C+2) :- position0(w,_, R+1, C+2), position0(w,wk2, R, C). % move forward 1 is block if the position0 in front of the pawn is blocked
+
+
+% generate all spaces on the board
+1 {whiteKnight2_MovesPosition0(wk2, R, C): whiteKnight(wk2), row(R), column(C)} 1.
+
+% remove all illegal moves and blocked moves
+:- not whiteKnight2_MovesPosition0(wk2, R+2, C+1), not whiteKnight2_MovesPosition0(wk2, R+2, C-1), 
+not whiteKnight2_MovesPosition0(wk2, R+1, C-2), not whiteKnight2_MovesPosition0(wk2, R-1, C-2), 
+not whiteKnight2_MovesPosition0(wk2, R-2, C-1), not whiteKnight2_MovesPosition0(wk2, R-2, C+1),
+not whiteKnight2_MovesPosition0(wk2, R-1, C+2), not whiteKnight2_MovesPosition0(wk2, R+1, C+2),
+position0(w,wk2, R, C), not whiteKnight2_MovesPosition0(wk2, 1, 20). % remove all invalid moves of a knight
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_UpRightMoveBlockedPosition0(wk2, R, C). % remove blocked move
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_UpLeftMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_LeftUpMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_LeftDownMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_DownLeftMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_DownRightMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_RightDownMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+:- whiteKnight2_MovesPosition0(wk2, R, C), whiteKnight_RightUpMoveBlockedPosition0(wk2, R, C).  % remove blocked move
+
+% remove saftey column preventing usat answers
+whiteKnight2_ValidMovesPosition0(wk2, R, C) :- whiteKnight2_MovesPosition0(wk2, R, C), R != 1, C != 20.
+
+
+
 % Gather all moves
 allMovesPosition0(wp1, R, C) :- whitePawn1_ValidMovesPosition0(wp1, R, C).
 allMovesPosition0(wp2, R, C) :- whitePawn2_ValidMovesPosition0(wp2, R, C). 
@@ -229,12 +267,13 @@ allMovesPosition0(wp6, R, C) :- whitePawn6_ValidMovesPosition0(wp6, R, C).
 allMovesPosition0(wp7, R, C) :- whitePawn7_ValidMovesPosition0(wp7, R, C). 
 allMovesPosition0(wp8, R, C) :- whitePawn8_ValidMovesPosition0(wp8, R, C).
 allMovesPosition0(wk1, R, C) :- whiteKnight1_ValidMovesPosition0(wk1, R, C). 
+allMovesPosition0(wk2, R, C) :- whiteKnight2_ValidMovesPosition0(wk2, R, C). 
 :- {allMovesPosition0(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition0(_, _, _). % some other blank answer is generated. This removes that.
 
-position1(w, P, R, C) :- position0(w, P, R, C), allMovesPosition0(PP, _, _), PP != P.
-position1(w, P, R, C) :- allMovesPosition0(P, R, C).
-position1(b, P, R, C) :- position0(b, P, R, C), not position1(w, PP, R, C), allMovesPosition0(PP, RR, CC).
+position1(w, P, R, C) :- position0(w, P, R, C), allMovesPosition0(PP, _, _), PP != P. % add moves pieces that have not moved
+position1(w, P, R, C) :- allMovesPosition0(P, R, C). % add pieces that have moved
+position1(b, P, R, C) :- position0(b, P, R, C), not position1(w, PP, R, C), allMovesPosition0(PP, RR, CC). % add other players pieces
 
 
 
