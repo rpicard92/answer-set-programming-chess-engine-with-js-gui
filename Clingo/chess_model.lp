@@ -213,12 +213,12 @@ whiteRook_DownThreeMoveBlockedPosition0(wr1, R-3, C) :- position0(w,_, R-3, C), 
 whiteRook_DownTwoMoveBlockedPosition0(wr1, R-2, C) :- position0(w,_, R-2, C), position0(w,wr1, R, C). % move forward  
 whiteRook_DownOneMoveBlockedPosition0(wr1, R-1, C) :- position0(w,_, R-1, C), position0(w,wr1, R, C). % move forward  
 
-whiteRook_DownSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownSixMoveBlockedPosition0(wr1, R, C).
-whiteRook_DownSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownFiveMoveBlockedPosition0(wr1, R, C).
-whiteRook_DownFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownFourMoveBlockedPosition0(wr1, R, C).  
-whiteRook_DownFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownThreeMoveBlockedPosition0(wr1, R, C). 
-whiteRook_DownThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownTwoMoveBlockedPosition0(wr1, R, C).
-whiteRook_DownTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_DownOneMoveBlockedPosition0(wr1, R, C).
+whiteRook_DownSevenMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownSixMoveBlockedPosition0(wr1, R, C).
+whiteRook_DownSixMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownFiveMoveBlockedPosition0(wr1, R, C).
+whiteRook_DownFiveMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownFourMoveBlockedPosition0(wr1, R, C).  
+whiteRook_DownFourMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownThreeMoveBlockedPosition0(wr1, R, C). 
+whiteRook_DownThreeMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownTwoMoveBlockedPosition0(wr1, R, C).
+whiteRook_DownTwoMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownOneMoveBlockedPosition0(wr1, R, C).
 
 whiteRook_LeftSevenMoveBlockedPosition0(wr1, R, C-7) :- position0(w,_, R, C-7), position0(w,wr1, R, C). % move forward  
 whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C-6) :- position0(w,_, R, C-6), position0(w,wr1, R, C). % move forward  
@@ -228,12 +228,12 @@ whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C-3) :- position0(w,_, R, C-3), 
 whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C-2) :- position0(w,_, R, C-2), position0(w,wr1, R, C). % move forward  
 whiteRook_LeftOneMoveBlockedPosition0(wr1, R, C-1) :- position0(w,_, R, C-1), position0(w,wr1, R, C). % move forward  
 
-whiteRook_LeftSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C).
-whiteRook_LeftSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftFiveMoveBlockedPosition0(wr1, R, C).
-whiteRook_LeftFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftFourMoveBlockedPosition0(wr1, R, C).  
-whiteRook_LeftFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C). 
-whiteRook_LeftThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C).
-whiteRook_LeftTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_LeftOneMoveBlockedPosition0(wr1, R, C).
+whiteRook_LeftSevenMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C).
+whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftFiveMoveBlockedPosition0(wr1, R, C).
+whiteRook_LeftFiveMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftFourMoveBlockedPosition0(wr1, R, C).  
+whiteRook_LeftFourMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C). 
+whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C).
+whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftOneMoveBlockedPosition0(wr1, R, C).
 
 whiteRook_RightSevenMoveBlockedPosition0(wr1, R, C+7) :- position0(w,_, R, C+7), position0(w,wr1, R, C). % move forward  
 whiteRook_RightSixMoveBlockedPosition0(wr1, R, C+6) :- position0(w,_, R, C+6), position0(w,wr1, R, C). % move forward  
@@ -243,12 +243,87 @@ whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C+3) :- position0(w,_, R, C+3),
 whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C+2) :- position0(w,_, R, C+2), position0(w,wr1, R, C). % move forward  
 whiteRook_RightOneMoveBlockedPosition0(wr1, R, C+1) :- position0(w,_, R, C+1), position0(w,wr1, R, C). % move forward  
 
-whiteRook_RightSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightSixMoveBlockedPosition0(wr1, R, C).
-whiteRook_RightSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightFiveMoveBlockedPosition0(wr1, R, C).
-whiteRook_RightFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightFourMoveBlockedPosition0(wr1, R, C).  
-whiteRook_RightFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C). 
-whiteRook_RightThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C).
-whiteRook_RightTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_RightOneMoveBlockedPosition0(wr1, R, C).
+whiteRook_RightSevenMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightSixMoveBlockedPosition0(wr1, R, C).
+whiteRook_RightSixMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightFiveMoveBlockedPosition0(wr1, R, C).
+whiteRook_RightFiveMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightFourMoveBlockedPosition0(wr1, R, C).  
+whiteRook_RightFourMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C). 
+whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C).
+whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightOneMoveBlockedPosition0(wr1, R, C).
+
+
+
+
+
+whiteRook_UpSevenMoveAttackPosition0(wr1, R+7, C) :- position0(b,_, R+7, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpSixMoveAttackPosition0(wr1, R+6, C) :- position0(b,_, R+6, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpFiveMoveAttackPosition0(wr1, R+5, C) :- position0(b,_, R+5, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpFourMoveAttackPosition0(wr1, R+4, C) :- position0(b,_, R+4, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpThreeMoveAttackPosition0(wr1, R+3, C) :- position0(b,_, R+3, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpTwoMoveAttackPosition0(wr1, R+2, C) :- position0(b,_, R+2, C), position0(w,wr1, R, C). % move forward  
+whiteRook_UpOneMoveAttackPosition0(wr1, R+1, C) :- position0(b,_, R+1, C), position0(w,wr1, R, C). % move forward  
+
+whiteRook_UpSevenMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpSixMoveAttackPosition0(wr1, R, C).
+whiteRook_UpSixMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpFiveMoveAttackPosition0(wr1, R, C).
+whiteRook_UpFiveMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpFourMoveAttackPosition0(wr1, R, C).  
+whiteRook_UpFourMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpThreeMoveAttackPosition0(wr1, R, C). 
+whiteRook_UpThreeMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpTwoMoveAttackPosition0(wr1, R, C).
+whiteRook_UpTwoMoveBlockedPosition0(wr1, R+1, C) :- whiteRook_UpOneMoveAttackPosition0(wr1, R, C).
+
+
+
+whiteRook_DownSevenMoveAttackPosition0(wr1, R-7, C) :- position0(b,_, R-7, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownSixMoveAttackPosition0(wr1, R-6, C) :- position0(b,_, R-6, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownFiveMoveAttackPosition0(wr1, R-5, C) :- position0(b,_, R-5, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownFourMoveAttackPosition0(wr1, R-4, C) :- position0(b,_, R-4, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownThreeMoveAttackPosition0(wr1, R-3, C) :- position0(b,_, R-3, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownTwoMoveAttackPosition0(wr1, R-2, C) :- position0(b,_, R-2, C), position0(w,wr1, R, C). % move forward  
+whiteRook_DownOneMoveAttackPosition0(wr1, R-1, C) :- position0(b,_, R-1, C), position0(w,wr1, R, C). % move forward  
+
+whiteRook_DownSevenMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownSixMoveAttackPosition0(wr1, R, C).
+whiteRook_DownSixMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownFiveMoveAttackPosition0(wr1, R, C).
+whiteRook_DownFiveMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownFourMoveAttackPosition0(wr1, R, C).  
+whiteRook_DownFourMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownThreeMoveAttackPosition0(wr1, R, C). 
+whiteRook_DownThreeMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownTwoMoveAttackPosition0(wr1, R, C).
+whiteRook_DownTwoMoveBlockedPosition0(wr1, R-1, C) :- whiteRook_DownOneMoveAttackPosition0(wr1, R, C).
+
+
+
+whiteRook_LeftSevenMoveAttackPosition0(wr1, R, C-7) :- position0(b,_, R, C-7), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftSixMoveAttackPosition0(wr1, R, C-6) :- position0(b,_, R, C-6), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftFiveMoveAttackPosition0(wr1, R, C-5) :- position0(b,_, R, C-5), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftFourMoveAttackPosition0(wr1, R, C-4) :- position0(b,_, R, C-4), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftThreeMoveAttackPosition0(wr1, R, C-3) :- position0(b,_, R, C-3), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftTwoMoveAttackPosition0(wr1, R, C-2) :- position0(b,_, R, C-2), position0(w,wr1, R, C). % move forward  
+whiteRook_LeftOneMoveAttackPosition0(wr1, R, C-1) :- position0(b,_, R, C-1), position0(w,wr1, R, C). % move forward  
+
+whiteRook_LeftSevenMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftSixMoveAttackPosition0(wr1, R, C).
+whiteRook_LeftSixMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftFiveMoveAttackPosition0(wr1, R, C).
+whiteRook_LeftFiveMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftFourMoveAttackPosition0(wr1, R, C).  
+whiteRook_LeftFourMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftThreeMoveAttackPosition0(wr1, R, C). 
+whiteRook_LeftThreeMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftTwoMoveAttackPosition0(wr1, R, C).
+whiteRook_LeftTwoMoveBlockedPosition0(wr1, R, C-1) :- whiteRook_LeftOneMoveAttackPosition0(wr1, R, C).
+
+
+
+whiteRook_RightSevenMoveAttackPosition0(wr1, R, C+7) :- position0(b,_, R, C+7), position0(w,wr1, R, C). % move forward  
+whiteRook_RightSixMoveAttackPosition0(wr1, R, C+6) :- position0(b,_, R, C+6), position0(w,wr1, R, C). % move forward  
+whiteRook_RightFiveMoveAttackPosition0(wr1, R, C+5) :- position0(b,_, R, C+5), position0(w,wr1, R, C). % move forward  
+whiteRook_RightFourMoveAttackPosition0(wr1, R, C+4) :- position0(b,_, R, C+4), position0(w,wr1, R, C). % move forward  
+whiteRook_RightThreeMoveAttackPosition0(wr1, R, C+3) :- position0(b,_, R, C+3), position0(w,wr1, R, C). % move forward  
+whiteRook_RightTwoMoveAttackPosition0(wr1, R, C+2) :- position0(b,_, R, C+2), position0(w,wr1, R, C). % move forward  
+whiteRook_RightOneMoveAttackPosition0(wr1, R, C+1) :- position0(b,_, R, C+1), position0(w,wr1, R, C). % move forward  
+
+whiteRook_RightSevenMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightSixMoveAttackPosition0(wr1, R, C).
+whiteRook_RightSixMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightFiveMoveAttackPosition0(wr1, R, C).
+whiteRook_RightFiveMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightFourMoveAttackPosition0(wr1, R, C).  
+whiteRook_RightFourMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightThreeMoveAttackPosition0(wr1, R, C). 
+whiteRook_RightThreeMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightTwoMoveAttackPosition0(wr1, R, C).
+whiteRook_RightTwoMoveBlockedPosition0(wr1, R, C+1) :- whiteRook_RightOneMoveAttackPosition0(wr1, R, C).
+
+
+
+
+
 
 % generate all spaces on the board
 1 {whiteRook1_MovesPosition0(wr1, R, C): whiteRook(wr1), row(R), column(C)} 1.
@@ -328,6 +403,7 @@ not whiteRook1_MovesPosition0(wr1, 1, 20).
 % remove saftey column preventing usat answers
 whiteRook1_ValidMovesPosition0(wr1, R, C) :- whiteRook1_MovesPosition0(wr1, R, C), R != 1, C != 20.
 
+
 % White Rook 2 - Right ---------------------------
 
 % gather facts about whether moves are blocked
@@ -354,12 +430,12 @@ whiteRook_DownThreeMoveBlockedPosition0(wr2, R-3, C) :- position0(w,_, R-3, C), 
 whiteRook_DownTwoMoveBlockedPosition0(wr2, R-2, C) :- position0(w,_, R-2, C), position0(w,wr2, R, C). % move forward  
 whiteRook_DownOneMoveBlockedPosition0(wr2, R-1, C) :- position0(w,_, R-1, C), position0(w,wr2, R, C). % move forward  
 
-whiteRook_DownSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownSixMoveBlockedPosition0(wr2, R, C).
-whiteRook_DownSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownFiveMoveBlockedPosition0(wr2, R, C).
-whiteRook_DownFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownFourMoveBlockedPosition0(wr2, R, C).  
-whiteRook_DownFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownThreeMoveBlockedPosition0(wr2, R, C). 
-whiteRook_DownThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownTwoMoveBlockedPosition0(wr2, R, C).
-whiteRook_DownTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_DownOneMoveBlockedPosition0(wr2, R, C).
+whiteRook_DownSevenMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownSixMoveBlockedPosition0(wr2, R, C).
+whiteRook_DownSixMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownFiveMoveBlockedPosition0(wr2, R, C).
+whiteRook_DownFiveMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownFourMoveBlockedPosition0(wr2, R, C).  
+whiteRook_DownFourMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownThreeMoveBlockedPosition0(wr2, R, C). 
+whiteRook_DownThreeMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownTwoMoveBlockedPosition0(wr2, R, C).
+whiteRook_DownTwoMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownOneMoveBlockedPosition0(wr2, R, C).
 
 whiteRook_LeftSevenMoveBlockedPosition0(wr2, R, C-7) :- position0(w,_, R, C-7), position0(w,wr2, R, C). % move forward  
 whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C-6) :- position0(w,_, R, C-6), position0(w,wr2, R, C). % move forward  
@@ -369,12 +445,12 @@ whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C-3) :- position0(w,_, R, C-3), 
 whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C-2) :- position0(w,_, R, C-2), position0(w,wr2, R, C). % move forward  
 whiteRook_LeftOneMoveBlockedPosition0(wr2, R, C-1) :- position0(w,_, R, C-1), position0(w,wr2, R, C). % move forward  
 
-whiteRook_LeftSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C).
-whiteRook_LeftSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftFiveMoveBlockedPosition0(wr2, R, C).
-whiteRook_LeftFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftFourMoveBlockedPosition0(wr2, R, C).  
-whiteRook_LeftFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C). 
-whiteRook_LeftThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C).
-whiteRook_LeftTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_LeftOneMoveBlockedPosition0(wr2, R, C).
+whiteRook_LeftSevenMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C).
+whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftFiveMoveBlockedPosition0(wr2, R, C).
+whiteRook_LeftFiveMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftFourMoveBlockedPosition0(wr2, R, C).  
+whiteRook_LeftFourMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C). 
+whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C).
+whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftOneMoveBlockedPosition0(wr2, R, C).
 
 whiteRook_RightSevenMoveBlockedPosition0(wr2, R, C+7) :- position0(w,_, R, C+7), position0(w,wr2, R, C). % move forward  
 whiteRook_RightSixMoveBlockedPosition0(wr2, R, C+6) :- position0(w,_, R, C+6), position0(w,wr2, R, C). % move forward  
@@ -384,12 +460,87 @@ whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C+3) :- position0(w,_, R, C+3),
 whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C+2) :- position0(w,_, R, C+2), position0(w,wr2, R, C). % move forward  
 whiteRook_RightOneMoveBlockedPosition0(wr2, R, C+1) :- position0(w,_, R, C+1), position0(w,wr2, R, C). % move forward  
 
-whiteRook_RightSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightSixMoveBlockedPosition0(wr2, R, C).
-whiteRook_RightSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightFiveMoveBlockedPosition0(wr2, R, C).
-whiteRook_RightFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightFourMoveBlockedPosition0(wr2, R, C).  
-whiteRook_RightFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C). 
-whiteRook_RightThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C).
-whiteRook_RightTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_RightOneMoveBlockedPosition0(wr2, R, C).
+whiteRook_RightSevenMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightSixMoveBlockedPosition0(wr2, R, C).
+whiteRook_RightSixMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightFiveMoveBlockedPosition0(wr2, R, C).
+whiteRook_RightFiveMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightFourMoveBlockedPosition0(wr2, R, C).  
+whiteRook_RightFourMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C). 
+whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C).
+whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightOneMoveBlockedPosition0(wr2, R, C).
+
+
+
+
+
+whiteRook_UpSevenMoveAttackPosition0(wr2, R+7, C) :- position0(b,_, R+7, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpSixMoveAttackPosition0(wr2, R+6, C) :- position0(b,_, R+6, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpFiveMoveAttackPosition0(wr2, R+5, C) :- position0(b,_, R+5, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpFourMoveAttackPosition0(wr2, R+4, C) :- position0(b,_, R+4, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpThreeMoveAttackPosition0(wr2, R+3, C) :- position0(b,_, R+3, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpTwoMoveAttackPosition0(wr2, R+2, C) :- position0(b,_, R+2, C), position0(w,wr2, R, C). % move forward  
+whiteRook_UpOneMoveAttackPosition0(wr2, R+1, C) :- position0(b,_, R+1, C), position0(w,wr2, R, C). % move forward  
+
+whiteRook_UpSevenMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpSixMoveAttackPosition0(wr2, R, C).
+whiteRook_UpSixMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpFiveMoveAttackPosition0(wr2, R, C).
+whiteRook_UpFiveMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpFourMoveAttackPosition0(wr2, R, C).  
+whiteRook_UpFourMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpThreeMoveAttackPosition0(wr2, R, C). 
+whiteRook_UpThreeMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpTwoMoveAttackPosition0(wr2, R, C).
+whiteRook_UpTwoMoveBlockedPosition0(wr2, R+1, C) :- whiteRook_UpOneMoveAttackPosition0(wr2, R, C).
+
+
+
+whiteRook_DownSevenMoveAttackPosition0(wr2, R-7, C) :- position0(b,_, R-7, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownSixMoveAttackPosition0(wr2, R-6, C) :- position0(b,_, R-6, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownFiveMoveAttackPosition0(wr2, R-5, C) :- position0(b,_, R-5, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownFourMoveAttackPosition0(wr2, R-4, C) :- position0(b,_, R-4, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownThreeMoveAttackPosition0(wr2, R-3, C) :- position0(b,_, R-3, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownTwoMoveAttackPosition0(wr2, R-2, C) :- position0(b,_, R-2, C), position0(w,wr2, R, C). % move forward  
+whiteRook_DownOneMoveAttackPosition0(wr2, R-1, C) :- position0(b,_, R-1, C), position0(w,wr2, R, C). % move forward  
+
+whiteRook_DownSevenMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownSixMoveAttackPosition0(wr2, R, C).
+whiteRook_DownSixMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownFiveMoveAttackPosition0(wr2, R, C).
+whiteRook_DownFiveMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownFourMoveAttackPosition0(wr2, R, C).  
+whiteRook_DownFourMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownThreeMoveAttackPosition0(wr2, R, C). 
+whiteRook_DownThreeMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownTwoMoveAttackPosition0(wr2, R, C).
+whiteRook_DownTwoMoveBlockedPosition0(wr2, R-1, C) :- whiteRook_DownOneMoveAttackPosition0(wr2, R, C).
+
+
+
+whiteRook_LeftSevenMoveAttackPosition0(wr2, R, C-7) :- position0(b,_, R, C-7), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftSixMoveAttackPosition0(wr2, R, C-6) :- position0(b,_, R, C-6), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftFiveMoveAttackPosition0(wr2, R, C-5) :- position0(b,_, R, C-5), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftFourMoveAttackPosition0(wr2, R, C-4) :- position0(b,_, R, C-4), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftThreeMoveAttackPosition0(wr2, R, C-3) :- position0(b,_, R, C-3), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftTwoMoveAttackPosition0(wr2, R, C-2) :- position0(b,_, R, C-2), position0(w,wr2, R, C). % move forward  
+whiteRook_LeftOneMoveAttackPosition0(wr2, R, C-1) :- position0(b,_, R, C-1), position0(w,wr2, R, C). % move forward  
+
+whiteRook_LeftSevenMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftSixMoveAttackPosition0(wr2, R, C).
+whiteRook_LeftSixMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftFiveMoveAttackPosition0(wr2, R, C).
+whiteRook_LeftFiveMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftFourMoveAttackPosition0(wr2, R, C).  
+whiteRook_LeftFourMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftThreeMoveAttackPosition0(wr2, R, C). 
+whiteRook_LeftThreeMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftTwoMoveAttackPosition0(wr2, R, C).
+whiteRook_LeftTwoMoveBlockedPosition0(wr2, R, C-1) :- whiteRook_LeftOneMoveAttackPosition0(wr2, R, C).
+
+
+
+whiteRook_RightSevenMoveAttackPosition0(wr2, R, C+7) :- position0(b,_, R, C+7), position0(w,wr2, R, C). % move forward  
+whiteRook_RightSixMoveAttackPosition0(wr2, R, C+6) :- position0(b,_, R, C+6), position0(w,wr2, R, C). % move forward  
+whiteRook_RightFiveMoveAttackPosition0(wr2, R, C+5) :- position0(b,_, R, C+5), position0(w,wr2, R, C). % move forward  
+whiteRook_RightFourMoveAttackPosition0(wr2, R, C+4) :- position0(b,_, R, C+4), position0(w,wr2, R, C). % move forward  
+whiteRook_RightThreeMoveAttackPosition0(wr2, R, C+3) :- position0(b,_, R, C+3), position0(w,wr2, R, C). % move forward  
+whiteRook_RightTwoMoveAttackPosition0(wr2, R, C+2) :- position0(b,_, R, C+2), position0(w,wr2, R, C). % move forward  
+whiteRook_RightOneMoveAttackPosition0(wr2, R, C+1) :- position0(b,_, R, C+1), position0(w,wr2, R, C). % move forward  
+
+whiteRook_RightSevenMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightSixMoveAttackPosition0(wr2, R, C).
+whiteRook_RightSixMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightFiveMoveAttackPosition0(wr2, R, C).
+whiteRook_RightFiveMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightFourMoveAttackPosition0(wr2, R, C).  
+whiteRook_RightFourMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightThreeMoveAttackPosition0(wr2, R, C). 
+whiteRook_RightThreeMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightTwoMoveAttackPosition0(wr2, R, C).
+whiteRook_RightTwoMoveBlockedPosition0(wr2, R, C+1) :- whiteRook_RightOneMoveAttackPosition0(wr2, R, C).
+
+
+
+
+
 
 % generate all spaces on the board
 1 {whiteRook2_MovesPosition0(wr2, R, C): whiteRook(wr2), row(R), column(C)} 1.
@@ -468,6 +619,8 @@ not whiteRook2_MovesPosition0(wr2, 1, 20).
 
 % remove saftey column preventing usat answers
 whiteRook2_ValidMovesPosition0(wr2, R, C) :- whiteRook2_MovesPosition0(wr2, R, C), R != 1, C != 20.
+
+
 
 
 
