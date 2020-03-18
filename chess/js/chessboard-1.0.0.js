@@ -756,10 +756,12 @@
     // our square size
     function calculateSquareSize () {
       var containerWidth = parseInt($container.width(), 10)
-
       // @ronpicard - addition to make it resize based on height and width 
-      var containerHeight = parseInt(elHeight, 10);
-      containerWidth = Math.min(containerWidth,containerHeight);
+      //var containerHeight = parseInt($container.height(), 10)
+      //containerWidth = Math.min(containerWidth,containerHeight)
+      //console.log(containerHeight)
+      //var test = window['jQuery']
+      //console.log(checkContainerArg(test).height())
 
       // defensive, prevent infinite loop
       if (!containerWidth || containerWidth <= 0) {
