@@ -1,7 +1,4 @@
 
-// NOTE: this example uses the chess.js library:
-// https://github.com/jhlywa/chess.js
-
 var board = null
 var game = new Chess()
 var whiteSquareGrey = '#a9a9a9'
@@ -92,17 +89,21 @@ function updateStatus () {
 
   // checkmate?
   if (game.in_checkmate()) {
-    status = 'Game over, ' + moveColor + ' is in checkmate.'
+    if(moveColor == 'Black'){
+      status = 'White Wins! ' + moveColor + ' is in checkmate.'
+    } else {
+      status = 'Black Wins! ' + moveColor + ' is in checkmate.'
+    }
   }
 
   // draw?
   else if (game.in_draw()) {
-    status = 'Game over, drawn position'
+    status = 'Game over: drawn position'
   }
 
   // game still on
   else {
-    status = moveColor + ' to move'
+    status = moveColor + '\'s turn.'
 
     // check?
     if (game.in_check()) {
@@ -112,10 +113,37 @@ function updateStatus () {
 
   $status.html(status)
   $fen.html(game.fen())
-  $pgn.html(game.pgn())
+  console.log(game.pgn())
+  var newPngArray = []
+  
+  var png = game.pgn().split(' ')
+
+  // few lines to allow for clean move tracking
+  $pgn.html(png)
+  if(png != ''){
+    var flip = 'white'
+    var count = 1
+    for (let i = 3; i < png.length+3; i++){
+      if(i % 3 != 0){
+        if(flip == 'white'){
+          newPngArray.push('White to ' + png[i-3] + ' ')
+          flip = 'black'
+        } else {
+          newPngArray.push('Black to ' + png[i-3] + ' ')
+          flip = 'white'
+        }    
+      } else {
+        newPngArray.push(count + '. ')
+        count++
+      }
+      $pgn.html(newPngArray.join().replace(/,/g,""))
+    }
+  }
 }
 
 
+
+// confiurables given by chess js api
 var config = {
   draggable: true,
   position: 'start',
@@ -128,5 +156,17 @@ var config = {
 
 board = Chessboard('myBoard', config)
 $(window).resize(board.resize)
+
+// reset board to start
+$('#resetButton').on('click', function() {
+  board.start(false)
+  game.reset()
+  updateStatus()
+})
+
+// orientation fliper
+$('#flipOrientation').on('click', board.flip)
+
+
 
 updateStatus()

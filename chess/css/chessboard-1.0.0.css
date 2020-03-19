@@ -21,6 +21,23 @@
   margin-right: 25%;
 }
 
+/* style the buttons*/
+.examples-body-9af4d button {
+  background: #2ba6cb;
+  border-radius: 3px;
+  border: 1px solid #1e728c;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 5px 0 0;
+  outline: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
 .board-b72b1 {
   border: 2px solid #404040;
   box-sizing: content-box;
