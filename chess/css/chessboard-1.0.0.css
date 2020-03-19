@@ -10,8 +10,15 @@
   margin-left: 25%;
   margin-right: 25%;
   max-height: 25%;
-  margin-bottom: 25%;
-  margin-top: 0;
+  margin-bottom: 50%;
+  margin-top: 25;
+}
+
+/* added this to center text*/
+.center-paragraph {
+  max-width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .board-b72b1 {
