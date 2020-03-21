@@ -1,4 +1,3 @@
-
 var board = null
 var game = new Chess()
 var whiteSquareGrey = '#a9a9a9'
@@ -8,14 +7,15 @@ var $status = $('#status')
 var $fen = $('#fen')
 var $pgn = $('#pgn')
 
-function removeGreySquares () {
+function removeHighlightedGreySquares () {
   $('#myBoard .square-55d63').css('background', '')
 }
 
-function greySquare (square) {
-  var $square = $('#myBoard .square-' + square)
+function highlightSquareGrey (square) {
 
+  var $square = $('#myBoard .square-' + square)
   var background = whiteSquareGrey
+
   if ($square.hasClass('black-3c85d')) {
     background = blackSquareGrey
   }
@@ -24,6 +24,7 @@ function greySquare (square) {
 }
 
 function onDragStart (source, piece) {
+
   // do not pick up pieces if the game is over
   if (game.game_over()) return false
 
@@ -34,24 +35,69 @@ function onDragStart (source, piece) {
   }
 }
 
+function makeRandomMove () {
+  var possibleMoves = game.moves()
+
+  // game over
+  if (possibleMoves.length === 0) return 
+
+  var randomIdx = Math.floor(Math.random() * possibleMoves.length)
+  game.move(possibleMoves[randomIdx])
+  board.position(game.fen())
+}
+
+
+function randomVrandom () {
+  var possibleMoves = game.moves()
+
+  // game over
+  if (possibleMoves.length === 0 || playerColor !== 'c') return 
+
+  var randomIdx = Math.floor(Math.random() * possibleMoves.length)
+  game.move(possibleMoves[randomIdx])
+  board.position(game.fen())
+  
+  window.setTimeout(randomVrandom, 750);
+}
+
+
+
+function makeRandomMoveIfEnabled () {
+  // if random computer move enabled
+  if (playRandomComputer == true){
+    if(playerColor === 'b' && game.turn() === 'w'){
+      window.setTimeout(makeRandomMove, 750)
+    } 
+    else if (playerColor === 'w' && game.turn() === 'b'){
+      window.setTimeout(makeRandomMove, 750)
+    }
+    else if (playerColor === 'c'){
+      window.setTimeout(randomVrandom, 750);
+    }
+  }
+}
+
 function onDrop (source, target) {
-  removeGreySquares()
+
+  removeHighlightedGreySquares()
 
   // see if the move is legal
   var move = game.move({
     from: source,
     to: target,
     promotion: 'q' // NOTE: always promote to a queen for example simplicity
-    
   })
 
   // illegal move
   if (move === null) return 'snapback'
+  
+  makeRandomMoveIfEnabled()
 
   updateStatus()
 }
 
 function onMouseoverSquare (square, piece) {
+
   // get list of possible moves for this square
   var moves = game.moves({
     square: square,
@@ -62,16 +108,16 @@ function onMouseoverSquare (square, piece) {
   if (moves.length === 0) return
 
   // highlight the square they moused over
-  greySquare(square)
+  highlightSquareGrey(square)
 
   // highlight the possible squares for this piece
   for (var i = 0; i < moves.length; i++) {
-    greySquare(moves[i].to)
+    highlightSquareGrey(moves[i].to)
   }
 }
 
 function onMouseoutSquare (square, piece) {
-  removeGreySquares()
+  removeHighlightedGreySquares()
 }
 
 function onSnapEnd () {
@@ -79,43 +125,11 @@ function onSnapEnd () {
 }
 
 
-function updateStatus () {
-  var status = ''
-
-  var moveColor = 'White'
-  if (game.turn() === 'b') {
-    moveColor = 'Black'
-  }
-
-  // checkmate?
-  if (game.in_checkmate()) {
-    if(moveColor == 'Black'){
-      status = 'White Wins! ' + moveColor + ' is in checkmate.'
-    } else {
-      status = 'Black Wins! ' + moveColor + ' is in checkmate.'
-    }
-  }
-
-  // draw?
-  else if (game.in_draw()) {
-    status = 'Game over: drawn position'
-  }
-
-  // game still on
-  else {
-    status = moveColor + '\'s turn.'
-
-    // check?
-    if (game.in_check()) {
-      status += ', ' + moveColor + ' is in check'
-    }
-  }
-
+function updateHTML (status) {
   $status.html(status)
   $fen.html(game.fen())
   console.log(game.pgn())
   var newPngArray = []
-  
   var png = game.pgn().split(' ')
 
   // few lines to allow for clean move tracking
@@ -142,117 +156,11 @@ function updateStatus () {
 }
 
 
-
-// confiurables given by chess js api
-var config = {
-  draggable: true,
-  position: 'start',
-  onDragStart: onDragStart,
-  onDrop: onDrop,
-  onMouseoutSquare: onMouseoutSquare,
-  onMouseoverSquare: onMouseoverSquare,
-  onSnapEnd: onSnapEnd
-}
-
-board = Chessboard('myBoard', config)
-$(window).resize(board.resize)
-
-// reset board to start
-$('#resetButton').on('click', function() {
-  board.start(false)
-  game.reset()
-  updateStatus()
-})
-
-// orientation fliper
-$('#flipOrientation').on('click', board.flip)
-
-
-
-var board = null
-var game = new Chess()
-var whiteSquareGrey = '#a9a9a9'
-var blackSquareGrey = '#696969'
-
-var $status = $('#status')
-var $fen = $('#fen')
-var $pgn = $('#pgn')
-
-function removeGreySquares () {
-  $('#myBoard .square-55d63').css('background', '')
-}
-
-function greySquare (square) {
-  var $square = $('#myBoard .square-' + square)
-
-  var background = whiteSquareGrey
-  if ($square.hasClass('black-3c85d')) {
-    background = blackSquareGrey
-  }
-
-  $square.css('background', background)
-}
-
-function onDragStart (source, piece) {
-  // do not pick up pieces if the game is over
-  if (game.game_over()) return false
-
-  // or if it's not that side's turn
-  if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-      (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
-    return false
-  }
-}
-
-function onDrop (source, target) {
-  removeGreySquares()
-
-  // see if the move is legal
-  var move = game.move({
-    from: source,
-    to: target,
-    promotion: 'q' // NOTE: always promote to a queen for example simplicity
-    
-  })
-
-  // illegal move
-  if (move === null) return 'snapback'
-
-  updateStatus()
-}
-
-function onMouseoverSquare (square, piece) {
-  // get list of possible moves for this square
-  var moves = game.moves({
-    square: square,
-    verbose: true
-  })
-
-  // exit if there are no moves available for this square
-  if (moves.length === 0) return
-
-  // highlight the square they moused over
-  greySquare(square)
-
-  // highlight the possible squares for this piece
-  for (var i = 0; i < moves.length; i++) {
-    greySquare(moves[i].to)
-  }
-}
-
-function onMouseoutSquare (square, piece) {
-  removeGreySquares()
-}
-
-function onSnapEnd () {
-  board.position(game.fen())
-}
-
-
 function updateStatus () {
-  var status = ''
 
+  var status = ''
   var moveColor = 'White'
+
   if (game.turn() === 'b') {
     moveColor = 'Black'
   }
@@ -265,50 +173,20 @@ function updateStatus () {
       status = 'Black Wins! ' + moveColor + ' is in checkmate.'
     }
   }
-
   // draw?
   else if (game.in_draw()) {
     status = 'Game over: drawn position'
   }
-
   // game still on
   else {
     status = moveColor + '\'s turn.'
-
     // check?
     if (game.in_check()) {
       status += ', ' + moveColor + ' is in check'
     }
   }
 
-  $status.html(status)
-  $fen.html(game.fen())
-  console.log(game.pgn())
-  var newPngArray = []
-  
-  var png = game.pgn().split(' ')
-
-  // few lines to allow for clean move tracking
-  $pgn.html(png)
-  if(png != ''){
-    var flip = 'white'
-    var count = 1
-    for (let i = 3; i < png.length+3; i++){
-      if(i % 3 != 0){
-        if(flip == 'white'){
-          newPngArray.push('White to ' + png[i-3] + ' ')
-          flip = 'black'
-        } else {
-          newPngArray.push('Black to ' + png[i-3] + ' ')
-          flip = 'white'
-        }    
-      } else {
-        newPngArray.push(count + '. ')
-        count++
-      }
-      $pgn.html(newPngArray.join().replace(/,/g,""))
-    }
-  }
+  updateHTML (status)
 }
 
 
@@ -317,6 +195,9 @@ function updateStatus () {
 var config = {
   draggable: true,
   position: 'start',
+  moveSpeed: 500,
+  snapbackSpeed: 500,
+  snapSpeed: 100,
   onDragStart: onDragStart,
   onDrop: onDrop,
   onMouseoutSquare: onMouseoutSquare,
@@ -336,6 +217,65 @@ $('#resetButton').on('click', function() {
 
 // orientation fliper
 $('#flipOrientation').on('click', board.flip)
+
+
+var playRandomComputer = false
+var playerColor = 'w'
+var $playRandomComputerAsWhite = $('#playRandomComputer')
+var $player = $('#player')
+
+$('#whitePlayRandomComputerRadio').hide()
+$('#whitePlayRandomComputerLabel').hide()
+$('#blackPlayRandomComputerRadio').hide()
+$('#blackPlayRandomComputerLabel').hide()
+$('#computerPlayRandomComputerRadio').hide()
+$('#computerPlayRandomComputerLabel').hide()
+
+// enable a computer with random moves
+$('#playRandomComputer').on('click', function() {
+  if(playRandomComputer == false){
+    $playRandomComputerAsWhite.text('Play Random Computer (Enabled)')
+    playRandomComputer = true;
+    var radioValue = $("input[name='player']:checked").val();
+    playerColor = radioValue
+    $('#whitePlayRandomComputerRadio').show()
+    $('#whitePlayRandomComputerLabel').show()
+    $('#blackPlayRandomComputerRadio').show()
+    $('#blackPlayRandomComputerLabel').show()
+    $('#computerPlayRandomComputerRadio').show()
+    $('#computerPlayRandomComputerLabel').show()
+     makeRandomMoveIfEnabled()
+    updateStatus()
+  } else {
+    $playRandomComputerAsWhite.text('Play Random Computer (Disabled)')
+    playRandomComputer = false;
+    $('#whitePlayRandomComputerRadio').hide()
+    $('#whitePlayRandomComputerLabel').hide()
+    $('#blackPlayRandomComputerRadio').hide()
+    $('#blackPlayRandomComputerLabel').hide()
+    $('#computerPlayRandomComputerRadio').hide()
+    $('#computerPlayRandomComputerLabel').hide()
+  }
+})
+$('#whitePlayRandomComputerRadio').on('click', function() {
+  var radioValue = $("input[name='player']:checked").val();
+  playerColor = radioValue
+  makeRandomMoveIfEnabled()
+  updateStatus()
+})
+$('#blackPlayRandomComputerRadio').on('click', function() {
+  var radioValue = $("input[name='player']:checked").val();
+  playerColor = radioValue
+  makeRandomMoveIfEnabled()
+  updateStatus()
+})
+$('#computerPlayRandomComputerRadio').on('click', function() {
+  var radioValue = $("input[name='player']:checked").val();
+  playerColor = radioValue
+  makeRandomMoveIfEnabled()
+  updateStatus()
+})
+
 
 // is a touch screen
 function isTouchDevice () {
@@ -348,11 +288,21 @@ if(isTouchDevice()){
     overflow: 'hidden',
     height: '100%'
   });
+
+
 }
 
-document.getElementById('myBoard').style.width = 10%
 
-
-
+/*
+$.ajax({
+  type: 'POST',
+  data: {text: 'testing!'},
+  url: 'http://127.0.0.1:5000/process',
+  success: function(response){   
+    console.log(response)
+    console.log('success')
+  }
+})
+*/
 
 updateStatus()
