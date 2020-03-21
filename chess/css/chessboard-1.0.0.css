@@ -14,13 +14,6 @@
   margin-top: 25;
 }
 
-/* added this to center text*/
-.center-paragraph {
-  max-width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
-}
-
 /* style the buttons*/
 .examples-body-9af4d button {
   background: #2ba6cb;

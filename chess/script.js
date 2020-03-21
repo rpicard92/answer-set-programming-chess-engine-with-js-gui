@@ -44,6 +44,9 @@ function makeRandomMove () {
   var randomIdx = Math.floor(Math.random() * possibleMoves.length)
   game.move(possibleMoves[randomIdx])
   board.position(game.fen())
+
+  updateStatus()
+
 }
 
 
@@ -51,11 +54,9 @@ function randomVrandom () {
   var possibleMoves = game.moves()
 
   // game over
-  if (possibleMoves.length === 0 || playerColor !== 'c') return 
+  if (possibleMoves.length === 0 || playRandomComputer == false || playerColor !== 'c') return 
 
-  var randomIdx = Math.floor(Math.random() * possibleMoves.length)
-  game.move(possibleMoves[randomIdx])
-  board.position(game.fen())
+  makeRandomMove()
   
   window.setTimeout(randomVrandom, 750);
 }
@@ -219,17 +220,11 @@ $('#resetButton').on('click', function() {
 $('#flipOrientation').on('click', board.flip)
 
 
-var playRandomComputer = false
+var playRandomComputer = true
 var playerColor = 'w'
 var $playRandomComputerAsWhite = $('#playRandomComputer')
 var $player = $('#player')
-
-$('#whitePlayRandomComputerRadio').hide()
-$('#whitePlayRandomComputerLabel').hide()
-$('#blackPlayRandomComputerRadio').hide()
-$('#blackPlayRandomComputerLabel').hide()
-$('#computerPlayRandomComputerRadio').hide()
-$('#computerPlayRandomComputerLabel').hide()
+$( "#whitePlayRandomComputerRadio" ).prop( "checked", true );
 
 // enable a computer with random moves
 $('#playRandomComputer').on('click', function() {
@@ -238,23 +233,11 @@ $('#playRandomComputer').on('click', function() {
     playRandomComputer = true;
     var radioValue = $("input[name='player']:checked").val();
     playerColor = radioValue
-    $('#whitePlayRandomComputerRadio').show()
-    $('#whitePlayRandomComputerLabel').show()
-    $('#blackPlayRandomComputerRadio').show()
-    $('#blackPlayRandomComputerLabel').show()
-    $('#computerPlayRandomComputerRadio').show()
-    $('#computerPlayRandomComputerLabel').show()
      makeRandomMoveIfEnabled()
     updateStatus()
   } else {
     $playRandomComputerAsWhite.text('Play Random Computer (Disabled)')
     playRandomComputer = false;
-    $('#whitePlayRandomComputerRadio').hide()
-    $('#whitePlayRandomComputerLabel').hide()
-    $('#blackPlayRandomComputerRadio').hide()
-    $('#blackPlayRandomComputerLabel').hide()
-    $('#computerPlayRandomComputerRadio').hide()
-    $('#computerPlayRandomComputerLabel').hide()
   }
 })
 $('#whitePlayRandomComputerRadio').on('click', function() {
@@ -288,10 +271,11 @@ if(isTouchDevice()){
     overflow: 'hidden',
     height: '100%'
   });
-
-
 }
 
+function uniqid(){
+  return Math.random() 
+}
 
 /*
 $.ajax({
