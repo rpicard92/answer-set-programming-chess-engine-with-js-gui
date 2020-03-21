@@ -3,6 +3,8 @@ var game = new Chess()
 var whiteSquareGrey = '#a9a9a9'
 var blackSquareGrey = '#696969'
 
+var squareClass = 'square-55d63'
+
 var $status = $('#status')
 var $fen = $('#fen')
 var $pgn = $('#pgn')
@@ -25,6 +27,12 @@ function highlightSquareGrey (square) {
 
 function onDragStart (source, piece) {
 
+  if(game.turn() === 'w'){
+    $("p").css("background-color");
+
+  }
+
+
   // do not pick up pieces if the game is over
   if (game.game_over()) return false
 
@@ -42,8 +50,10 @@ function makeRandomMove () {
   if (possibleMoves.length === 0) return 
 
   var randomIdx = Math.floor(Math.random() * possibleMoves.length)
-  game.move(possibleMoves[randomIdx])
+  var move = game.move(possibleMoves[randomIdx])
   board.position(game.fen())
+
+  updateHighlights(move)
 
   updateStatus()
 
@@ -78,6 +88,24 @@ function makeRandomMoveIfEnabled () {
   }
 }
 
+
+function updateHighlights(move){
+  if (move.color === 'w') {
+    $board.find('.' + squareClass).removeClass('highlight-white')
+    $board.find('.square-' + move.to).addClass('highlight-white')
+    $board.find('.square-' + move.from).addClass('highlight-white')
+    squareToHighlight = move.to
+    colorToHighlight = 'white'
+  } else {
+    $board.find('.' + squareClass).removeClass('highlight-black')
+    $board.find('.square-' + move.to).addClass('highlight-black')
+    $board.find('.square-' + move.from).addClass('highlight-black')
+    squareToHighlight = move.to
+    colorToHighlight = 'black'
+  }
+
+}
+
 function onDrop (source, target) {
 
   removeHighlightedGreySquares()
@@ -91,7 +119,9 @@ function onDrop (source, target) {
 
   // illegal move
   if (move === null) return 'snapback'
-  
+
+  updateHighlights(move)
+
   makeRandomMoveIfEnabled()
 
   updateStatus()
@@ -129,7 +159,6 @@ function onSnapEnd () {
 function updateHTML (status) {
   $status.html(status)
   $fen.html(game.fen())
-  console.log(game.pgn())
   var newPngArray = []
   var png = game.pgn().split(' ')
 
@@ -187,6 +216,9 @@ function updateStatus () {
     }
   }
 
+
+  
+
   updateHTML (status)
 }
 
@@ -207,6 +239,7 @@ var config = {
 }
 
 board = Chessboard('myBoard', config)
+$board = $('#myBoard')
 $(window).resize(board.resize)
 
 // reset board to start
@@ -269,18 +302,16 @@ function isTouchDevice () {
 if(isTouchDevice()){
   $('html, body').css({
     overflow: 'hidden',
-    height: '100%'
+    height: '100vh'
   });
 }
 
-function uniqid(){
-  return Math.random() 
-}
+
 
 /*
 $.ajax({
   type: 'POST',
-  data: {text: 'testing!'},
+  data: klj{text: 'testing!'},
   url: 'http://127.0.0.1:5000/process',
   success: function(response){   
     console.log(response)

@@ -4,15 +4,31 @@
   clear: both;
 }
 
-/* added this to center the board */
-.center-board {
-  max-width: 30%;
-  margin-left: 35%;
-  margin-right: 35%;
-  max-height: 25%;
-  margin-bottom: 50%;
-  margin-top: 25;
+/* width is devices width*/
+@-ms-viewport{
+  width: device-width;
 }
+
+/* added this to center the board relative to view height and view width */
+.board-desktop {
+  overflow: 'hidden';
+  max-width: 40vw;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  max-height: 400vh;
+  margin-bottom: 0vh;
+  margin-top: 10vh;
+}
+
+
+/* added this to center the board relative to view height and view width 
+.board-mobile {
+  max-width: 100vw;
+  margin-left: 0vw;
+  margin-right: 0vw;
+}
+*/
+
 
 /* style the buttons*/
 .examples-body-9af4d button {
@@ -68,7 +84,14 @@
 }
 
 .highlight1-32417, .highlight2-9c5d2 {
-  box-shadow: inset 0 0 3px 3px yellow;
+  box-shadow: inset 0 0 3px 3px rgb(72, 255, 0);
+}
+
+.highlight-white {
+  box-shadow: inset 0 0 3px 3px  purple;
+}
+.highlight-black {
+  box-shadow: inset 0 0 3px 3px blue;
 }
 
 .notation-322f9 {
