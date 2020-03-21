@@ -302,10 +302,27 @@ function isTouchDevice () {
 if(isTouchDevice()){
   $('html, body').css({
     overflow: 'hidden',
-    height: '100vh'
+    height: '100%'
   });
 }
 
+var scrollLock = false
+$('#scrollLock').on('click', function() {
+  if(scrollLock == false){
+    $('html').css({
+      overflow: 'hidden'
+    });
+    scrollLock = true
+    $('#scrollLock').text('Scroll Lock (Enabled)')
+  } else {
+    $('html').css({
+      overflow: 'scroll'
+    });
+    scrollLock = false
+    $('#scrollLock').text('Scroll Lock (Enabled)')
+  }
+
+})
 
 
 /*
