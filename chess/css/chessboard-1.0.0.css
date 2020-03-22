@@ -6,6 +6,9 @@
 
 
 /* added this to center the board relative to view height and view width */
+
+/* mouse, touch pad */
+
 .board-desktop {
   max-width: 40%;
   margin-left: 30%;
@@ -13,6 +16,19 @@
   max-height: 100%;
   margin-bottom: 0%;
   margin-top: 0%;
+}
+
+
+/* smartphones, touchscreens */
+@media (hover: none) { 
+.board-desktop {
+  max-width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  max-height: 100%;
+  margin-bottom: 0%;
+  margin-top: 0%;
+}
 }
 
 
@@ -58,7 +74,7 @@
 .square-55d63 {
   float: left;
   position: relative;
-
+  touch-action: none;
   /* disable any native browser highlighting */
   -webkit-touch-callout: none;
     -webkit-user-select: none;

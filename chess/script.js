@@ -246,6 +246,8 @@ $(window).resize(board.resize)
 $('#resetButton').on('click', function() {
   board.start(false)
   game.reset()
+  $board.find('.' + squareClass).removeClass('highlight-white')
+  $board.find('.' + squareClass).removeClass('highlight-black')
   updateStatus()
 })
 
@@ -292,37 +294,6 @@ $('#computerPlayRandomComputerRadio').on('click', function() {
   updateStatus()
 })
 
-
-// is a touch screen
-function isTouchDevice () {
-  return ('ontouchstart' in document.documentElement)
-}
-
-// disable scroll for touch screen
-if(isTouchDevice()){
-  $('html, body').css({
-    overflow: 'hidden',
-    height: '100%'
-  });
-}
-
-var scrollLock = false
-$('#scrollLock').on('click', function() {
-  if(scrollLock == false){
-    $('html').css({
-      overflow: 'hidden'
-    });
-    scrollLock = true
-    $('#scrollLock').text('Scroll Lock (Enabled)')
-  } else {
-    $('html').css({
-      overflow: 'scroll'
-    });
-    scrollLock = false
-    $('#scrollLock').text('Scroll Lock (Enabled)')
-  }
-
-})
 
 
 /*
