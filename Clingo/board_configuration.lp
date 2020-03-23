@@ -56,7 +56,7 @@ position0(w,wk1, 1, 2).
 position0(w,wk2, 1, 7).
 
 % Queen
-position0(w,wq1, 1, 4).
+position0(w,wq1, 5, 5).
 
 % King
 position0(w,wkk1, 1, 5).
