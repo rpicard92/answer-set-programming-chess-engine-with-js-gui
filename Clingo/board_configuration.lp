@@ -20,14 +20,14 @@ whiteRook(wr1;wr2).
 whiteBishop(wb1;wb2).
 whiteKnight(wk1;wk2).
 whiteQueen(wq1).
-whiteKing(qk1).
+whiteKing(wkk1).
 
 blackPawn(bp1;bp2;bp3;bp4;bp5;bp6;bp7;bp8).
 blackRook(br1;br2).
 blackBishop(bb1;bb2).
 blackKnight(bk1;bk2).
 blackQueen(bq1).
-blackKing(bk1).
+blackKing(bkk1).
 
 % Initial configuration
 
@@ -49,14 +49,14 @@ position0(w,wr2, 1, 8).
 
 % Bishops
 position0(w,wb1, 1, 3).
-position0(w,wb2, 1, 7).
+position0(w,wb2, 1, 6).
 
 % Knights
 position0(w,wk1, 1, 2).
 position0(w,wk2, 1, 7).
 
 % Queen
-position0(w,wq1, 5, 5).
+position0(w,wq1, 1, 4).
 
 % King
 position0(w,wkk1, 1, 5).
