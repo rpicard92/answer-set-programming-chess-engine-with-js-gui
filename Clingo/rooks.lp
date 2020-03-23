@@ -148,7 +148,6 @@ not whiteRook1_MovesPosition0(wr1, R+3, C),
 not whiteRook1_MovesPosition0(wr1, R+4, C), 
 not whiteRook1_MovesPosition0(wr1, R+5, C), 
 not whiteRook1_MovesPosition0(wr1, R+6, C),
-not whiteRook1_MovesPosition0(wr1, R+6, C), 
 not whiteRook1_MovesPosition0(wr1, R+7, C),
 
 not whiteRook1_MovesPosition0(wr1, R-1, C), 
@@ -157,7 +156,6 @@ not whiteRook1_MovesPosition0(wr1, R-3, C),
 not whiteRook1_MovesPosition0(wr1, R-4, C), 
 not whiteRook1_MovesPosition0(wr1, R-5, C), 
 not whiteRook1_MovesPosition0(wr1, R-6, C),
-not whiteRook1_MovesPosition0(wr1, R-6, C), 
 not whiteRook1_MovesPosition0(wr1, R-7, C),
 
 not whiteRook1_MovesPosition0(wr1, R, C-1), 
@@ -363,7 +361,6 @@ not whiteRook2_MovesPosition0(wr2, R+3, C),
 not whiteRook2_MovesPosition0(wr2, R+4, C), 
 not whiteRook2_MovesPosition0(wr2, R+5, C), 
 not whiteRook2_MovesPosition0(wr2, R+6, C),
-not whiteRook2_MovesPosition0(wr2, R+6, C), 
 not whiteRook2_MovesPosition0(wr2, R+7, C),
 
 not whiteRook2_MovesPosition0(wr2, R-1, C), 
@@ -372,7 +369,6 @@ not whiteRook2_MovesPosition0(wr2, R-3, C),
 not whiteRook2_MovesPosition0(wr2, R-4, C), 
 not whiteRook2_MovesPosition0(wr2, R-5, C), 
 not whiteRook2_MovesPosition0(wr2, R-6, C),
-not whiteRook2_MovesPosition0(wr2, R-6, C), 
 not whiteRook2_MovesPosition0(wr2, R-7, C),
 
 not whiteRook2_MovesPosition0(wr2, R, C-1), 
@@ -432,30 +428,5 @@ whiteRook2_ValidMovesPosition0(wr2, R, C) :- whiteRook2_MovesPosition0(wr2, R, C
 
 
 
-
-
-
-% Gather all moves
-allMovesPosition0(wp1, R, C) :- whitePawn1_ValidMovesPosition0(wp1, R, C).
-allMovesPosition0(wp2, R, C) :- whitePawn2_ValidMovesPosition0(wp2, R, C). 
-allMovesPosition0(wp3, R, C) :- whitePawn3_ValidMovesPosition0(wp3, R, C). 
-allMovesPosition0(wp4, R, C) :- whitePawn4_ValidMovesPosition0(wp4, R, C). 
-allMovesPosition0(wp5, R, C) :- whitePawn5_ValidMovesPosition0(wp5, R, C). 
-allMovesPosition0(wp6, R, C) :- whitePawn6_ValidMovesPosition0(wp6, R, C). 
-allMovesPosition0(wp7, R, C) :- whitePawn7_ValidMovesPosition0(wp7, R, C). 
-allMovesPosition0(wp8, R, C) :- whitePawn8_ValidMovesPosition0(wp8, R, C).
-allMovesPosition0(wk1, R, C) :- whiteKnight1_ValidMovesPosition0(wk1, R, C). 
-allMovesPosition0(wk2, R, C) :- whiteKnight2_ValidMovesPosition0(wk2, R, C). 
 allMovesPosition0(wr1, R, C) :- whiteRook1_ValidMovesPosition0(wr1, R, C). 
 allMovesPosition0(wr2, R, C) :- whiteRook2_ValidMovesPosition0(wr2, R, C). 
-:- {allMovesPosition0(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
-:- not allMovesPosition0(_, _, _). % some other blank answer is generated. This removes that.
-
-position1(w, P, R, C) :- position0(w, P, R, C), allMovesPosition0(PP, _, _), PP != P. % add moves pieces that have not moved
-position1(w, P, R, C) :- allMovesPosition0(P, R, C). % add pieces that have moved
-position1(b, P, R, C) :- position0(b, P, R, C), not position1(w, PP, R, C), allMovesPosition0(PP, RR, CC). % add other players pieces
-
-
-
-
-

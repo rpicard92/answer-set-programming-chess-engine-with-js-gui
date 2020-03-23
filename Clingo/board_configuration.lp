@@ -49,7 +49,7 @@ position0(w,wr2, 1, 8).
 
 % Bishops
 position0(w,wb1, 1, 3).
-position0(w,wb2, 1, 6).
+position0(w,wb2, 1, 7).
 
 % Knights
 position0(w,wk1, 1, 2).

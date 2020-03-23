@@ -169,4 +169,3 @@ whitePawn_TwoMoveBlockedPosition0(wp8, R+2, C) :- position0(w,wp8, R, C), R!=2. 
 
 % remove saftey column preventing usat answers
 whitePawn8_ValidMovesPosition0(wp8, R, C) :- whitePawn8_MovesPosition0(wp8, R, C), R != 20, C != 20.
-
