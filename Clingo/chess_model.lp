@@ -30,6 +30,7 @@ allMovesPosition0(wb2, R, C) :- whiteBishop2_ValidMovesPosition0(wb2, R, C).
 allMovesPosition0(wq1, R, C) :- whiteQueen1_ValidMovesPosition0(wq1, R, C). 
 allMovesPosition0(wkk1, R, C) :- whiteKing1_ValidMovesPosition0(wkk1, R, C). 
 
+
 :- {allMovesPosition0(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition0(_, _, _). % some other blank answer is generated. This removes that.
 
@@ -38,6 +39,16 @@ position1(w, P, R, C) :- allMovesPosition0(P, R, C). % add pieces that have move
 position1(b, P, R, C) :- position0(b, P, R, C), not position1(w, PP, R, C), allMovesPosition0(PP, RR, CC). % add other players pieces
 
 
+allMovesPosition1(bb1, R, C) :- blackBishop1_ValidMovesPosition1(bb1, R, C). 
+allMovesPosition1(bb2, R, C) :- blackBishop2_ValidMovesPosition1(bb2, R, C). 
+
+
+:- {allMovesPosition1(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
+:- not allMovesPosition1(_, _, _). % some other blank answer is generated. This removes that.
+
+position2(b, P, R, C) :- position1(b, P, R, C), allMovesPosition1(PP, _, _), PP != P. % add moves pieces that have not moved
+position2(b, P, R, C) :- allMovesPosition1(P, R, C). % add pieces that have moved
+position2(w, P, R, C) :- position1(w, P, R, C), not position2(b, PP, R, C), allMovesPosition1(PP, RR, CC). % add other players pieces
 
 
 
@@ -63,7 +74,6 @@ position1(b, P, R, C) :- position0(b, P, R, C), not position1(w, PP, R, C), allM
 %#show allMovesPosition0/3.
 #show position1/4.
 #show position2/4.
-#show position3/4.
 
 
 

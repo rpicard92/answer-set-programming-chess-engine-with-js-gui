@@ -14,7 +14,7 @@ whiteBishop1_UpRightTwoMoveBlockedPosition0(wb1, R+2, C+2) :- position0(w,_, R+2
 whiteBishop1_UpRightOneMoveBlockedPosition0(wb1, R+1, C+1) :- position0(w,_, R+1, C+1), position0(w,wb1, R, C). % move forward  
 
 whiteBishop1_UpRightSevenMoveBlockedPosition0(wb1, R+1, C+1) :- whiteBishop1_UpRightSixMoveBlockedPosition0(wb1, R, C).
-whiteBishop1_UpRightSixMoveBlockedPosition0(wb1, R+1, C+1) :- whiteBishop1_UpFiveMoveBlockedPosition0(wb1, R, C).
+whiteBishop1_UpRightSixMoveBlockedPosition0(wb1, R+1, C+1) :- whiteBishop1_UpRightFiveMoveBlockedPosition0(wb1, R, C).
 whiteBishop1_UpRightFiveMoveBlockedPosition0(wb1, R+1, C+1) :- whiteBishop1_UpRightFourMoveBlockedPosition0(wb1, R, C).  
 whiteBishop1_UpRightFourMoveBlockedPosition0(wb1, R+1, C+1) :- whiteBishop1_UpRightThreeMoveBlockedPosition0(wb1, R, C). 
 whiteBishop1_UpRightThreeMoveBlockedPosition0(wb1, R+1, C+1) :- whiteBishop1_UpRightTwoMoveBlockedPosition0(wb1, R, C).
@@ -140,7 +140,6 @@ not whiteBishop1_MovesPosition0(wb1, R+4, C+4),
 not whiteBishop1_MovesPosition0(wb1, R+5, C+5), 
 not whiteBishop1_MovesPosition0(wb1, R+6, C+6),
 not whiteBishop1_MovesPosition0(wb1, R+7, C+7), 
-not whiteBishop1_MovesPosition0(wb1, R+8, C+8),
 
 not whiteBishop1_MovesPosition0(wb1, R-1, C-1), 
 not whiteBishop1_MovesPosition0(wb1, R-2, C-2), 
@@ -200,6 +199,7 @@ not whiteBishop1_MovesPosition0(wb1, 20, 20).
 :- whiteBishop1_MovesPosition0(wb1, R, C), whiteBishop1_RightDownThreeMoveBlockedPosition0(wb1, R, C).   
 :- whiteBishop1_MovesPosition0(wb1, R, C), whiteBishop1_RightDownThreeMoveBlockedPosition0(wb1, R, C).   
 :- whiteBishop1_MovesPosition0(wb1, R, C), whiteBishop1_RightDownTwoMoveBlockedPosition0(wb1, R, C).   
+:- whiteBishop1_MovesPosition0(wb1, R, C), whiteBishop1_RightDownOneMoveBlockedPosition0(wb1, R, C).   
 
 
 % remove saftey column preventing usat answers
@@ -220,7 +220,7 @@ whiteBishop2_UpRightTwoMoveBlockedPosition0(wb2, R+2, C+2) :- position0(w,_, R+2
 whiteBishop2_UpRightOneMoveBlockedPosition0(wb2, R+1, C+1) :- position0(w,_, R+1, C+1), position0(w,wb2, R, C). % move forward  
 
 whiteBishop2_UpRightSevenMoveBlockedPosition0(wb2, R+1, C+1) :- whiteBishop2_UpRightSixMoveBlockedPosition0(wb2, R, C).
-whiteBishop2_UpRightSixMoveBlockedPosition0(wb2, R+1, C+1) :- whiteBishop2_UpFiveMoveBlockedPosition0(wb2, R, C).
+whiteBishop2_UpRightSixMoveBlockedPosition0(wb2, R+1, C+1) :- whiteBishop2_UpRightFiveMoveBlockedPosition0(wb2, R, C).
 whiteBishop2_UpRightFiveMoveBlockedPosition0(wb2, R+1, C+1) :- whiteBishop2_UpRightFourMoveBlockedPosition0(wb2, R, C).  
 whiteBishop2_UpRightFourMoveBlockedPosition0(wb2, R+1, C+1) :- whiteBishop2_UpRightThreeMoveBlockedPosition0(wb2, R, C). 
 whiteBishop2_UpRightThreeMoveBlockedPosition0(wb2, R+1, C+1) :- whiteBishop2_UpRightTwoMoveBlockedPosition0(wb2, R, C).
@@ -348,7 +348,6 @@ not whiteBishop2_MovesPosition0(wb2, R+4, C+4),
 not whiteBishop2_MovesPosition0(wb2, R+5, C+5), 
 not whiteBishop2_MovesPosition0(wb2, R+6, C+6),
 not whiteBishop2_MovesPosition0(wb2, R+7, C+7), 
-not whiteBishop2_MovesPosition0(wb2, R+8, C+8),
 
 not whiteBishop2_MovesPosition0(wb2, R-1, C-1), 
 not whiteBishop2_MovesPosition0(wb2, R-2, C-2), 
@@ -408,6 +407,7 @@ not whiteBishop2_MovesPosition0(wb2, 20, 20).
 :- whiteBishop2_MovesPosition0(wb2, R, C), whiteBishop2_RightDownThreeMoveBlockedPosition0(wb2, R, C).   
 :- whiteBishop2_MovesPosition0(wb2, R, C), whiteBishop2_RightDownThreeMoveBlockedPosition0(wb2, R, C).   
 :- whiteBishop2_MovesPosition0(wb2, R, C), whiteBishop2_RightDownTwoMoveBlockedPosition0(wb2, R, C).   
+:- whiteBishop2_MovesPosition0(wb2, R, C), whiteBishop2_RightDownOneMoveBlockedPosition0(wb2, R, C).   
 
 
 % remove saftey column preventing usat answers
