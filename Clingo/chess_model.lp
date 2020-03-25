@@ -51,6 +51,10 @@ allMovesPosition1(bk1, R, C) :- blackKnight1_ValidMovesPosition1(bk1, R, C).
 allMovesPosition1(bk2, R, C) :- blackKnight2_ValidMovesPosition1(bk2, R, C). 
 allMovesPosition1(bb1, R, C) :- blackBishop1_ValidMovesPosition1(bb1, R, C). 
 allMovesPosition1(bb2, R, C) :- blackBishop2_ValidMovesPosition1(bb2, R, C). 
+allMovesPosition1(br1, R, C) :- blackRook1_ValidMovesPosition1(br1, R, C). 
+allMovesPosition1(br2, R, C) :- blackRook2_ValidMovesPosition1(br2, R, C). 
+allMovesPosition1(bq1, R, C) :- blackQueen1_ValidMovesPosition1(bq1, R, C). 
+allMovesPosition1(bkk1, R, C) :- blackKing1_ValidMovesPosition1(bkk1, R, C). 
 
 
 :- {allMovesPosition1(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
