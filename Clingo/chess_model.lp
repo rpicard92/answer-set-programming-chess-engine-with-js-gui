@@ -66,28 +66,61 @@ position2(w, P, R, C) :- position1(w, P, R, C), not position2(b, PP, R, C), allM
 
 
 
+% Gather all moves
+allMovesPosition2(wp1, R, C) :- whitePawn1_ValidMovesPosition2(wp1, R, C).
+allMovesPosition2(wp2, R, C) :- whitePawn2_ValidMovesPosition2(wp2, R, C). 
+allMovesPosition2(wp3, R, C) :- whitePawn3_ValidMovesPosition2(wp3, R, C). 
+allMovesPosition2(wp4, R, C) :- whitePawn4_ValidMovesPosition2(wp4, R, C). 
+allMovesPosition2(wp5, R, C) :- whitePawn5_ValidMovesPosition2(wp5, R, C). 
+allMovesPosition2(wp6, R, C) :- whitePawn6_ValidMovesPosition2(wp6, R, C). 
+allMovesPosition2(wp7, R, C) :- whitePawn7_ValidMovesPosition2(wp7, R, C). 
+allMovesPosition2(wp8, R, C) :- whitePawn8_ValidMovesPosition2(wp8, R, C).
+allMovesPosition2(wk1, R, C) :- whiteKnight1_ValidMovesPosition2(wk1, R, C). 
+allMovesPosition2(wk2, R, C) :- whiteKnight2_ValidMovesPosition2(wk2, R, C). 
+allMovesPosition2(wr1, R, C) :- whiteRook1_ValidMovesPosition2(wr1, R, C). 
+allMovesPosition2(wr2, R, C) :- whiteRook2_ValidMovesPosition2(wr2, R, C). 
+allMovesPosition2(wb1, R, C) :- whiteBishop1_ValidMovesPosition2(wb1, R, C). 
+allMovesPosition2(wb2, R, C) :- whiteBishop2_ValidMovesPosition2(wb2, R, C). 
+allMovesPosition2(wq1, R, C) :- whiteQueen1_ValidMovesPosition2(wq1, R, C). 
+allMovesPosition2(wkk1, R, C) :- whiteKing1_ValidMovesPosition2(wkk1, R, C). 
+
+
+:- {allMovesPosition2(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
+:- not allMovesPosition2(_, _, _). % some other blank answer is generated. This removes that.
+
+position3(w, P, R, C) :- position0(w, P, R, C), allMovesPosition2(PP, _, _), PP != P. % add moves pieces that have not moved
+position3(w, P, R, C) :- allMovesPosition2(P, R, C). % add pieces that have moved
+position3(b, P, R, C) :- position0(b, P, R, C), not position3(w, PP, R, C), allMovesPosition2(PP, RR, CC). % add other players pieces
+
+
 % Optimize ---------------------------------------
 
-%#maximize number of pawns
-%#pawn_value(1,wp1;1,wp2;1,wp3;1,wp4;1,wp5;1,wp6;1,wp7;1,wp8).
-%#values(V) :- position(w,P, R, C, finalTime), pawn_value(V,P).
-%#total_Value(V) :- V = #sum{ Vs : values(Vs) }.
-%#maximize { V: total_Value(V)}.
+% maximize white values
+pawn_value(1,wp1;1,wp2;1,wp3;1,wp4;1,wp5;1,wp6;1,wp7;1,wp8;1,bp1;1,bp2;1,bp3;1,bp4;1,bp5;1,bp6;1,bp7;1,bp8).
+bishop_value(3,wb1;3,wb2;3,bb1;3,bb2).
+knight_value(3,wk1;3,wk2;3,bk1;3,bk2).
+rook_value(5,wr1;5,wr2;5,br1;5,br2).
+queen_value(9,wq1;9,bq1).
+
+pawn_values(V) :- position3(w, P, R, C), pawn_value(V,P).
+rook_values(V) :- position3(w, P, R, C), rook_value(V,P).
+bishop_values(V) :- position3(w, P, R, C), bishop_value(V,P).
+knight_values(V) :- position3(w, P, R, C), knight_value(V,P).
+queen_values(V) :- position3(w, P, R, C), queen_value(V,P).
+
+total_Value(V) :- SPV = #sum{ PV : pawn_values(PV) }, SRV = #sum{ RV : rook_values(RV) }, SBV = #sum{ BV: bishop_values(BV) }, SKV = #sum{ KV : knight_values(KV) }, SQV = #sum{QV : queen_values(QV) }, V = SPV + SRV + SBV + SKV + SQV.
+
+#maximize { V: total_Value(V)}.
 
 %#show whitePawn1_AttackMoves1/4.
 %#show whitePawn1_GeneralMoves1/4.
 %#show whitePawn2_AttackMoves1/4.
 %#show whitePawn2_GeneralMoves/4.
 
-#show whiteRook1_ValidMovesPosition0/3.
-#show whiteRook2_ValidMovesPosition0/3.
-%#show whiteKnight1_MovesPosition0/3.
-%#show whiteKnight1_ValidMovesPosition0/3.
-%#show whiteKnight2_MovesPosition0/3.
-%#show whiteKnight2_ValidMovesPosition0/3.
-%#show allMovesPosition0/3.
-#show position1/4.
-#show position2/4.
+%#show position1/4.
+%#show position2/4.
+#show position3/4.
+
 
 
 

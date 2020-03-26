@@ -66,11 +66,11 @@ position0(w,wkk1, 1, 5).
 % Pawns
 position0(b,bp1, 7, 1).
 position0(b,bp2, 7, 2).
-position0(b,bp3, 7, 3).
+position0(b,bp3, 6, 3).
 position0(b,bp4, 7, 4).
 position0(b,bp5, 7, 5).
 position0(b,bp6, 7, 6).
-position0(b,bp7, 7, 7).
+position0(b,bp7, 6, 7).
 position0(b,bp8, 7, 8).
 
 % Rooks
