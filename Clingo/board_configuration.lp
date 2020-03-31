@@ -70,7 +70,7 @@ position0(b,bp3, 7, 3).
 position0(b,bp4, 7, 4).
 position0(b,bp5, 7, 5).
 position0(b,bp6, 7, 6).
-position0(b,bp7, 6, 7).
+position0(b,bp7, 7, 7).
 position0(b,bp8, 7, 8).
 
 % Rooks
@@ -86,7 +86,7 @@ position0(b,bk1, 8, 2).
 position0(b,bk2, 8, 7).
 
 % Queen
-position0(b,bq1, 8, 4).
+position0(b,bq1, 5, 5).
 
 % King
 position0(b,bkk1, 8, 5).

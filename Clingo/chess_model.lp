@@ -31,12 +31,13 @@ allMovesPosition0(wq1, R, C) :- whiteQueen1_ValidMovesPosition0(wq1, R, C).
 allMovesPosition0(wkk1, R, C) :- whiteKing1_ValidMovesPosition0(wkk1, R, C). 
 
 
+:- allMovesPosition0(P, R, C), not position0(w, P, _, _).
 :- {allMovesPosition0(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition0(_, _, _). % some other blank answer is generated. This removes that.
 
 position1(w, P, R, C) :- position0(w, P, R, C), allMovesPosition0(PP, _, _), PP != P. % add moves pieces that have not moved
 position1(w, P, R, C) :- allMovesPosition0(P, R, C). % add pieces that have moved
-position1(b, P, R, C) :- position0(b, P, R, C), not position1(w, PP, R, C), allMovesPosition0(PP, RR, CC). % add other players pieces
+position1(b, P, R, C) :- position0(b, P, R, C), not position1(w, PP, R, C), allMovesPosition1(PP, RR, CC). % add other players pieces
 
 
 allMovesPosition1(bp1, R, C) :- blackPawn1_ValidMovesPosition1(bp1, R, C).
@@ -57,6 +58,7 @@ allMovesPosition1(bq1, R, C) :- blackQueen1_ValidMovesPosition1(bq1, R, C).
 allMovesPosition1(bkk1, R, C) :- blackKing1_ValidMovesPosition1(bkk1, R, C). 
 
 
+:- allMovesPosition1(P, R, C), not position1(b, P, _, _).
 :- {allMovesPosition1(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition1(_, _, _). % some other blank answer is generated. This removes that.
 
@@ -84,7 +86,7 @@ allMovesPosition2(wb2, R, C) :- whiteBishop2_ValidMovesPosition2(wb2, R, C).
 allMovesPosition2(wq1, R, C) :- whiteQueen1_ValidMovesPosition2(wq1, R, C). 
 allMovesPosition2(wkk1, R, C) :- whiteKing1_ValidMovesPosition2(wkk1, R, C). 
 
-
+:- allMovesPosition2(P, R, C), not position2(w, P, _, _).
 :- {allMovesPosition2(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition2(_, _, _). % some other blank answer is generated. This removes that.
 
@@ -105,43 +107,91 @@ position3(b, P, R, C) :- position2(b, P, R, C), not position3(w, PP, R, C), allM
 #const rookValue = 5.
 #const queenValue = 9.
 
-white_total_Value(V) :- 
+% NOTE: if you use #sum, and all your weights are the same, it will just return the value of the weights. IDK if this i a bug or not.
+
+
+
+white_total_Value_position1(V) :- 
+PC = #count{ P : position1(w, P, R, C), whitePawn(P) },
+KC = #count{ P : position1(w, P, R, C), whiteKnight(P) },
+BC = #count{ P : position1(w, P, R, C), whiteBishop(P) },
+RC = #count{ P : position1(w, P, R, C), whiteRook(P) },
+QC = #count{ P : position1(w, P, R, C), whiteQueen(P) }, 
+V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
+
+
+black_total_Value_position1(V) :- 
+PC = #count{ P : position1(b, P, R, C), blackPawn(P) },
+KC = #count{ P : position1(b, P, R, C), blackKnight(P) },
+BC = #count{ P : position1(b, P, R, C), blackBishop(P) },
+RC = #count{ P : position1(b, P, R, C), blackRook(P) },
+QC = #count{ P : position1(b, P, R, C), blackQueen(P) }, 
+V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
+
+total_Value_position1( W - B ) :- white_total_Value_position1(W), black_total_Value_position1(B).
+
+
+white_total_Value_position2(V) :- 
+PC = #count{ P : position2(w, P, R, C), whitePawn(P) },
+KC = #count{ P : position2(w, P, R, C), whiteKnight(P) },
+BC = #count{ P : position2(w, P, R, C), whiteBishop(P) },
+RC = #count{ P : position2(w, P, R, C), whiteRook(P) },
+QC = #count{ P : position2(w, P, R, C), whiteQueen(P) }, 
+V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
+
+
+black_total_Value_position2(V) :- 
+PC = #count{ P : position2(b, P, R, C), blackPawn(P) },
+KC = #count{ P : position2(b, P, R, C), blackKnight(P) },
+BC = #count{ P : position2(b, P, R, C), blackBishop(P) },
+RC = #count{ P : position2(b, P, R, C), blackRook(P) },
+QC = #count{ P : position2(b, P, R, C), blackQueen(P) }, 
+V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
+
+total_Value_position2( W - B ) :- white_total_Value_position2(W), black_total_Value_position2(B).
+
+
+
+white_total_Value_position3(V) :- 
 PC = #count{ P : position3(w, P, R, C), whitePawn(P) },
-RC = #count{ P : position3(w, P, R, C), whiteKnight(P) },
+KC = #count{ P : position3(w, P, R, C), whiteKnight(P) },
 BC = #count{ P : position3(w, P, R, C), whiteBishop(P) },
-KC = #count{ P : position3(w, P, R, C), whiteRook(P) },
+RC = #count{ P : position3(w, P, R, C), whiteRook(P) },
 QC = #count{ P : position3(w, P, R, C), whiteQueen(P) }, 
 V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
 
 
-black_total_Value(V) :- 
+black_total_Value_position3(V) :- 
 PC = #count{ P : position3(b, P, R, C), blackPawn(P) },
-RC = #count{ P : position3(b, P, R, C), blackKnight(P) },
+KC = #count{ P : position3(b, P, R, C), blackKnight(P) },
 BC = #count{ P : position3(b, P, R, C), blackBishop(P) },
-KC = #count{ P : position3(b, P, R, C), blackRook(P) },
+RC = #count{ P : position3(b, P, R, C), blackRook(P) },
 QC = #count{ P : position3(b, P, R, C), blackQueen(P) }, 
 V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
 
-total_Value( W - B ) :- white_total_Value(W), black_total_Value(B).
+total_Value_position3( W - B ) :- white_total_Value_position3(W), black_total_Value_position3(B).
 
-#show white_total_Value/1.
-#show black_total_Value/1.
-#show total_Value/1.
+%full state space
 
 
-#maximize { V: white_total_Value(V)}.
-#minimize { V: black_total_Value(V)}.
-#maximize { V: total_Value(V)}.
+#maximize { V: total_Value_position1(V); V: total_Value_position2(V); V: total_Value_position3(V) }.
+
+%#maximize { V@3, V: total_Value_position1(V)}.
+%#minimize { V@2, V: total_Value_position2(V)}.
+%#maximize { V@1, V: total_Value_position3(V)}.
 
 
+%#include <incmode>.
 
-%#show whitePawn1_AttackMoves1/4.
-%#show whitePawn1_GeneralMoves1/4.
-%#show whitePawn2_AttackMoves1/4.
-%#show whitePawn2_GeneralMoves/4.
 
-%#show position1/4.
-%#show position2/4.
+#show white_total_Value_position3/1.
+#show black_total_Value_position3/1.
+#show total_Value_position2/1.
+#show total_Value_position3/1.
+
+
+#show position1/4.
+#show position2/4.
 #show position3/4.
 
 
