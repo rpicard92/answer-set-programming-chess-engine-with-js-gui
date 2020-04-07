@@ -30,8 +30,7 @@ allMovesPosition0(wb2, R, C) :- whiteBishop2_ValidMovesPosition0(wb2, R, C).
 allMovesPosition0(wq1, R, C) :- whiteQueen1_ValidMovesPosition0(wq1, R, C). 
 allMovesPosition0(wkk1, R, C) :- whiteKing1_ValidMovesPosition0(wkk1, R, C). 
 
-
-:- allMovesPosition0(P, R, C), not position0(w, P, _, _).
+:- allMovesPosition0(P, R, C), not position0(w, P, _, _). % if a piece has already been taken, remove it
 :- {allMovesPosition0(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition0(_, _, _). % some other blank answer is generated. This removes that.
 
@@ -57,8 +56,7 @@ allMovesPosition1(br2, R, C) :- blackRook2_ValidMovesPosition1(br2, R, C).
 allMovesPosition1(bq1, R, C) :- blackQueen1_ValidMovesPosition1(bq1, R, C). 
 allMovesPosition1(bkk1, R, C) :- blackKing1_ValidMovesPosition1(bkk1, R, C). 
 
-
-:- allMovesPosition1(P, R, C), not position1(b, P, _, _).
+:- allMovesPosition1(P, R, C), not position1(b, P, _, _). % if a piece has already been taken, remove it
 :- {allMovesPosition1(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition1(_, _, _). % some other blank answer is generated. This removes that.
 
@@ -86,7 +84,7 @@ allMovesPosition2(wb2, R, C) :- whiteBishop2_ValidMovesPosition2(wb2, R, C).
 allMovesPosition2(wq1, R, C) :- whiteQueen1_ValidMovesPosition2(wq1, R, C). 
 allMovesPosition2(wkk1, R, C) :- whiteKing1_ValidMovesPosition2(wkk1, R, C). 
 
-:- allMovesPosition2(P, R, C), not position2(w, P, _, _).
+:- allMovesPosition2(P, R, C), not position2(w, P, _, _). % if a piece has already been taken, remove it
 :- {allMovesPosition2(_, R, C)} > 1. % remove models without carnidnality of 1 (sometimes there are higher cardinaly models that are duplicates but produce SAT).
 :- not allMovesPosition2(_, _, _). % some other blank answer is generated. This removes that.
 
@@ -120,6 +118,7 @@ QC = #count{ P : position1(w, P, R, C), whiteQueen(P) },
 V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
 
 
+
 black_total_Value_position1(V) :- 
 PC = #count{ P : position1(b, P, R, C), blackPawn(P) },
 KC = #count{ P : position1(b, P, R, C), blackKnight(P) },
@@ -130,6 +129,20 @@ V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValu
 
 total_Value_position1( W - B ) :- white_total_Value_position1(W), black_total_Value_position1(B).
 
+
+
+%*
+white_total_Value_position2_attack(V, b, P, R, C) :- 
+PC = #count{ P : position2(b, P, R, C), position1(w, P0, R, C), whitePawn(P0), P != != P0  },
+BC = #count{ P : position2(b, P, R, C), position1(w, P0, R, C), whiteBishop(P0), P != P0 },
+RC = #count{ P : position2(b, P, R, C), position1(w, P0, R, C), whiteRook(P0), P != P0 },
+QC = #count{ P : position2(b, P, R, C), position1(w, P0, R, C), whiteQueen(P0), P != P0 }, 
+V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue,P0  },
+KC = #count{ P : position2(b, P, R, C), position1(w, P0, R, C), whiteKnight(P0), P 
+position2(b, P, R, C).
+
+#show white_total_Value_position2_attack/1.
+*%
 
 white_total_Value_position2(V) :- 
 PC = #count{ P : position2(w, P, R, C), whitePawn(P) },
@@ -143,7 +156,7 @@ V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValu
 black_total_Value_position2(V) :- 
 PC = #count{ P : position2(b, P, R, C), blackPawn(P) },
 KC = #count{ P : position2(b, P, R, C), blackKnight(P) },
-BC = #count{ P : position2(b, P, R, C), blackBishop(P) },
+BC = #count{ P : position2(b, P, R, C), blackBishop(P) }, 
 RC = #count{ P : position2(b, P, R, C), blackRook(P) },
 QC = #count{ P : position2(b, P, R, C), blackQueen(P) }, 
 V = PC*pawnValue + RC*rookValue + BC*bishopValue + KC*knightValue + QC*queenValue.
@@ -173,19 +186,79 @@ total_Value_position3( W - B ) :- white_total_Value_position3(W), black_total_Va
 
 %full state space
 
+total(V1, V2, V3) :- total_Value_position1(V1), total_Value_position2(V2), total_Value_position3(V3).
 
-#maximize { V: total_Value_position1(V); V: total_Value_position2(V); V: total_Value_position3(V) }.
+#maximize { @recursiveEvalutation(V1,V2,V3): total(V1, V2, V3)  }.
 
-%#maximize { V@3, V: total_Value_position1(V)}.
-%#minimize { V@2, V: total_Value_position2(V)}.
+#script(python)
+
+import clingo
+import functools
+
+
+class Context:
+
+    def __init__(self):
+        self.V1_previous = 0
+        self.V2_previous = 0
+        self.V3_previous = 0
+
+    def recursiveEvalutation(self, V1,V2,V3):
+        try:
+            print('What: ' + str(V1) + ' ' + str(V2) + ' ' + str(V3))
+            if V1 is None or V2 is None or V3 is None:
+                return 0
+            if V1.number is None or V2.number is None or V3.number is None:
+                return 0
+            VV1 = int(V1.number)
+            VV2 = int(V2.number)
+            VV3 = int(V3.number)
+        except:
+            return 0
+
+
+
+
+        if(VV3 > self.V3_previous):
+            print('test V3')
+            if(VV2 > self.V2_previous):
+                print('test V2')
+                if(VV1 > self.V1_previous):
+                    print('test V1')
+                    self.V1_previous = VV1
+                    self.V2_previous = VV2
+                    self.V3_previous = VV3
+                    print(str(VV1))
+                    print(str(VV2))
+                    print(str(VV3))
+                    return VV3
+                else:
+                    return 0
+            else:
+                return 0
+        else:
+            print('test exit')
+            return 0
+
+def main(prg):
+    prg.ground([("base", [])], context=Context())
+    prg.solve()
+
+
+
+#end.
+
+
+%#maximize { V@4, V: total_Value_position1(V)}.
+%#maximize { V@3, V: total_Value_position2(V)}.
 %#maximize { V@1, V: total_Value_position3(V)}.
-
 
 %#include <incmode>.
 
 
 #show white_total_Value_position3/1.
 #show black_total_Value_position3/1.
+#show total_Value_position1/1.
 #show total_Value_position2/1.
 #show total_Value_position3/1.
 
