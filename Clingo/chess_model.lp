@@ -1,5 +1,6 @@
 % RULES
 
+#program base.
 
 % Rules for Moves --------------------------------------------------------
 
@@ -188,63 +189,113 @@ total_Value_position3( W - B ) :- white_total_Value_position3(W), black_total_Va
 
 total(V1, V2, V3) :- total_Value_position1(V1), total_Value_position2(V2), total_Value_position3(V3).
 
-#maximize { @recursiveEvalutation(V1,V2,V3): total(V1, V2, V3)  }.
+%total_test(@recursiveEvalutation(V1,V2,V3)) :- total(V1,V2,V3).
+%#show total_test/1.
+
+%#minimize { @recursiveEvalutation(): total(V1, V2, V3)  }.
 
 #script(python)
 
 import clingo
 import functools
 
+def recursiveEvalutation(V_index, V_position):
+    global V1_previous
+    global V2_previous
+    global V3_previous
+    global V1_array
+    global V2_array
+    global V3_array
+    global best_index
 
-class Context:
-
-    def __init__(self):
-        self.V1_previous = 0
-        self.V2_previous = 0
-        self.V3_previous = 0
-
-    def recursiveEvalutation(self, V1,V2,V3):
-        try:
-            print('What: ' + str(V1) + ' ' + str(V2) + ' ' + str(V3))
-            if V1 is None or V2 is None or V3 is None:
-                return 0
-            if V1.number is None or V2.number is None or V3.number is None:
-                return 0
-            VV1 = int(V1.number)
-            VV2 = int(V2.number)
-            VV3 = int(V3.number)
-        except:
-            return 0
+    for index in V1_array:
+        if(index in array):
 
 
-
-
-        if(VV3 > self.V3_previous):
-            print('test V3')
-            if(VV2 > self.V2_previous):
-                print('test V2')
-                if(VV1 > self.V1_previous):
-                    print('test V1')
-                    self.V1_previous = VV1
-                    self.V2_previous = VV2
-                    self.V3_previous = VV3
-                    print(str(VV1))
-                    print(str(VV2))
-                    print(str(VV3))
-                    return VV3
-                else:
-                    return 0
+    if(V_index <= len(V1_array)-1 and V_index <= len(V2_array)-1 and V_index <= len(V3_array)-1):
+    
+        if(V_position == 1):
+            V1 = V1_array[V_index]
+            if(V1 > V1_previous):
+                return recursiveEvalutation(V_index, 2)
             else:
-                return 0
-        else:
-            print('test exit')
-            return 0
+                return recursiveEvalutation(V_index+1, 1)
+        elif(V_position == 2):
+            V2 = V2_array[V_index]
+            if(V2 > V2_previous):
+                V2_previous = recursiveEvalutation(V_index, 3)
+            else:
+                V2_previous = recursiveEvalutation(V_index+2, 2)
+        elif(V_position == 3):
+            V3 = V3_array[V_index]
+            if(V3 > V3_previous):
+                V3_previous = V3
+                best_index = V_index
+    else:
+        return best_index
+        
+def evaluation(model):
+    global V1_array
+    global V2_array
+    global V3_array
+  
+    for atom in model.symbols(shown=True):
+        if atom.name == "total" and len(atom.arguments) == 3:
+            print('test')
+            V1 = atom.arguments[0].number
+            V2 = atom.arguments[1].number
+            V3 = atom.arguments[2].number
+            
+            print('What: ' + str(V1) + ' ' + str(V2) + ' ' + str(V3))
+            #if(V1 is None or V2 is None or V3 is None):
+            V1_array.append(int(V1))
+            V2_array.append(int(V2))
+            V3_array.append(int(V3))
+
+
 
 def main(prg):
-    prg.ground([("base", [])], context=Context())
+    global V1_previous
+    global V2_previous
+    global V3_previous
+    V1_previous = 0
+    V2_previous = 0
+    V3_previous = 0
+    global V1_array
+    global V2_array
+    global V3_array
+    V1_array = []
+    V2_array = []
+    V3_array = []
+    global program_backend
+    global best_index
+    best_index = 0
+    program_backend = prg.backend()
+    prg.ground([("base", [])])
+    prg.solve(on_model=evaluation)
+
+    print('FINAL!!!!!')
+    best_index = recursiveEvalutation(0, 1)
+
+
+    if(best_index is not None):
+
+        total_array = []
+        for index in range(len(V1_array)):
+            total_array.append([V1_array[index], V2_array[index], V3_array[index]]) 
+
+        for atom in model.symbols(shown=True):
+            if atom.name == "total" and len(atom.arguments) == 2:
+                V1, V2, V3 = [n.number for n in atom.arguments]
+                for idx in range(len(total_array)):
+                    if(total_array[idx][0] == V1 and total_array[idx][1] == V2 and total_array[idx][2] == V3):
+                        #null
+                        print('nothing.')
+                    else:
+                        program_backend.add_rule([], [-prg.symbolic_atoms(atom.name).literal])
+        print('best index: ' + str(best_index))
+
     prg.solve()
-
-
 
 #end.
 
@@ -256,17 +307,17 @@ def main(prg):
 %#include <incmode>.
 
 
-#show white_total_Value_position3/1.
-#show black_total_Value_position3/1.
-#show total_Value_position1/1.
-#show total_Value_position2/1.
-#show total_Value_position3/1.
+%#show white_total_Value_position3/1.
+%#show black_total_Value_position3/1.
+%#show total_Value_position1/1.
+%#show total_Value_position2/1.
+%#show total_Value_position3/1.
 
 
-#show position1/4.
-#show position2/4.
-#show position3/4.
-
+%#show position1/4.
+%#show position2/4.
+%#show position3/4.
+#show total/3.
 
 
 
